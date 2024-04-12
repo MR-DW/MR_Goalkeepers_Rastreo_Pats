@@ -7,17 +7,31 @@ import { BolsosComponent } from './home/bolsos/bolsos.component';
 import { DetalleBolsosComponent } from './home/bolsos/detalle-bolsos/detalle-bolsos.component';
 import { DetalleArquerosComponent } from './home/arqueros/detalle-arqueros/detalle-arqueros.component';
 import { ArquerosComponent } from './home/arqueros/arqueros.component';
+import { CrearBolsosComponent } from './home/bolsos/crear-bolsos/crear-bolsos.component';
+import { CrearArqueroComponent } from './home/arqueros/crear-arquero/crear-arquero.component';
 
 const routes: Routes = [
-  {path:'login', component: LoginComponent},
-  {path:'', component: HomeComponent},
-  {path:'bolsos', component: BolsosComponent, children:[
-    {path:'detalle-bolso', component: DetalleBolsosComponent}
-  ]},
-  {path:'arqueros', component: ArquerosComponent, 
-    children:[
-    {path:'detalle-arquero', component: DetalleArquerosComponent}
-  ]},
+  { path: 'login', component: LoginComponent },
+  { path: '', component: HomeComponent },
+  {
+    path: 'bolsos', component: BolsosComponent,
+    // children:[
+    // {path:'detalle-bolso', component: DetalleBolsosComponent},
+    // {path:'crear-bolso', component: CrearBolsosComponent}
+    // ]
+  },
+  { path: 'bolsos/detalle-bolso', component: DetalleBolsosComponent },
+  { path: 'bolsos/crear-bolso', component: CrearBolsosComponent },
+  {
+    path: 'arqueros', component: ArquerosComponent,
+    // children:[
+    // {path:'detalle-arquero', component: DetalleArquerosComponent},
+    // {path:'crear-arquero', component: CrearArqueroComponent}
+    // ]
+  },
+  { path: 'arqueros/crear-arquero', component: CrearArqueroComponent },
+  { path: 'arqueros/detalle-arquero', component: DetalleArquerosComponent }
+
 ];
 
 @NgModule({

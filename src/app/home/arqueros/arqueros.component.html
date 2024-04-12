@@ -1,18 +1,19 @@
 <aside>
     <div class="title-container">
         <h2>Listado De Arqueros</h2>
-        <button mat-flat-button color="warn" routerLink="/"
+        <button mat-flat-button color="warn" routerLink=""
             style="border: 1px solid black; width: 200px; margin: auto;">
             Volver
+        </button>
+        <button mat-flat-button color="warn" routerLink="/arqueros/crear-arquero"
+            style="border: 1px solid black; width: 200px; margin: auto;">
+            Nuevo Arquero
         </button>
     </div>
 
     <div class="container">
-        <mat-card 
-            class="example-card" 
-            style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;"
-            routerLink="detalle-arquero"
-        >
+        <mat-card class="example-card" style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;"
+            routerLink="/arqueros/detalle-arquero">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>Nombre Arquero/a</mat-card-title>

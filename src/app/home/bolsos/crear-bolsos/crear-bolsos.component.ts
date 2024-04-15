@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 
 @Component({
@@ -10,8 +11,9 @@ import { HomeService } from 'src/app/servicios/home.service';
 export class CrearBolsosComponent implements OnInit {
 
   formCrearBolso:FormGroup;
+  listaBolsos: Bolso[] = [];
 
-  constructor( private formBuilder:FormBuilder, private home:HomeService ) { 
+  constructor( private formBuilder:FormBuilder, private homeService:HomeService ) { 
     
     this.formCrearBolso = this.formBuilder.group({
       nombreBolso:['', [Validators.required]],
@@ -23,7 +25,14 @@ export class CrearBolsosComponent implements OnInit {
 
    }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Ver si puedo no llamar al servicio de nuevo y utilizar el servicio del componente bolsos.
+    this.homeService.getBolsos().subscribe((data:any) => {
+      for (let bolso of data){
+        this.listaBolsos.push(new Bolso(bolso));
+      }
+    })
+  }
 
   crearBolso(){
 
@@ -36,7 +45,9 @@ export class CrearBolsosComponent implements OnInit {
       estado : this.formCrearBolso.get('estado')?.value
     }
 
-    this.home.crearBolso( dataFormulario ).subscribe(
+    this.listaBolsos.push(new Bolso(dataFormulario))
+    
+    this.homeService.crearBolso( this.listaBolsos ).subscribe(
       (data:any) => {
         console.log("data: ", data)
     })

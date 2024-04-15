@@ -9,7 +9,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 })
 export class BolsosComponent implements OnInit {
 
-  bolso:Bolso | undefined;
+  listaBolsos:Bolso[] = [];
 
   constructor( private homeService: HomeService ) { }
 
@@ -17,8 +17,12 @@ export class BolsosComponent implements OnInit {
 
     this.homeService.getBolsos().subscribe((data:any) => {
       console.log("data: ", data);
-      this.bolso = new Bolso(data);
+      for (let bolso of data){
+        this.listaBolsos.push(new Bolso(bolso));
+      }
     })
+
+    console.log("this.listaBolsos: ", this.listaBolsos);
 
   }
 

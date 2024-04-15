@@ -12,7 +12,7 @@ export class UrlService {
   serviceUrl = {
     Home: {
       Bolso: {
-        CrearBolso: this.firebaseUrl + this.paramJson;
+        CrearBolso: this.firebaseUrl + this.paramJson,
       }
     }
   }

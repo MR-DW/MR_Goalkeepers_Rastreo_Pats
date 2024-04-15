@@ -20,7 +20,7 @@ const routes: Routes = [
     // {path:'crear-bolso', component: CrearBolsosComponent}
     // ]
   },
-  { path: 'bolsos/detalle-bolso', component: DetalleBolsosComponent },
+  { path: 'bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
   { path: 'bolsos/crear-bolso', component: CrearBolsosComponent },
   {
     path: 'arqueros', component: ArquerosComponent,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Bolso } from 'src/app/modelos/bolso.model';
+import { HomeService } from 'src/app/servicios/home.service';
 
 @Component({
   selector: 'app-bolsos',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BolsosComponent implements OnInit {
 
-  constructor() { }
+  bolso:Bolso | undefined;
+
+  constructor( private homeService: HomeService ) { }
 
   ngOnInit(): void {
+
+    this.homeService.getBolsos().subscribe((data:any) => {
+      console.log("data: ", data);
+      this.bolso = new Bolso(data);
+    })
+
   }
 
 }

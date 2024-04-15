@@ -16,7 +16,7 @@
             routerLink="/bolsos/detalle-bolso">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Nombre Bolso</mat-card-title>
+                <mat-card-title>{{ bolso?.nombreBolso }}</mat-card-title>
                 <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
             </mat-card-header>
             <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
@@ -24,11 +24,11 @@
             <mat-card-content>
                 <p>
                     Rastreo:
-                    Le tiene Mati Ruiz por que juega el sabado.
+                    {{ bolso?.rastreo }}
                 </p>
                 <p>
                     Estado:
-                    Nada por arreglar.
+                    {{ bolso?.estado }}
                 </p>
                 <button mat-flat-button color="warn" routerLink="/"
                 style="border: 1px solid black; width: 200px; margin: auto;">

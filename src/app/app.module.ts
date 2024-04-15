@@ -21,6 +21,7 @@ import { CrearArqueroComponent } from './home/arqueros/crear-arquero/crear-arque
 import { CrearBolsosComponent } from './home/bolsos/crear-bolsos/crear-bolsos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RastreoComponent } from './home/rastreo/rastreo.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -49,7 +50,8 @@ import { RastreoComponent } from './home/rastreo/rastreo.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports:[    
     LoginComponent,

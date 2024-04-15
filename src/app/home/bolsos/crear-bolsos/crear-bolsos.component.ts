@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HomeService } from 'src/app/servicios/home.service';
 
 @Component({
   selector: 'app-crear-bolsos',
@@ -10,12 +11,14 @@ export class CrearBolsosComponent implements OnInit {
 
   formCrearBolso:FormGroup;
 
-  constructor( private formBuilder:FormBuilder ) { 
+  constructor( private formBuilder:FormBuilder, private home:HomeService ) { 
     
     this.formCrearBolso = this.formBuilder.group({
-      nombreBolso:[''],
-      arquero:[''],
-      partes:['']
+      nombreBolso:['', [Validators.required]],
+      arquero:['', [Validators.required]],
+      partes:['', [Validators.required]],
+      rastreo:['', [Validators.required]],
+      estado:['', [Validators.required]]
     }) 
 
    }
@@ -23,7 +26,21 @@ export class CrearBolsosComponent implements OnInit {
   ngOnInit(): void {}
 
   crearBolso(){
-    
+
+    const dataFormulario = {
+      id : '1',
+      nombreBolso : this.formCrearBolso.get('nombreBolso')?.value,
+      arquero : this.formCrearBolso.get('arquero')?.value,
+      partes : this.formCrearBolso.get('partes')?.value,
+      rastreo : this.formCrearBolso.get('rastreo')?.value,
+      estado : this.formCrearBolso.get('estado')?.value
+    }
+
+    this.home.crearBolso( dataFormulario ).subscribe(
+      (data:any) => {
+        console.log("data: ", data)
+    })
+
   }
 
 }

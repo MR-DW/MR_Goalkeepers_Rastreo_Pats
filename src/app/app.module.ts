@@ -20,6 +20,7 @@ import { DetalleArquerosComponent } from './home/arqueros/detalle-arqueros/detal
 import { CrearArqueroComponent } from './home/arqueros/crear-arquero/crear-arquero.component';
 import { CrearBolsosComponent } from './home/bolsos/crear-bolsos/crear-bolsos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RastreoComponent } from './home/rastreo/rastreo.component';
 
 
 
@@ -33,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DetalleBolsosComponent,
     DetalleArquerosComponent,
     CrearArqueroComponent,
-    CrearBolsosComponent
+    CrearBolsosComponent,
+    RastreoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,20 @@
-<main>
+<main class="main-principal">
 
-    <h1>Gestión Pats by MR_Goalkeepers</h1>
+    <h1 class="title-h1">Gestión Pats by MR_Goalkeepers</h1>
 
-    <router-outlet></router-outlet>
-
-    <footer>
-        <a mat-flat-button color="warn" target="_blank" href="https://sites.google.com/view/mrgoalkeepers"
-            style="border: 1px solid black; width: 300px; margin: auto;">
+    <div class="app-container">
+        <router-outlet></router-outlet>
+    </div>
+    <footer class="footer">
+        <a mat-flat-button target="_blank" href="https://sites.google.com/view/mrgoalkeepers"
+            class="boton-footer">
             Visitá MR_Goalkeepers
         </a>
-        <p>Desarrollado por Matias Ignacio Ruiz.</p>
-        <p>MR_DesarrollosWeb.</p>
+        <p class="texto-footer">
+            Desarrollado por Matias Ignacio Ruiz. 
+        <br>
+            MR_DesarrollosWeb.
+        </p>
     </footer>
 
 </main>

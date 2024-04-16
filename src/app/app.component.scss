@@ -1,0 +1,38 @@
+
+*{
+    color: black;
+}
+
+.main-principal{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f3f3;
+}
+
+.title-h1{
+    padding: 1rem 0;
+}
+
+.app-container{
+    height: 80%;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.texto-footer{
+    padding-top: 1rem;
+}
+
+.boton-footer{
+    border: 1px solid #d6d2ea; 
+    width: 300px; 
+    background-color: #295ec1;
+    color: #d6d2ea;
+}

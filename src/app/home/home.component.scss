@@ -1,0 +1,18 @@
+.main-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.botones-navegacion-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    height: 30%;
+}
+
+.botones-navegacion-home button{
+    margin: 1rem auto;
+}

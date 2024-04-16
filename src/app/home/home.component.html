@@ -1,12 +1,6 @@
-<main class="main">
-    <div class="example-button-row">
-        <!-- Pasar un query params o una var para identificar si es bolso o arqero y así 
-            reutilizar un solo compo pero qe dibuje un dato o el otro -->
-        <button mat-flat-button color="primary" routerLink="/bolsos">
-            Bolsos
-        </button>
-        <button mat-flat-button color="accent" routerLink="/arqueros">
-            Arqueros
-        </button>
-    </div>
+<main class="main-home">
+    <app-botones-navegacion class="botones-navegacion-home"
+        [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/arqueros'" [textoVolver]="'Bolsos'"
+        [textoHomeOCrear]="'Arqueros'">
+    </app-botones-navegacion>
 </main>

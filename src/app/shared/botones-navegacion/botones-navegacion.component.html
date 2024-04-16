@@ -1,10 +1,13 @@
-<div>
-    <button mat-flat-button color="warn" [routerLink]="urlVolver"
-        style="border: 1px solid black; width: 200px; margin: auto;">
+
+    <button mat-flat-button [routerLink]="urlVolver" 
+        [ngClass]="{'boton-navegacion': esHome, 'boton-navegacion-resto':!esHome}"
+    >
+    <!--  -->
+
         {{ textoVolver}}
     </button>
-    <button mat-flat-button color="warn" [routerLink]="urlHomeOCrear"
-        style="border: 1px solid black; width: 200px; margin: auto;">
+    <button mat-flat-button [routerLink]="urlHomeOCrear" 
+        [ngClass]="{'boton-navegacion': esHome, 'boton-navegacion-resto':!esHome}"
+    >
         {{ textoHomeOCrear }}
     </button>
-</div>

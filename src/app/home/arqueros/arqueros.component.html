@@ -1,17 +1,17 @@
 <aside>
     <h2>Listado De Arqueros</h2>
     <app-botones-navegacion [urlVolver]="'/'" [urlHomeOCrear]="'/arqueros/crear-arquero'" [textoVolver]="'Volver'"
-        [textoHomeOCrear]="'Crear Arquero'"
-    >
+        [textoHomeOCrear]="'Crear Arquero'">
     </app-botones-navegacion>
 
-        <ng-container *ngIf="listaArqueros">
-            <app-card *ngIf="!mensajeCompoVacio" [listadoArqueros]="listaArqueros"
-                (eliminar)="eliminarBolso($event)"></app-card>
-        </ng-container>
+    <ng-container *ngIf="listaArqueros">
+        <app-card *ngIf="!mensajeCompoVacio" 
+            [listadoArqueros]="listaArqueros"
+            (eliminar)="eliminarBolso($event)"></app-card>
+    </ng-container>
 
-        <div *ngIf="mensajeCompoVacio">
-            <p>No hay Arqueros creados.</p>
-        </div>
+    <div *ngIf="mensajeCompoVacio">
+        <p>No hay Arqueros creados.</p>
+    </div>
 
 </aside>

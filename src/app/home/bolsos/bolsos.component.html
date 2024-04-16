@@ -5,7 +5,8 @@
     </app-botones-navegacion>
 
     <ng-container *ngIf="listaBolsos">
-        <app-card *ngIf="!mensajeCompoVacio" [listadoBolsos]="listaBolsos"
+        <app-card *ngIf="!mensajeCompoVacio" 
+            [listadoBolsos]="listaBolsos"
             (eliminar)="eliminarBolso($event)"></app-card>
     </ng-container>
 

@@ -11,7 +11,7 @@ import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/mo
 })
 export class ArquerosComponent implements OnInit {
 
-  listaArqueros: Arqueros[] = [];
+  listaArqueros!: Arqueros[];
   mensajeCompoVacio: boolean = false;
 
   constructor(private homeService: HomeService, public dialog: MatDialog) { }

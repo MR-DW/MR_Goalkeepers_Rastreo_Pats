@@ -28,7 +28,7 @@ export class CrearBolsosComponent implements OnInit {
 
   ngOnInit(): void {
     this.homeService.getBolsos().subscribe((data: any) => {
-      this.listaBolsos = data;
+      this.listaBolsos = data ? data : [];
     });
   }
 

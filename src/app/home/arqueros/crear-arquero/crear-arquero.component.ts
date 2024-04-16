@@ -19,17 +19,16 @@ export class CrearArqueroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private homeService: HomeService, public dialog: MatDialog) {
 
     this.formCrearArquero = this.formBuilder.group({
-      nombreBolso: ['', [Validators.required]],
-      arquero: ['', [Validators.required]],
-      partes: ['', [Validators.required]],
-      rastreo: ['', [Validators.required]],
-      estado: ['', [Validators.required]]
+      nombreArquero: ['', [Validators.required]],
+      division: ['', [Validators.required]],
+      equipamientoPropio: ['', [Validators.required]],
+      equipamientoClub: ['', [Validators.required]]
     })
   }
 
   ngOnInit(): void {
     this.homeService.getArqueros().subscribe((data: any) => {
-      this.listaArqueros = data;
+      this.listaArqueros = data ? data : [];
     });
   }
 
@@ -39,13 +38,14 @@ export class CrearArqueroComponent implements OnInit {
       nombreArquero: this.formCrearArquero.get('nombreArquero')?.value,
       division: this.formCrearArquero.get('division')?.value,
       equipamientoPropio: this.formCrearArquero.get('equipamientoPropio')?.value,
-      equipamientoClub: this.formCrearArquero.get('equipamientoClub')?.value,
-      estadoEquipo: this.formCrearArquero.get('estadoEquipo')?.value,
-      rastreoEquipo: this.formCrearArquero.get('rastreoEquipo')?.value,
-
+      equipamientoClub: this.formCrearArquero.get('equipamientoClub')?.value
     }
 
+    console.log("dataFormulario: ", dataFormulario)
+    console.log("this.listaArqueros antes del push: ", this.listaArqueros)
+
     this.listaArqueros.push(new Arqueros(dataFormulario))
+    console.log("this.listaArqueros despues del push: ", this.listaArqueros)
 
     this.homeService.crearArquero(this.listaArqueros).subscribe(
       (data: any) => {

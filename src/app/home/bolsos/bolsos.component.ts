@@ -24,11 +24,7 @@ export class BolsosComponent implements OnInit {
     this.homeService.getBolsos().subscribe((data: any) => {
       if (data) {
         this.listaBolsos = data;
-      console.log("this.listaBolsos: ", this.listaBolsos)
-
-        // for (let bolso of data) {
-        //   this.listaBolsos.push(new Bolso(bolso));
-        // }
+      console.log("obtenerListaBolsos : ", this.listaBolsos)
       }
       else {
         this.mensajeCompoVacio = true;
@@ -37,20 +33,15 @@ export class BolsosComponent implements OnInit {
     )
   }
 
-  eliminarBolso(id: number) {
+  eliminarBolso( id:number ) {
 
-    
     this.listaBolsos.splice(id, 1);
 
-    // this.homeService.eliminarBolso( id ).subscribe((data: any) => { });
-
-    this.homeService.crearBolso( this.listaBolsos );
+    this.homeService.crearBolso( this.listaBolsos ).subscribe();
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
     });
-
-
-
   }
+
 }

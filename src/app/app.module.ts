@@ -23,6 +23,7 @@ import { DetalleBolsosComponent } from './home/bolsos/detalle-bolsos/detalle-bol
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
+import { CardComponent } from './shared/card/card.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-co
     CrearArqueroComponent,
     CrearBolsosComponent,
     ModalConfirmacionComponent,
+    CardComponent,
     
   ],
   imports: [

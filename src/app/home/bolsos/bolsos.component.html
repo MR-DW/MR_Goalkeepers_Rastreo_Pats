@@ -11,38 +11,12 @@
         </button>
     </div>
 
-    <div class="container" *ngIf="!mensajeCompoVacio">
 
-        <mat-card *ngFor="let bolso of listaBolsos; let i = index;" class="example-card"
-            style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;"
-        >
-            <span [routerLink]="['/bolsos/detalle-bolso/', i]">
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{ bolso?.nombreBolso }}</mat-card-title>
-                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                </mat-card-header>
-                <img mat-card-image style="width: 100px;"
-                    src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-card-content>
-                    <p>
-                        Rastreo:
-                        {{ bolso?.rastreo }}
-                    </p>
-                    <p>
-                        Estado:
-                        {{ bolso?.estado }}
-                    </p>
-                </mat-card-content>
-            </span>
-
-            <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
-                (click)="eliminarBolso(i)">
-                Eliminar
-            </button>
-
-        </mat-card>
-    </div>
+    <app-card
+        *ngIf="!mensajeCompoVacio" 
+        [listado]="listaBolsos"
+        (eliminar)="eliminarBolso($event)"
+    ></app-card>
 
     <div *ngIf="mensajeCompoVacio">
         <p>No hay bolsos creados.</p>

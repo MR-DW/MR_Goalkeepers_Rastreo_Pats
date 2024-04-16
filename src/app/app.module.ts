@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
 import { CardComponent } from './shared/card/card.component';
 import { BotonesNavegacionComponent } from './shared/botones-navegacion/botones-navegacion.component';
+import { DetalleComponent } from './shared/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BotonesNavegacionComponent } from './shared/botones-navegacion/botones-
     ModalConfirmacionComponent,
     CardComponent,
     BotonesNavegacionComponent,
+    DetalleComponent,
     
   ],
   imports: [

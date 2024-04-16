@@ -7,7 +7,9 @@
     <ng-container *ngIf="listaBolsos">
         <app-card *ngIf="!mensajeCompoVacio" 
             [listadoBolsos]="listaBolsos"
-            (eliminar)="eliminarBolso($event)"></app-card>
+            (eliminar)="eliminarBolso($event)"
+        >
+        </app-card>
     </ng-container>
 
 

@@ -3,34 +3,9 @@
   <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
     [textoHomeOCrear]="'Home'">
   </app-botones-navegacion>
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ bolso.nombreBolso }}</mat-card-title>
-      <mat-card-subtitle>Lo utiliza: {{ bolso.arquero }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <ul>
-        <li>
-          <span>
-            Estado del bolso:
-          </span>
-          {{ bolso.estado }}
-        </li>
-        <li>
-          <span>
-            Ubicación del bolso:
-          </span>
-          {{ bolso.rastreo }}
-        </li>
-        <li>
-          <span>
-            Equipamiento:
-          </span>
-          {{ bolso.partes }}
-        </li>
-      </ul>
-    </mat-card-content>
-  </mat-card>
+
+  <ng-container *ngIf="bolso">
+    <app-detalle [detalleBolso]="bolso"></app-detalle>
+  </ng-container>
+
 </aside>

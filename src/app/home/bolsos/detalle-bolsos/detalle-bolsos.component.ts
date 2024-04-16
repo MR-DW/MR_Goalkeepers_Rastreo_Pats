@@ -10,9 +10,8 @@ import { HomeService } from 'src/app/servicios/home.service';
 })
 export class DetalleBolsosComponent implements OnInit {
 
-  listaBolsos: Bolso[] = [];
   idParam!: string;
-  bolso: Bolso = new Bolso('');
+  bolso!: Bolso;
 
   constructor( private homeService: HomeService, private rutaActiva:ActivatedRoute ) { }
 
@@ -28,6 +27,7 @@ export class DetalleBolsosComponent implements OnInit {
   obtenerDetalleBolso( id:any ){
     this.homeService.getDetalleBolso( id ).subscribe((data: any) => {
       this.bolso = new Bolso(data);
+      console.log("this.bolso: ", this.bolso)
     })
   }
 

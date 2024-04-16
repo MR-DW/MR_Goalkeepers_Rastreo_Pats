@@ -30,7 +30,7 @@ const routes: Routes = [
     // ]
   },
   { path: 'arqueros/crear-arquero', component: CrearArqueroComponent },
-  { path: 'arqueros/detalle-arquero', component: DetalleArquerosComponent }
+  { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent }
 
 ];
 

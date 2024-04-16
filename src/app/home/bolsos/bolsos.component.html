@@ -1,19 +1,19 @@
-<aside>
-    <h2>Listado De Bolsos</h2>
+<aside class="aside-bolsos">
+    <h2 class="titulo-h2">Listado De Bolsos</h2>
     <app-botones-navegacion [urlVolver]="'/'" [urlHomeOCrear]="'/bolsos/crear-bolso'" [textoVolver]="'Volver'"
         [textoHomeOCrear]="'Crear Bolso'">
     </app-botones-navegacion>
 
-    <ng-container *ngIf="listaBolsos">
-        <app-card *ngIf="!mensajeCompoVacio" 
-            [listadoBolsos]="listaBolsos"
-            (eliminar)="eliminarBolso($event)"
-        >
-        </app-card>
-    </ng-container>
-
+    <div class="scroll-container">
+        <div class="scroll-content">
+            <ng-container *ngIf="listaBolsos">
+                <app-card *ngIf="!mensajeCompoVacio" [listadoBolsos]="listaBolsos" (eliminar)="eliminarBolso($event)">
+                </app-card>
+            </ng-container>
+        </div>
+    </div>
 
     <div *ngIf="mensajeCompoVacio">
-        <p>No hay bolsos creados.</p>
+        <p class="texto-empty">No hay bolsos creados.</p>
     </div>
 </aside>

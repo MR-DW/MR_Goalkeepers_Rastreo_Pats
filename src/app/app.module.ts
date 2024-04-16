@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
 import { CardComponent } from './shared/card/card.component';
+import { BotonesNavegacionComponent } from './shared/botones-navegacion/botones-navegacion.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CardComponent } from './shared/card/card.component';
     CrearBolsosComponent,
     ModalConfirmacionComponent,
     CardComponent,
+    BotonesNavegacionComponent,
     
   ],
   imports: [

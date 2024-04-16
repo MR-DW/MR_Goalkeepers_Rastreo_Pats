@@ -1,22 +1,14 @@
 <aside>
-    <div class="title-container">
-        <h2>Listado De Bolsos</h2>
-        <button mat-flat-button color="warn" routerLink="/"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Volver
-        </button>
-        <button mat-flat-button color="warn" routerLink="/bolsos/crear-bolso"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Nuevo Bolso
-        </button>
-    </div>
+    <h2>Listado De Bolsos</h2>
+    <app-botones-navegacion [urlVolver]="'/'" [urlHomeOCrear]="'/bolsos/crear-bolso'" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Crear Bolso'">
+    </app-botones-navegacion>
 
+    <ng-container *ngIf="listaBolsos">
+        <app-card *ngIf="!mensajeCompoVacio" [listadoBolsos]="listaBolsos"
+            (eliminar)="eliminarBolso($event)"></app-card>
+    </ng-container>
 
-    <app-card
-        *ngIf="!mensajeCompoVacio" 
-        [listado]="listaBolsos"
-        (eliminar)="eliminarBolso($event)"
-    ></app-card>
 
     <div *ngIf="mensajeCompoVacio">
         <p>No hay bolsos creados.</p>

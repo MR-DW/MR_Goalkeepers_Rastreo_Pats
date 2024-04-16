@@ -1,32 +1,43 @@
 <aside>
-
-    <div>
-        <button mat-flat-button color="warn" routerLink="/"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Home
-        </button>
-        <button mat-flat-button color="warn" routerLink="/arqueros"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Volver
-        </button>
-    </div>
-    <div>
-        <mat-form-field>
-            <mat-label style="color:black">Nombre</mat-label>
-            <input matInput placeholder="Nombre">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label style="color:black">División</mat-label>
-            <input matInput placeholder="División">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label style="color:black">Nombre Bolso</mat-label>
-            <input matInput placeholder="Nombre Bolso">
-        </mat-form-field>
-    </div>
-    <div>
-        <button mat-flat-button color="warn" type="submit" style="border: 1px solid black; width: 200px; margin: auto;">
-            Crear
-        </button>
-    </div>
+    <app-botones-navegacion 
+        [urlVolver]="'/arqueros'"
+        [urlHomeOCrear]="'/'"
+        [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Home'"
+    >
+    </app-botones-navegacion>
+    <form [formGroup]="formCrearArquero">
+        <div>
+            <mat-form-field>
+                <mat-label style="color:black">Nombre Arquero/a:</mat-label>
+                <input matInput formControlName="nombreArquero">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label style="color:black">División:</mat-label>
+                <input matInput formControlName="division">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Equipamiento Propio:</mat-label>
+                <textarea matInput formControlName="equipamientoPropio"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Equipamiento del Club que utiliza:</mat-label>
+                <textarea matInput formControlName="equipamientoClub"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Rastreo del Equipamiento:</mat-label>
+                <textarea matInput formControlName="rastreoEquipo"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Estado del Equipamiento:</mat-label>
+                <textarea matInput formControlName="estadoEquipo"></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
+                (click)="crearArquero()" [disabled]="formCrearArquero.invalid">
+                Crear
+            </button>
+        </div>
+    </form>
 </aside>

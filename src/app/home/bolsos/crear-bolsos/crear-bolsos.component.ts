@@ -24,18 +24,11 @@ export class CrearBolsosComponent implements OnInit {
       rastreo: ['', [Validators.required]],
       estado: ['', [Validators.required]]
     })
-
   }
 
   ngOnInit(): void {
-    // Ver si puedo no llamar al servicio de nuevo y utilizar el servicio del componente bolsos.
-
     this.homeService.getBolsos().subscribe((data: any) => {
-      if (data) {
-        for (let bolso of data) {
-          this.listaBolsos.push(new Bolso(bolso));
-        }
-      }
+      this.listaBolsos = data;
     });
   }
 
@@ -58,10 +51,6 @@ export class CrearBolsosComponent implements OnInit {
       });
         this.formCrearBolso.reset();
       })
-
   }
-
-  // Para generar un id autómatico
-
 
 }

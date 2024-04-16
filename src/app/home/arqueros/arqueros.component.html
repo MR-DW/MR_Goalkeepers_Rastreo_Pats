@@ -1,31 +1,17 @@
 <aside>
-    <div class="title-container">
-        <h2>Listado De Arqueros</h2>
-        <button mat-flat-button color="warn" routerLink=""
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Volver
-        </button>
-        <button mat-flat-button color="warn" routerLink="/arqueros/crear-arquero"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Nuevo Arquero
-        </button>
-    </div>
+    <h2>Listado De Arqueros</h2>
+    <app-botones-navegacion [urlVolver]="'/'" [urlHomeOCrear]="'/arqueros/crear-arquero'" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Crear Arquero'"
+    >
+    </app-botones-navegacion>
 
-    <div class="container">
-        <mat-card class="example-card" style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;"
-            routerLink="/arqueros/detalle-arquero">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>Nombre Arquero/a</mat-card-title>
-                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-            </mat-card-header>
-            <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p>
-                    Tiene el bolso "x" por que juega el sabado.
-                </p>
-            </mat-card-content>
-        </mat-card>
-    </div>
+        <ng-container *ngIf="listaArqueros">
+            <app-card *ngIf="!mensajeCompoVacio" [listadoArqueros]="listaArqueros"
+                (eliminar)="eliminarBolso($event)"></app-card>
+        </ng-container>
+
+        <div *ngIf="mensajeCompoVacio">
+            <p>No hay Arqueros creados.</p>
+        </div>
+
 </aside>

@@ -11,8 +11,8 @@ import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/mo
 })
 export class BolsosComponent implements OnInit {
 
-  listaBolsos: Bolso[] = [];
-  mensajeCompoVacio: boolean | undefined;
+  listaBolsos!: Bolso[];
+  mensajeCompoVacio: boolean = false;
 
   constructor(private homeService: HomeService, public dialog: MatDialog) { }
 
@@ -24,7 +24,6 @@ export class BolsosComponent implements OnInit {
     this.homeService.getBolsos().subscribe((data: any) => {
       if (data) {
         this.listaBolsos = data;
-      console.log("obtenerListaBolsos : ", this.listaBolsos)
       }
       else {
         this.mensajeCompoVacio = true;

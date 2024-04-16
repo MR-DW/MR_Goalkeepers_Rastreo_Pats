@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
 
 @Component({
@@ -8,15 +9,20 @@ import { Bolso } from 'src/app/modelos/bolso.model';
 })
 export class CardComponent implements OnInit {
   
-  listaBolsos: Bolso[] = [];
-  @Input() listado: Bolso[] = [];
+  listaBolsos: Bolso[]= [];
+  listaArqueros: Arqueros[] = [];
+
+  @Input() listadoBolsos: Bolso[] = [];
+  @Input() listadoArqueros: Arqueros[] = [];
+
   @Output() eliminar = new EventEmitter<any>();
 
 
   constructor() { }
 
   ngOnInit(): void {
-    this.listaBolsos = this.listado;
+    this.listaArqueros = this.listadoArqueros;
+    this.listaBolsos = this.listadoBolsos;
   }
 
   eliminarBolso( id: number ){

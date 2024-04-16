@@ -1,42 +1,33 @@
 <aside>
-    <div>
-        <button mat-flat-button color="warn" routerLink="/"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Home
-        </button>
-        <button mat-flat-button color="warn" routerLink="/bolsos"
-            style="border: 1px solid black; width: 200px; margin: auto;">
-            Volver
-        </button>
-    </div>
+    <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+    [textoHomeOCrear]="'Home'">
+  </app-botones-navegacion>
     <form [formGroup]="formCrearBolso">
         <div>
             <mat-form-field>
                 <mat-label style="color:black">Nombre Bolso</mat-label>
-                <input matInput placeholder="Nombre Bolso" formControlName="nombreBolso">
+                <input matInput formControlName="nombreBolso">
             </mat-form-field>
             <mat-form-field>
                 <mat-label style="color:black">Arquero/a</mat-label>
-                <input matInput placeholder="Arquero/a" formControlName="arquero">
+                <input matInput formControlName="arquero">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Partes</mat-label>
-                <textarea matInput placeholder="Partes" formControlName="partes"></textarea>
+                <textarea matInput formControlName="partes"></textarea>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Rastreo</mat-label>
-                <textarea matInput placeholder="Rastreo" formControlName="rastreo"></textarea>
+                <textarea matInput formControlName="rastreo"></textarea>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Estado</mat-label>
-                <textarea matInput placeholder="Estado" formControlName="estado"></textarea>
+                <textarea matInput formControlName="estado"></textarea>
             </mat-form-field>
         </div>
         <div>
-            <button mat-flat-button color="warn" 
-                style="border: 1px solid black; width: 200px; margin: auto;"
-                (click)="crearBolso()"
-                [disabled]="formCrearBolso.invalid">
+            <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
+                (click)="crearBolso()" [disabled]="formCrearBolso.invalid">
                 Crear
             </button>
         </div>

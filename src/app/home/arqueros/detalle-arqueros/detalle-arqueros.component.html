@@ -1,14 +1,9 @@
 <!-- <h2>Arquero: "Nombre Arquero"</h2> -->
 <aside>
-  <div>
-    <button mat-flat-button color="warn" routerLink="/" style="border: 1px solid black; width: 200px; margin: auto;">
-      Home
-    </button>
-    <button mat-flat-button color="warn" routerLink="/bolsos"
-      style="border: 1px solid black; width: 200px; margin: auto;">
-      Volver
-    </button>
-  </div>
+  <app-botones-navegacion [urlVolver]="'/arqueros'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+  [textoHomeOCrear]="'Home'"
+>
+</app-botones-navegacion>
   <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>Nombre Arquera</mat-card-title>

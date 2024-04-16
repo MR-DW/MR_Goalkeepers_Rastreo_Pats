@@ -1,22 +1,59 @@
-<mat-card *ngFor="let elemento of listado; let i = index;" class="example-card"
+<!-- Card Bolsos -->
+<mat-card *ngFor="let bolso of listaBolsos; let i = index;" class="example-card"
     style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;">
     <span [routerLink]="['/bolsos/detalle-bolso/', i]">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ elemento?.nombreBolso }}</mat-card-title>
-            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+            <mat-card-title>{{ bolso.nombreBolso }}</mat-card-title>
         </mat-card-header>
         <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
             alt="Photo of a Shiba Inu">
         <mat-card-content>
-            <p>
-                Rastreo:
-                {{ elemento?.rastreo }}
-            </p>
-            <p>
-                Estado:
-                {{ elemento?.estado }}
-            </p>
+            <ul>
+                <li>
+                    Rastreo:
+                    {{ bolso.rastreo }}
+                </li>
+                <li>
+                    Estado:
+                    {{ bolso.estado }}
+                </li>
+            </ul>
+        </mat-card-content>
+    </span>
+
+    <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
+        (click)="eliminarBolso(i)">
+        Eliminar
+    </button>
+
+</mat-card>
+
+<!-- Card Arqueros -->
+<mat-card *ngFor="let arquero of listaArqueros; let i = index;" class="example-card"
+    style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;">
+    <span [routerLink]="['/arqueros/detalle-arquero/', i]">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ arquero?.nombreArquero }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <ul>
+                <li>
+                    Equipamiento que utiliza del club:
+                    {{ arquero?.equipamientoClub }}
+                </li>
+                <li>
+                    Rastreo:
+                    {{ arquero?.rastreoEquipo }}
+                </li>
+                <li>
+                    Equipamiento de {{ arquero?.nombreArquero }}:
+                    {{ arquero?.equipamientoPropio }}
+                </li>
+            </ul>
         </mat-card-content>
     </span>
 

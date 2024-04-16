@@ -1,14 +1,8 @@
 <!-- <h2>Bolso: "Nombre Bolso"</h2> -->
 <aside>
-  <div>
-    <button mat-flat-button color="warn" routerLink="/" style="border: 1px solid black; width: 200px; margin: auto;">
-      Home
-    </button>
-    <button mat-flat-button color="warn" routerLink="/bolsos"
-      style="border: 1px solid black; width: 200px; margin: auto;">
-      Volver
-    </button>
-  </div>
+  <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+    [textoHomeOCrear]="'Home'">
+  </app-botones-navegacion>
   <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -20,19 +14,19 @@
       <ul>
         <li>
           <span>
-            Estado del bolso: 
+            Estado del bolso:
           </span>
           {{ bolso.estado }}
         </li>
         <li>
           <span>
-            Ubicación del bolso: 
+            Ubicación del bolso:
           </span>
           {{ bolso.rastreo }}
         </li>
         <li>
           <span>
-            Equipamiento: 
+            Equipamiento:
           </span>
           {{ bolso.partes }}
         </li>

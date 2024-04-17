@@ -1,10 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { Storage } from '@angular/fire';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-// import { FirebaseStorage, ref, uploadBytes } from 'firebase/storage';
 
-// import { uploadBytes } from 'firebase/storage';
+import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
@@ -26,7 +25,7 @@ export class CrearBolsosComponent implements OnInit {
     private formBuilder: FormBuilder,
     private homeService: HomeService,
     public dialog: MatDialog,
-    // private storage: Storage
+    private storage: Storage
   ) {
 
     this.formCrearBolso = this.formBuilder.group({
@@ -65,21 +64,23 @@ export class CrearBolsosComponent implements OnInit {
       })
   }
 
-  // subirArchivo($event: any) {
-  //   console.log("event: ", $event.target)
+  subirArchivo($event: any) {
+    console.log("event: ", $event.target)
 
-  //   const file = $event.target.files[0];
-  //   console.log("file: ", file)
-
-
-  //   const imgRef = ref(this.storage, `bolsos/${file.name}`)
-  //     console.log("imgRef: ", imgRef)
+    const file = $event.target.files[0];
+    console.log("file: ", file)
 
 
-  //   uploadBytes(imgRef, file).then(x => {
-  //     console.log("x: ", x)
-  //   }).catch(error => console.log(error))
+    const imgRef = ref(this.storage, `bolsos/${file.name}`)
+      console.log("imgRef: ", imgRef)
 
-  // }
+
+    uploadBytes(imgRef, file)
+      .then(resp => {
+        console.log("x: ", resp)
+      })
+      .catch(error => console.log(error))
+
+  }
 
 }

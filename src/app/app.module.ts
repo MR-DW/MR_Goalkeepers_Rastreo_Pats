@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
-
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -28,6 +29,7 @@ import { BotonesNavegacionComponent } from './shared/botones-navegacion/botones-
 import { CardComponent } from './shared/card/card.component';
 import { DetalleComponent } from './shared/detalle/detalle.component';
 import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,6 @@ import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule,
     MatSlideToggleModule,
     MatCardModule,
     MatIconModule,
@@ -60,7 +61,11 @@ import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-co
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
+
   ],
   exports:[    
     LoginComponent,

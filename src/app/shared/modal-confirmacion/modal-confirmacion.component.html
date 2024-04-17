@@ -1,21 +1,19 @@
 <mat-dialog-content>
-    <h2 mat-dialog-title>{{ mensaje }}!</h2>
+    <h2 mat-dialog-title class="titulo-h2">{{ mensaje }}!</h2>
 </mat-dialog-content>
-<mat-dialog-actions>
+
+<mat-dialog-actions class="botones-navegacion-home">
 
     <!-- Botones Crear -->
-    <button mat-flat-button color="warn" mat-dialog-close style="border: 1px solid black; width: 200px; margin: auto;"
-        *ngIf="esCrear">
+    <button class="boton-navegacion" mat-flat-button mat-dialog-close *ngIf="esCrear">
         Crear otro
     </button>
-    <button mat-flat-button color="warn" routerLink="/" style="border: 1px solid black; width: 200px; margin: auto;"
-        mat-dialog-close *ngIf="esCrear">
+    <button class="boton-navegacion" mat-flat-button routerLink="/" mat-dialog-close *ngIf="esCrear">
         Home
     </button>
 
     <!-- Boton Eliminar -->
-    <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
-        mat-dialog-close *ngIf="esEliminar">
+    <button class="boton-navegacion" mat-flat-button mat-dialog-close *ngIf="esEliminar">
         Cerrar
     </button>
 

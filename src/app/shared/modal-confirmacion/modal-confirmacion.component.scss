@@ -1,0 +1,23 @@
+.titulo-h2{
+    text-align: center;
+}
+
+.botones-navegacion-home{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 2rem 0;
+    height: 30%;
+}
+
+.boton-navegacion{
+    border: 1px solid #d6d2ea; 
+    background-color: #295ec1;
+    color: #d6d2ea;
+    width: 200px; 
+    margin: .5rem auto;
+}
+
+.mat-dialog-actions .mat-button-base+.mat-button-base{
+    margin-left: 0;
+}

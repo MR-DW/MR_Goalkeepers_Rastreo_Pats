@@ -7,4 +7,6 @@ export const environment = {
   urlDetalleArqueros:'/bolsos/detalle-arquero/:id',
   urlCrearArqueros:'/arqueros/crear-arquero',
   urlCrearBolsos:'/arqueros/crear-bolso',
+  pathImg:'../assets/img/',
+
 };

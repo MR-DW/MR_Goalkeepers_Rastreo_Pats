@@ -4,7 +4,7 @@
     <mat-card-header class="container-title">
         <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image class="card-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    <img mat-card-image class="card-img" [src]="imgBolso"
         [alt]=" bolso.nombreBolso ">
 
     <mat-card-content class="card-text">

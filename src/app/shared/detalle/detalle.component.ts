@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-detalle',
@@ -9,6 +10,7 @@ import { Bolso } from 'src/app/modelos/bolso.model';
 })
 export class DetalleComponent implements OnInit {
 
+  imgBolso:string = '';
   bolso!: Bolso;
   @Input() detalleBolso: any;
 
@@ -18,6 +20,8 @@ export class DetalleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.imgBolso = environment.urlImg + '/Equipamiento-0.webp';
+
     this.bolso = this.detalleBolso;
     this.arquero = this.detalleArquero;
     console.log("this.arquero: ", this.arquero)

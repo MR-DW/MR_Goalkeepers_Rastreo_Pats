@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
+
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -22,10 +24,10 @@ import { CrearBolsosComponent } from './home/bolsos/crear-bolsos/crear-bolsos.co
 import { DetalleBolsosComponent } from './home/bolsos/detalle-bolsos/detalle-bolsos.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
-import { CardComponent } from './shared/card/card.component';
 import { BotonesNavegacionComponent } from './shared/botones-navegacion/botones-navegacion.component';
+import { CardComponent } from './shared/card/card.component';
 import { DetalleComponent } from './shared/detalle/detalle.component';
+import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,7 @@ import { DetalleComponent } from './shared/detalle/detalle.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule,
+    MatDialogModule
   ],
   exports:[    
     LoginComponent,

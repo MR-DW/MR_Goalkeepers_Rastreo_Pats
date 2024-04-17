@@ -5,13 +5,15 @@
 export const environment = {
   production: false,
 
-  urlHome:'/',
-  urlBolsos:'/bolsos',
-  urlArqueros:'/arqueros',
-  urlDetalleBolsos:'/bolsos/detalle-bolso/:id',
-  urlDetalleArqueros:'/bolsos/detalle-arquero/:id',
-  urlCrearArqueros:'/arqueros/crear-arquero',
-  urlCrearBolsos:'/bolsos/crear-bolso',
+  urlHome: '/',
+  urlBolsos: '/bolsos',
+  urlArqueros: '/arqueros',
+  urlDetalleBolsos: '/bolsos/detalle-bolso/:id',
+  urlDetalleArqueros: '/bolsos/detalle-arquero/:id',
+  urlCrearArqueros: '/arqueros/crear-arquero',
+  urlCrearBolsos: '/bolsos/crear-bolso',
+  pathImgLocal: '../assets/img/',
+  urlImg: 'gs://mrgoalkeepers-rastreo-pats.appspot.com',
 
 };
 

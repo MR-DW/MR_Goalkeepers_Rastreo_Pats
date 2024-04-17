@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  urlHome:'/',
+  urlBolsos:'/bolsos',
+  urlArqueros:'/arqueros',
+  urlDetalleBolsos:'/bolsos/detalle-bolso/:id',
+  urlDetalleArqueros:'/bolsos/detalle-arquero/:id',
+  urlCrearArqueros:'/arqueros/crear-arquero',
+  urlCrearBolsos:'/bolsos/crear-bolso',
+
 };
 
 /*

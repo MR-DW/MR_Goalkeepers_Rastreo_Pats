@@ -1,18 +1,17 @@
 <main class="main-principal">
+        <div class="app-container">
+            <router-outlet></router-outlet>
+        </div>
 
-    <div class="app-container">
-        <router-outlet></router-outlet>
-    </div>
-    <footer class="footer">
-        <a mat-flat-button target="_blank" href="https://sites.google.com/view/mrgoalkeepers"
-            class="boton-footer">
-            Visitá MR_Goalkeepers
-        </a>
-        <p class="texto-footer">
-            Desarrollado por Matias Ignacio Ruiz. 
-        <br>
-            MR_DesarrollosWeb.
-        </p>
-    </footer>
-
+        <footer  *ngIf="!isFormulario()"
+            class="footer">
+            <a mat-flat-button target="_blank" href="https://sites.google.com/view/mrgoalkeepers" class="boton-footer">
+                Visitá MR_Goalkeepers
+            </a>
+            <p class="texto-footer">
+                Desarrollado por Matias Ignacio Ruiz.
+                <br>
+                MR_DesarrollosWeb.
+            </p>
+        </footer>
 </main>

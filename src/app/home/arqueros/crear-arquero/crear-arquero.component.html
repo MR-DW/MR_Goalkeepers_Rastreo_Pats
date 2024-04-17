@@ -1,35 +1,34 @@
-<aside>
-    <app-botones-navegacion 
-        [urlVolver]="'/arqueros'"
-        [urlHomeOCrear]="'/'"
-        [textoVolver]="'Volver'"
-        [textoHomeOCrear]="'Home'"
-    >
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Crea tu Arquero</h2>
+
+    <app-botones-navegacion [urlVolver]="'/arqueros'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Home'">
     </app-botones-navegacion>
-    <form [formGroup]="formCrearArquero">
-        <div>
+
+    <div class="scroll-container">
+        <form #form [formGroup]="formCrearArquero" class="form">
             <mat-form-field>
-                <mat-label style="color:black">Nombre Arquero/a:</mat-label>
+                <mat-label class="form-label">Nombre Arquero/a:</mat-label>
                 <input matInput formControlName="nombreArquero">
             </mat-form-field>
             <mat-form-field>
-                <mat-label style="color:black">División:</mat-label>
+                <mat-label class="form-label">División:</mat-label>
                 <input matInput formControlName="division">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Equipamiento Propio:</mat-label>
+                <mat-label class="form-label">Equipamiento Propio:</mat-label>
                 <textarea matInput formControlName="equipamientoPropio"></textarea>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Equipamiento del Club que utiliza:</mat-label>
+                <mat-label class="form-label">Equipamiento del Club que utiliza:</mat-label>
                 <textarea matInput formControlName="equipamientoClub"></textarea>
             </mat-form-field>
-        </div>
-        <div>
-            <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
+            <button mat-flat-button class="boton-crear"
                 (click)="crearArquero()" [disabled]="formCrearArquero.invalid">
                 Crear
             </button>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </aside>

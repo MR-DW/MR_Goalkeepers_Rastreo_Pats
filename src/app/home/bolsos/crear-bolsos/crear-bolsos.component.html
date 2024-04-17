@@ -1,35 +1,37 @@
-<aside>
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Crea tu bolso</h2>
+
     <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
-    [textoHomeOCrear]="'Home'">
-  </app-botones-navegacion>
-    <form [formGroup]="formCrearBolso">
-        <div>
+        [textoHomeOCrear]="'Home'">
+    </app-botones-navegacion>
+
+    <div class="scroll-container">
+        <form #form [formGroup]="formCrearBolso" class="form">
             <mat-form-field>
-                <mat-label style="color:black">Nombre Bolso</mat-label>
+                <mat-label class="form-label">Nombre Bolso</mat-label>
                 <input matInput formControlName="nombreBolso">
             </mat-form-field>
             <mat-form-field>
-                <mat-label style="color:black">Arquero/a</mat-label>
+                <mat-label class="form-label">Arquero/a</mat-label>
                 <input matInput formControlName="arquero">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Partes</mat-label>
+                <mat-label class="form-label">Partes</mat-label>
                 <textarea matInput formControlName="partes"></textarea>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Rastreo</mat-label>
+                <mat-label class="form-label">Rastreo</mat-label>
                 <textarea matInput formControlName="rastreo"></textarea>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Estado</mat-label>
+                <mat-label class="form-label">Estado</mat-label>
                 <textarea matInput formControlName="estado"></textarea>
             </mat-form-field>
-        </div>
-        <div>
-            <button mat-flat-button color="warn" style="border: 1px solid black; width: 200px; margin: auto;"
-                (click)="crearBolso()" [disabled]="formCrearBolso.invalid">
+            <button mat-flat-button class="boton-crear" (click)="crearBolso()" [disabled]="formCrearBolso.invalid">
                 Crear
             </button>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </aside>

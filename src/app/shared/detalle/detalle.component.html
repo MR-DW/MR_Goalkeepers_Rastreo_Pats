@@ -1,18 +1,26 @@
 <!-- Detalle Bolsos -->
 <mat-card class="example-card" *ngIf="bolso">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ bolso.nombreBolso }}</mat-card-title>
-        <mat-card-subtitle> Arquero que utiliza el bolso: {{ bolso.arquero }}</mat-card-subtitle>
+
+    <mat-card-header class="container-title">
+        <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
+    <img mat-card-image class="card-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        [alt]=" bolso.nombreBolso ">
+
+    <mat-card-content class="card-text">
         <ul>
+            <li>
+                <span>
+                    Arquero que utiliza el bolso::
+                </span>
+                {{ bolso.arquero }}
+            </li>
             <li>
                 <span>
                     Estado del bolso:
                 </span>
-                {{ bolso.estado }}
+                {{ bolso.estado
+                }}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </li>
             <li>
                 <span>
@@ -32,14 +40,19 @@
 
 <!-- Detalle Arquero -->
 <mat-card class="example-card" *ngIf="arquero">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ arquero.nombreArquero }}</mat-card-title>
-        <mat-card-subtitle> División en la que juega: {{ arquero.division }}</mat-card-subtitle>
+
+    <mat-card-header class="container-title">
+        <mat-card-title class="card-title">{{ arquero.nombreArquero }}</mat-card-title>
     </mat-card-header>
-    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-    <mat-card-content>
+
+    <mat-card-content class="card-text">
         <ul>
+            <li>
+                <span>
+                    División en la que juega:
+                </span>
+                {{ arquero.division }}
+            </li>
             <li>
                 <span>
                     Equipamiento propio:

@@ -1,14 +1,19 @@
 <!-- Card Bolsos -->
 <mat-card *ngFor="let bolso of listaBolsos; let i = index;" class="example-card"
-    style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;">
-    <span [routerLink]="['/bolsos/detalle-bolso/', i]">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ bolso.nombreBolso }}</mat-card-title>
+    >
+    <span class="span-card" [routerLink]="['/bolsos/detalle-bolso/', i]">
+
+        <mat-card-header class="container-title">
+            <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+
+        <img mat-card-image 
+            class="card-img"
+             
+            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
             alt="Photo of a Shiba Inu">
-        <mat-card-content>
+            
+        <mat-card-content class="card-text">
             <ul>
                 <li>
                     Rastreo:
@@ -16,7 +21,7 @@
                 </li>
                 <li>
                     Estado:
-                    {{ bolso.estado }}
+                    {{ bolso.estado }} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 </li>
             </ul>
         </mat-card-content>
@@ -31,15 +36,15 @@
 
 <!-- Card Arqueros -->
 <mat-card *ngFor="let arquero of listaArqueros; let i = index;" class="example-card"
-    style="border: 1px solid black; width: 200px; margin: auto; cursor: pointer;">
-    <span [routerLink]="['/arqueros/detalle-arquero/', i]">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ arquero?.nombreArquero }}</mat-card-title>
+    >
+    <span class="span-card" [routerLink]="['/arqueros/detalle-arquero/', i]">
+        <mat-card-header class="container-title">
+
+            <mat-card-title class="card-title">{{ arquero?.nombreArquero }}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu">
-        <mat-card-content>
+        <!-- <img mat-card-image style="width: 100px;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            alt="Photo of a Shiba Inu"> -->
+        <mat-card-content class="card-text">
             <ul>
                 <li>
                     Division: 
@@ -50,7 +55,7 @@
                     {{ arquero?.equipamientoPropio }}
                 </li>
                 <li>
-                    Equipamiento que utiliza del club:
+                    Utiliza del club:
                     {{ arquero?.equipamientoClub }}
                 </li>
             </ul>

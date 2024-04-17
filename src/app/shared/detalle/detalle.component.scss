@@ -1,0 +1,34 @@
+.example-card {
+    margin:auto;
+    border: 3px solid #1d7cbd;
+    width: 80vw;
+    cursor: pointer;
+}
+
+// .example-card-arquero{
+//     margin:auto;
+//     border: 3px solid #1d7cbd;
+//     cursor: pointer;
+//     width: 800%;
+// }
+
+.container-title, .mat-card-header-text{
+    display: inline-block;
+    width: 100%!important;
+}
+
+.card-title{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.card-img{
+    display: block;
+    width: 100%;
+    margin: auto auto 1rem;
+}
+
+.card-text{
+    overflow-wrap: break-word;
+}

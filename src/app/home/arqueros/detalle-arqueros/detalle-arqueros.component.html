@@ -1,11 +1,13 @@
 <!-- <h2>Arquero: "Nombre Arquero"</h2> -->
-<aside>
+<aside class="aside-detalle-arqueros">
   <app-botones-navegacion [urlVolver]="'/arqueros'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
     [textoHomeOCrear]="'Home'">
   </app-botones-navegacion>
 
-  <ng-container *ngIf="arqueros">
-    <app-detalle [detalleArquero]="arqueros"></app-detalle>
-  </ng-container>
-
+  <div class="scroll-container">
+      <ng-container *ngIf="arqueros">
+        <app-detalle [detalleArquero]="arqueros"></app-detalle>
+      </ng-container>
+  </div>
+  
 </aside>

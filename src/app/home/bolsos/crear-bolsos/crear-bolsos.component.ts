@@ -2,12 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Storage, listAll, ref, uploadBytes } from '@angular/fire/storage';
 
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
-import { uploadBytesResumable } from 'firebase/storage';
 
 @Component({
   selector: 'app-crear-bolsos',
@@ -25,8 +23,7 @@ export class CrearBolsosComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private homeService: HomeService,
-    public dialog: MatDialog,
-    private storage: Storage
+    public dialog: MatDialog
   ) {
 
     this.formCrearBolso = this.formBuilder.group({

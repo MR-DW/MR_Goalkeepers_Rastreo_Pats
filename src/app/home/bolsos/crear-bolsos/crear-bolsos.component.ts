@@ -48,8 +48,6 @@ export class CrearBolsosComponent implements OnInit {
 
     const imgBolso = this.formCrearBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
 
-    console.log("imgBolso: ", imgBolso)
-
     const dataFormulario = {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       arquero: this.formCrearBolso.get('arquero')?.value,
@@ -70,29 +68,29 @@ export class CrearBolsosComponent implements OnInit {
       })
   }
 
-  subirArchivo($event: any) {
-    console.log("event: ", $event.target)
+  // subirArchivo($event: any) {
+  //   console.log("event: ", $event.target)
 
-    const file = $event.target.files[0];
-    console.log("file: ", file)
-    console.log("file: ", file.name)
-
-
-
-    const imgRef = ref(this.storage, `bolsos/${file.name}`)
-      console.log("this.storage: ", this.storage)
+  //   const file = $event.target.files[0];
+  //   console.log("file: ", file)
+  //   console.log("file: ", file.name)
 
 
-    uploadBytesResumable(imgRef, file);
 
-  }
+  //   const imgRef = ref(this.storage, `bolsos/${file.name}`)
+  //     console.log("this.storage: ", this.storage)
 
-  obtenerImg(){
-    const imagesRef = ref(this.storage, '');
 
-    listAll(imagesRef)
-    .then(resp => console.log("resp: ", resp))
-    .catch(error => console.log("error: ", error))
-  }
+  //   uploadBytesResumable(imgRef, file);
+
+  // }
+
+  // obtenerImg(){
+  //   const imagesRef = ref(this.storage, '');
+
+  //   listAll(imagesRef)
+  //   .then(resp => console.log("resp: ", resp))
+  //   .catch(error => console.log("error: ", error))
+  // }
 
 }

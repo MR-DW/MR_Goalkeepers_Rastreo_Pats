@@ -2,11 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+import { Storage, listAll, ref, uploadBytes } from '@angular/fire/storage';
 
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
+import { uploadBytesResumable } from 'firebase/storage';
 
 @Component({
   selector: 'app-crear-bolsos',
@@ -69,18 +70,24 @@ export class CrearBolsosComponent implements OnInit {
 
     const file = $event.target.files[0];
     console.log("file: ", file)
+    console.log("file: ", file.name)
+
 
 
     const imgRef = ref(this.storage, `bolsos/${file.name}`)
-      console.log("imgRef: ", imgRef)
+      console.log("this.storage: ", this.storage)
 
 
-    uploadBytes(imgRef, file)
-      .then(resp => {
-        console.log("x: ", resp)
-      })
-      .catch(error => console.log(error))
+    uploadBytesResumable(imgRef, file);
 
+  }
+
+  obtenerImg(){
+    const imagesRef = ref(this.storage, '');
+
+    listAll(imagesRef)
+    .then(resp => console.log("resp: ", resp))
+    .catch(error => console.log("error: ", error))
   }
 
 }

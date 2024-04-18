@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -9,8 +10,8 @@ import { Bolso } from 'src/app/modelos/bolso.model';
 })
 export class CardComponent implements OnInit {
   
-
-  imgBolso:string = '';
+  bolsoNombre:string='';
+  urlImg:string = '';
   listaBolsos: Bolso[]= [];
   listaArqueros: Arqueros[] = [];
 
@@ -23,11 +24,9 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.imgBolso = environment.urlImg + '/Equipamiento-1.jpg';
-    this.imgBolso = 'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/Equipamiento-1.jpg?alt=media&token=6a54b5fa-e789-4a6a-a549-f5dcd9a10eff'
-
     this.listaArqueros = this.listadoArqueros;
     this.listaBolsos = this.listadoBolsos;
+    this.urlImg = environment.urlImg;
   }
 
   eliminarBolso( id: number ){

@@ -46,12 +46,17 @@ export class CrearBolsosComponent implements OnInit {
 
   crearBolso() {
 
+    const imgBolso = this.formCrearBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
+
+    console.log("imgBolso: ", imgBolso)
+
     const dataFormulario = {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       arquero: this.formCrearBolso.get('arquero')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      estado: this.formCrearBolso.get('estado')?.value
+      estado: this.formCrearBolso.get('estado')?.value,
+      urlImgBolso: imgBolso
     }
 
     this.listaBolsos.push(new Bolso(dataFormulario))

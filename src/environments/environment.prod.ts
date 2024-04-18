@@ -8,6 +8,8 @@ export const environment = {
   urlCrearArqueros:'/arqueros/crear-arquero',
   urlCrearBolsos:'/arqueros/crear-bolso',
   pathImg:'../assets/img/',
+  urlImg:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/',
+
   firebase: {
     apiKey: "AIzaSyA1TFVnXJaI0RqCgsbNH8v92EOpQLBL7E8",
     authDomain: "mr-goalkeepers-control-pats.firebaseapp.com",

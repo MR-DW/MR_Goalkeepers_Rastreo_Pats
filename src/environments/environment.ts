@@ -13,7 +13,7 @@ export const environment = {
   urlCrearArqueros: '/arqueros/crear-arquero',
   urlCrearBolsos: '/bolsos/crear-bolso',
   pathImgLocal: '../assets/img/',
-  urlImg: 'gs://mrgoalkeepers-rastreo-pats.appspot.com',
+  urlImg:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/',
 
   firebase: {
     apiKey: "AIzaSyA1TFVnXJaI0RqCgsbNH8v92EOpQLBL7E8",

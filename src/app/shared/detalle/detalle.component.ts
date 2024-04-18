@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DetalleComponent implements OnInit {
 
-  imgBolso:string = '';
+  urlImg:string = '';
   bolso!: Bolso;
   @Input() detalleBolso: any;
 
@@ -20,7 +20,7 @@ export class DetalleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.imgBolso = environment.urlImg + '/Equipamiento-0.webp';
+    this.urlImg = environment.urlImg;
 
     this.bolso = this.detalleBolso;
     this.arquero = this.detalleArquero;

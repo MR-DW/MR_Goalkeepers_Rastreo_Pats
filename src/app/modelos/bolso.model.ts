@@ -4,6 +4,7 @@ export class Bolso {
     partes: string;
     estado: string;
     rastreo: string;
+    urlImgBolso: string;
 
       constructor(obj: any) {
       this.nombreBolso = obj.nombreBolso;
@@ -11,6 +12,7 @@ export class Bolso {
       this.partes = obj.partes;
       this.estado = obj.estado;
       this.rastreo = obj.rastreo;
+      this.urlImgBolso = obj.urlImgBolso;
     }
 
   }

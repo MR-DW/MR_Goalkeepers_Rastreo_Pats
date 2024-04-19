@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class CardComponent implements OnInit {
   
   bolsoNombre:string='';
-  urlImg:string = '';
+  urlImgBolso:string = '';
   listaBolsos: Bolso[]= [];
   listaArqueros: Arqueros[] = [];
 
@@ -26,7 +26,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.listaArqueros = this.listadoArqueros;
     this.listaBolsos = this.listadoBolsos;
-    this.urlImg = environment.urlImg;
+    this.urlImgBolso = environment.urlImgBolso;
   }
 
   eliminarBolso( id: number ){

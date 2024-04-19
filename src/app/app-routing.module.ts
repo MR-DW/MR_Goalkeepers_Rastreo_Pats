@@ -9,6 +9,7 @@ import { DetalleArquerosComponent } from './home/arqueros/detalle-arqueros/detal
 import { ArquerosComponent } from './home/arqueros/arqueros.component';
 import { CrearBolsosComponent } from './home/bolsos/crear-bolsos/crear-bolsos.component';
 import { CrearArqueroComponent } from './home/arqueros/crear-arquero/crear-arquero.component';
+import { EditarComponent } from './shared/editar/editar.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,8 +31,8 @@ const routes: Routes = [
     // ]
   },
   { path: 'arqueros/crear-arquero', component: CrearArqueroComponent },
-  { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent }
-
+  { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent },
+  { path: 'bolsos/editar-bolso/:id', component: EditarComponent },
 ];
 
 @NgModule({

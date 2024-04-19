@@ -30,6 +30,7 @@ import { CardComponent } from './shared/card/card.component';
 import { DetalleComponent } from './shared/detalle/detalle.component';
 import { ModalConfirmacionComponent } from './shared/modal-confirmacion/modal-confirmacion.component';
 import { environment } from 'src/environments/environment.prod';
+import { EditarComponent } from './shared/editar/editar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { environment } from 'src/environments/environment.prod';
     CardComponent,
     BotonesNavegacionComponent,
     DetalleComponent,
+    EditarComponent,
     
   ],
   imports: [

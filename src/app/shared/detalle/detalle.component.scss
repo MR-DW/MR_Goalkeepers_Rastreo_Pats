@@ -12,10 +12,32 @@
 //     width: 800%;
 // }
 
-.container-title, .mat-card-header-text{
+.container-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%!important;
+}
+
+.mat-card-header-text{
     display: inline-block;
     width: 100%!important;
 }
+
+.boton-editar{
+    border: 1px solid #d6d2ea;
+    background-color: #295ec1;
+    color: #d6d2ea;
+}
+// .mat-fab{
+//     width: 50px;
+//     height: 50px;
+// }
+
+// .mat-fab .mat-button-wrapper{
+//     padding: 0!important;
+// }
 
 .card-title{
     display: inline-block;

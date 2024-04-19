@@ -10,15 +10,12 @@ export class ModalConfirmacionComponent implements OnInit {
 
   mensaje:string | undefined;
   esCrear: boolean = false;
-  esEliminar: boolean = false;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any ) { }
 
   ngOnInit(): void {
     this.mensaje = this.data.mensaje;
     this.esCrear = this.data.esCrear;
-    this.esEliminar = this.data.esEliminar;
-
   }
 
 }

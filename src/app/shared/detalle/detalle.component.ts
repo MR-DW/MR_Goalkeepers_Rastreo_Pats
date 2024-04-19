@@ -12,7 +12,10 @@ export class DetalleComponent implements OnInit {
 
   urlImg:string = '';
   bolso!: Bolso;
+  bolsoId!:string;
   @Input() detalleBolso: any;
+  @Input() idBolso: any;
+
 
   arquero!: Arqueros;
   @Input() detalleArquero: any;
@@ -23,6 +26,9 @@ export class DetalleComponent implements OnInit {
     this.urlImg = environment.urlImg;
 
     this.bolso = this.detalleBolso;
+    this.bolsoId = this.idBolso;
+    console.log("this.bolsoId: ", this.bolsoId)
+
     this.arquero = this.detalleArquero;
     console.log("this.arquero: ", this.arquero)
   }

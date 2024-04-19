@@ -25,6 +25,10 @@ export class HomeService {
     return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json, body);
   }
 
+  editarBolso( id:number, body:any ): Observable<any>{
+    return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json, body);
+  }
+
   getBolsos(): Observable<any>{
     return this.httpClient.get(this.firebaseUrl + this.bolsos + this.json)
   }

@@ -4,7 +4,7 @@
     <span class="span-card" [routerLink]="['/bolsos/detalle-bolso/', i]">
 
         <mat-card-header class="container-title">
-            <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
+            <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
         </mat-card-header>
 
         <img mat-card-image 

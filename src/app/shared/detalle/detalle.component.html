@@ -2,7 +2,13 @@
 <mat-card class="example-card" *ngIf="bolso">
 
     <mat-card-header class="container-title">
-        <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
+
+        <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
+        <button mat-fab aria-label="Editar bolso" class="boton-editar"
+            [routerLink]="['/bolsos/editar-bolso/', bolsoId]"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
     </mat-card-header>
     <img mat-card-image class="card-img" 
         [src]="urlImg + bolso.urlImgBolso + '.jpg?alt=media'"

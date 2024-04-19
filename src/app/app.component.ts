@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
+  version:string = '1'
   title = 'MR_Goalkeepers_Rastreo_Pats';
   esForm: boolean = false;
 

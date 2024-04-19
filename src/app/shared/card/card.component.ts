@@ -25,15 +25,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.urlImgBolso = environment.urlImgBolso;
-
-    console.log("this.urlImgBolso: ", this.urlImgBolso)
-
     this.listaArqueros = this.listadoArqueros;
     this.listaBolsos = this.listadoBolsos;
-    console.log("this.listaBolsos: ", this.listaBolsos)
-    console.log("urlImgBolso + bolso.urlImgBolso + '.jpg?alt=media': ", this.urlImgBolso + this.listaBolsos[0].urlImgBolso + '.jpg?alt=media')
-
-
   }
 
   eliminarBolso( id: number ){

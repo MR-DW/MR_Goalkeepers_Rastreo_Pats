@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -16,13 +18,17 @@ export class CrearBolsosComponent implements OnInit {
 
   formCrearBolso: FormGroup;
   listaBolsos: Bolso[] = [];
+  file!:any;
+  imgRef!:any;
 
   @ViewChild('form') formElement!: ElementRef;
+  imgPath!: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private homeService: HomeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private storage: Storage
   ) {
 
     this.formCrearBolso = this.formBuilder.group({
@@ -40,23 +46,40 @@ export class CrearBolsosComponent implements OnInit {
     });
   }
 
+
+
+  subirArchivo($event: any) {
+    this.file = $event.target.files[0];
+    this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
+  }
+
   crearBolso() {
 
-    const imgBolso = this.formCrearBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
+    uploadBytes(this.imgRef, this.file)
+    .then((resp) => {
+      console.log("resp: ", resp)
+      this.imgPath = resp.metadata.fullPath.toString
+      console.log("this.imgPath: ", this.imgPath)
+    })
+    .catch(error => console.log("error: ", error))
+
+    // const imgBolso = this.formCrearBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
 
     const dataFormulario = {
-      nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       arquero: this.formCrearBolso.get('arquero')?.value,
+      estado: this.formCrearBolso.get('estado')?.value,
+      nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      estado: this.formCrearBolso.get('estado')?.value,
-      urlImgBolso: imgBolso
+      urlImgBolso: this.formCrearBolso.get('urlImgBolso')?.value
     }
 
+    console.log("new Bolso(dataFormulario): ", new Bolso(dataFormulario))
     this.listaBolsos.push(new Bolso(dataFormulario))
 
     this.homeService.crearBolso(this.listaBolsos).subscribe(
       (data: any) => {
+        console.log("data: ", data)
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso creado correctamente', esCrear: true }
         });
@@ -64,26 +87,8 @@ export class CrearBolsosComponent implements OnInit {
       })
   }
 
-  // subirArchivo($event: any) {
-  //   console.log("event: ", $event.target)
-
-  //   const file = $event.target.files[0];
-  //   console.log("file: ", file)
-  //   console.log("file: ", file.name)
-
-
-
-  //   const imgRef = ref(this.storage, `bolsos/${file.name}`)
-  //     console.log("this.storage: ", this.storage)
-
-
-  //   uploadBytesResumable(imgRef, file);
-
-  // }
-
   // obtenerImg(){
   //   const imagesRef = ref(this.storage, '');
-
   //   listAll(imagesRef)
   //   .then(resp => console.log("resp: ", resp))
   //   .catch(error => console.log("error: ", error))

@@ -65,8 +65,11 @@ import { EditarComponent } from './shared/editar/editar.component';
     HttpClientModule,
     MatDialogModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage()),
+    // provideFirestore(() => getFirestore()),
+    provideStorage(() => {
+      const app = initializeApp(environment.firebase); // Inicializa la app Firebase
+      return getStorage(app, "gs://mrgoalkeepers-rastreo-pats.appspot.com"); // Obtiene la instancia de FirebaseStorage con la app y el URL del bucket personalizado
+    }),
 
   ],
   exports:[    

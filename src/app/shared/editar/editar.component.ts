@@ -61,7 +61,6 @@ export class EditarComponent implements OnInit {
 
     this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
       (data: any) => {
-        console.log("data: ", data)
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }
         });

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   isFormulario(): boolean {
-    return this.router.url.includes('/crear-');
+    return this.router.url.includes('/crear-') || this.router.url.includes('/editar-');
   }
 
 }

@@ -26,7 +26,6 @@ export class DetalleArquerosComponent implements OnInit {
   obtenerDetalleBolso( id:any ){
     this.homeService.getDetalleArquero( id ).subscribe((data: any) => {
       this.arqueros = new Arqueros(data);
-      console.log("this.arqueros: ", this.arqueros)
     })
   }
 }

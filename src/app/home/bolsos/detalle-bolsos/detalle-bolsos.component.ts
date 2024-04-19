@@ -27,7 +27,6 @@ export class DetalleBolsosComponent implements OnInit {
   obtenerDetalleBolso( id:any ){
     this.homeService.getDetalleBolso( id ).subscribe((data: any) => {
       this.bolso = new Bolso(data);
-      console.log("this.bolso: ", this.bolso)
     })
   }
 

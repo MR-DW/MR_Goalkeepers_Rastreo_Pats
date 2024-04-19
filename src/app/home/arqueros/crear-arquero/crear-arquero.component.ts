@@ -33,7 +33,6 @@ export class CrearArqueroComponent implements OnInit {
   }
 
   crearArquero() {
-
     const dataFormulario = {
       nombreArquero: this.formCrearArquero.get('nombreArquero')?.value,
       division: this.formCrearArquero.get('division')?.value,
@@ -41,11 +40,7 @@ export class CrearArqueroComponent implements OnInit {
       equipamientoClub: this.formCrearArquero.get('equipamientoClub')?.value
     }
 
-    console.log("dataFormulario: ", dataFormulario)
-    console.log("this.listaArqueros antes del push: ", this.listaArqueros)
-
     this.listaArqueros.push(new Arqueros(dataFormulario))
-    console.log("this.listaArqueros despues del push: ", this.listaArqueros)
 
     this.homeService.crearArquero(this.listaArqueros).subscribe(
       (data: any) => {

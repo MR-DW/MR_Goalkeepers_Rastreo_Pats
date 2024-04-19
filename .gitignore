@@ -52,5 +52,7 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+*.cache
+
 # Firebase cache
 .firebase/

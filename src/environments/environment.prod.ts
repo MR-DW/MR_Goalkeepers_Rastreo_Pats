@@ -10,14 +10,15 @@ export const environment = {
   pathImg:'../assets/img/',
   urlImg:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/',
   urlImgBolso:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/bolsos%2F',
-  urlImgBolsosFinal: '?alt=media',
+  urlImgBolsosFinal: '?alt=media&token=',
 
   firebase: {
-    apiKey: "AIzaSyA1TFVnXJaI0RqCgsbNH8v92EOpQLBL7E8",
-    authDomain: "mr-goalkeepers-control-pats.firebaseapp.com",
-    projectId: "mr-goalkeepers-control-pats",
-    storageBucket: "mr-goalkeepers-control-pats.appspot.com",
-    messagingSenderId: "721088633661",
-    appId: "1:721088633661:web:e09a2e31df30db8856c354"
+    apiKey: "AIzaSyCli6bmpwgT4vkNapbS0xFlF7P0BbQ5nbI",
+    authDomain: "mrgoalkeepers-rastreo-pats.firebaseapp.com",
+    databaseURL: "https://mrgoalkeepers-rastreo-pats-default-rtdb.firebaseio.com",
+    projectId: "mrgoalkeepers-rastreo-pats",
+    storageBucket: "mrgoalkeepers-rastreo-pats.appspot.com",
+    messagingSenderId: "210599205938",
+    appId: "1:210599205938:web:08cc582a66d077da67302b"
   }
 };

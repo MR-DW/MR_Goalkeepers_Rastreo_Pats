@@ -18,8 +18,8 @@ export class CrearBolsosComponent implements OnInit {
 
   formCrearBolso: FormGroup;
   listaBolsos: Bolso[] = [];
-  file!:any;
-  imgRef!:any;
+  file!: any;
+  imgRef!: any;
 
   @ViewChild('form') formElement!: ElementRef;
 
@@ -51,8 +51,8 @@ export class CrearBolsosComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    console.log("this.file: ", this.file)
     this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
+
   }
 
   crearBolso() {
@@ -66,19 +66,14 @@ export class CrearBolsosComponent implements OnInit {
       urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
     }
 
-    console.log("new Bolso(dataFormulario): ", new Bolso(dataFormulario))
-    
     this.listaBolsos.push(new Bolso(dataFormulario))
 
     this.homeService.crearBolso(this.listaBolsos).subscribe(
       (data: any) => {
-        console.log("data: ", data)
 
         uploadBytes(this.imgRef, this.file)
-        .then((resp) => {
-          console.log("resp: ", resp)
-        })
-        .catch(error => console.log("error: ", error));
+          .then((resp) => { console.log("resp: ", resp) })
+          .catch(error => console.log("error: ", error));
 
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso creado correctamente', esCrear: true }
@@ -89,12 +84,5 @@ export class CrearBolsosComponent implements OnInit {
         this.imgRef = '';
       })
   }
-
-  // obtenerImg(){
-  //   const imagesRef = ref(this.storage, '');
-  //   listAll(imagesRef)
-  //   .then(resp => console.log("resp: ", resp))
-  //   .catch(error => console.log("error: ", error))
-  // }
 
 }

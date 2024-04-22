@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.urlImgLogo = environment.urlImg + 'logo.png?alt=media'
+    this.urlImgLogo = environment.urlImg + 'logo.png?alt=media&token=0eacfb2c-f34f-4bef-85f0-e96ae9713d44';
   }
 
 }

@@ -4,10 +4,10 @@ import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-crear-bolsos',
@@ -22,6 +22,7 @@ export class CrearBolsosComponent implements OnInit {
   imgRef!:any;
 
   @ViewChild('form') formElement!: ElementRef;
+
   imgPath!: any;
 
   constructor(
@@ -50,20 +51,11 @@ export class CrearBolsosComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
+    console.log("this.file: ", this.file)
     this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
   }
 
   crearBolso() {
-
-    uploadBytes(this.imgRef, this.file)
-    .then((resp) => {
-      console.log("resp: ", resp)
-      this.imgPath = resp.metadata.fullPath.toString
-      console.log("this.imgPath: ", this.imgPath)
-    })
-    .catch(error => console.log("error: ", error))
-
-    // const imgBolso = this.formCrearBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
 
     const dataFormulario = {
       arquero: this.formCrearBolso.get('arquero')?.value,
@@ -71,19 +63,29 @@ export class CrearBolsosComponent implements OnInit {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      urlImgBolso: this.formCrearBolso.get('urlImgBolso')?.value
+      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal
     }
 
     console.log("new Bolso(dataFormulario): ", new Bolso(dataFormulario))
+    
     this.listaBolsos.push(new Bolso(dataFormulario))
 
     this.homeService.crearBolso(this.listaBolsos).subscribe(
       (data: any) => {
         console.log("data: ", data)
+
+        uploadBytes(this.imgRef, this.file)
+        .then((resp) => {
+        })
+        .catch(error => console.log("error: ", error));
+
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso creado correctamente', esCrear: true }
         });
+
         this.formCrearBolso.reset();
+        this.file = '';
+        this.imgRef = '';
       })
   }
 

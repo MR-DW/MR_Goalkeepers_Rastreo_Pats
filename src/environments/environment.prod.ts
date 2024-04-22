@@ -10,6 +10,7 @@ export const environment = {
   pathImg:'../assets/img/',
   urlImg:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/',
   urlImgBolso:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/bolsos%2F',
+  urlImgBolsosFinal: '?alt=media',
 
   firebase: {
     apiKey: "AIzaSyA1TFVnXJaI0RqCgsbNH8v92EOpQLBL7E8",

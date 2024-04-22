@@ -76,6 +76,7 @@ export class CrearBolsosComponent implements OnInit {
 
         uploadBytes(this.imgRef, this.file)
         .then((resp) => {
+          console.log("resp: ", resp)
         })
         .catch(error => console.log("error: ", error));
 

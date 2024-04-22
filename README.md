@@ -26,3 +26,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 "# MR_Goalkeepers_Rastreo_Pats" 
+
+
+Instalar:
+npm install
+npm install -g firebase -tools
+ng add @angular/material
+
+Si da error en este archivo dentro del noce_module: rxfire, instalar: 
+npm install rxfire@latest firebase@latest
+

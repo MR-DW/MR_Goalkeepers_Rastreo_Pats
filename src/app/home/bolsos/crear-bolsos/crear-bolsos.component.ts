@@ -63,7 +63,7 @@ export class CrearBolsosComponent implements OnInit {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal
+      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
     }
 
     console.log("new Bolso(dataFormulario): ", new Bolso(dataFormulario))

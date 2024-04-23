@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+// import { Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Bolso } from 'src/app/modelos/bolso.model';
@@ -24,7 +24,7 @@ export class CrearBolsosComponent implements OnInit {
     private formBuilder: FormBuilder,
     private homeService: HomeService,
     public dialog: MatDialog,
-    private storage: Storage
+    // private storage: Storage
   ) {
 
     this.formCrearBolso = this.formBuilder.group({

@@ -1,11 +1,15 @@
 <!-- <h2>Bolso: "Nombre Bolso"</h2> -->
-<aside>
+<aside class="aside-bolsos">
   <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
     [textoHomeOCrear]="'Home'">
   </app-botones-navegacion>
 
-  <ng-container *ngIf="bolso">
-    <app-detalle [detalleBolso]="bolso" [idBolso]="idParam"></app-detalle>
-  </ng-container>
+  <div class="scroll-container">
+    <div class="scroll-content">
+      <ng-container *ngIf="bolso">
+        <app-detalle [detalleBolso]="bolso" [idBolso]="idParam"></app-detalle>
+      </ng-container>
+    </div>
+  </div>
 
 </aside>

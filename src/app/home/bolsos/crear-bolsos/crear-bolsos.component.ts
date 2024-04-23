@@ -42,12 +42,10 @@ export class CrearBolsosComponent implements OnInit {
     });
   }
 
-
-
-  subirArchivo($event: any) {
-    this.file = $event.target.files[0];
-    this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
-  }
+  // subirArchivo($event: any) {
+  //   this.file = $event.target.files[0];
+  //   this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
+  // }
 
   crearBolso() {
 
@@ -57,7 +55,8 @@ export class CrearBolsosComponent implements OnInit {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
+      urlImgBolso: environment.urlImgBolso + this.formCrearBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-") + environment.urlImgBolsosFinal,
+      // urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
     }
 
     this.listaBolsos.push(new Bolso(dataFormulario))
@@ -65,18 +64,18 @@ export class CrearBolsosComponent implements OnInit {
     this.homeService.crearBolso(this.listaBolsos).subscribe(
       (data: any) => {
 
-        uploadBytes(this.imgRef, this.file)
-          .then((resp) => { 
-            
-            this.dialog.open(ModalConfirmacionComponent, {
-              data: { mensaje: 'Bolso creado correctamente', esCrear: true }
-            });
-    
-            this.formCrearBolso.reset();
-            this.file = '';
-            this.imgRef = '';
-          })
-          .catch(error => console.log("error: ", error));
+        // uploadBytes(this.imgRef, this.file)
+        //   .then((resp) => { 
+
+        this.dialog.open(ModalConfirmacionComponent, {
+          data: { mensaje: 'Bolso creado correctamente', esCrear: true }
+        });
+
+        this.formCrearBolso.reset();
+        // this.file = '';
+        // this.imgRef = '';
+        // })
+        // .catch(error => console.log("error: ", error));
       })
   }
 

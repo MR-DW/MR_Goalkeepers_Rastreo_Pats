@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomeService } from 'src/app/servicios/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-editar',
@@ -48,15 +49,14 @@ export class EditarComponent implements OnInit {
 
   editarBolso() {
 
-    const imgBolso = this.formEditarBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
-
     const dataFormulario = {
       nombreBolso: this.formEditarBolso.get('nombreBolso')?.value,
       arquero: this.formEditarBolso.get('arquero')?.value,
       partes: this.formEditarBolso.get('partes')?.value,
       rastreo: this.formEditarBolso.get('rastreo')?.value,
       estado: this.formEditarBolso.get('estado')?.value,
-      urlImgBolso: imgBolso
+      urlImgBolso: environment.urlImgBolso + this.formEditarBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-") + environment.urlImgBolsosFinal,
+
     }    
 
     this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(

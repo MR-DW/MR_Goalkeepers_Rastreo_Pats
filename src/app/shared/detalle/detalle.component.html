@@ -11,33 +11,33 @@
         </button>
     </mat-card-header>
     <img mat-card-image class="card-img" 
-        [src]="urlImgBolso + bolso.urlImgBolso + '.jpg?alt=media'"
+        [src]="bolso.urlImgBolso"
         [alt]=" bolso.nombreBolso ">
 
     <mat-card-content class="card-text">
         <ul>
             <li>
-                <span>
-                    Arquero que utiliza el bolso::
-                </span>
+                <strong>
+                    Arquero que utiliza el bolso:
+                </strong>
                 {{ bolso.arquero }}
             </li>
             <li>
-                <span>
+                <strong>
                     Estado del bolso:
-                </span>
+                </strong>
                 {{ bolso.estado }}
             </li>
             <li>
-                <span>
+                <strong>
                     Ubicación del bolso:
-                </span>
+                </strong>
                 {{ bolso.rastreo }}
             </li>
             <li>
-                <span>
+                <strong>
                     Equipamiento:
-                </span>
+                </strong>
                 {{ bolso.partes }}
             </li>
         </ul>

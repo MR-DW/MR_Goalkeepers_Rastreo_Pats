@@ -5,10 +5,10 @@
         [textoHomeOCrear]="'Crear Arquero'">
     </app-botones-navegacion>
 
-    <div class="scroll-container">
+    <div class="scroll-container" *ngIf="!mensajeCompoVacio">
         <div class="scroll-content">
             <ng-container *ngIf="listaArqueros">
-                <app-card *ngIf="!mensajeCompoVacio" 
+                <app-card  
                     [listadoArqueros]="listaArqueros"
                     (eliminar)="eliminarBolso($event)">
                 </app-card>

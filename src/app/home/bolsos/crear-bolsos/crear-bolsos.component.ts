@@ -1,9 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
@@ -18,12 +16,9 @@ export class CrearBolsosComponent implements OnInit {
 
   formCrearBolso: FormGroup;
   listaBolsos: Bolso[] = [];
-  file!:any;
-  imgRef!:any;
-
+  file!: any;
+  imgRef!: any;
   @ViewChild('form') formElement!: ElementRef;
-
-  imgPath!: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,7 +46,6 @@ export class CrearBolsosComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    console.log("this.file: ", this.file)
     this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
   }
 
@@ -63,37 +57,27 @@ export class CrearBolsosComponent implements OnInit {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal
+      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
     }
 
-    console.log("new Bolso(dataFormulario): ", new Bolso(dataFormulario))
-    
     this.listaBolsos.push(new Bolso(dataFormulario))
 
     this.homeService.crearBolso(this.listaBolsos).subscribe(
       (data: any) => {
-        console.log("data: ", data)
 
         uploadBytes(this.imgRef, this.file)
-        .then((resp) => {
-        })
-        .catch(error => console.log("error: ", error));
-
-        this.dialog.open(ModalConfirmacionComponent, {
-          data: { mensaje: 'Bolso creado correctamente', esCrear: true }
-        });
-
-        this.formCrearBolso.reset();
-        this.file = '';
-        this.imgRef = '';
+          .then((resp) => { 
+            
+            this.dialog.open(ModalConfirmacionComponent, {
+              data: { mensaje: 'Bolso creado correctamente', esCrear: true }
+            });
+    
+            this.formCrearBolso.reset();
+            this.file = '';
+            this.imgRef = '';
+          })
+          .catch(error => console.log("error: ", error));
       })
   }
-
-  // obtenerImg(){
-  //   const imagesRef = ref(this.storage, '');
-  //   listAll(imagesRef)
-  //   .then(resp => console.log("resp: ", resp))
-  //   .catch(error => console.log("error: ", error))
-  // }
 
 }

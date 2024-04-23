@@ -7,10 +7,10 @@
         [textoHomeOCrear]="'Crear Bolso'">
     </app-botones-navegacion>
 
-    <div class="scroll-container">
+    <div class="scroll-container" *ngIf="!mensajeCompoVacio">
         <div class="scroll-content">
             <ng-container *ngIf="listaBolsos">
-                <app-card *ngIf="!mensajeCompoVacio" [listadoBolsos]="listaBolsos" (eliminar)="eliminarBolso($event)">
+                <app-card [listadoBolsos]="listaBolsos" (eliminar)="eliminarBolso($event)">
                 </app-card>
             </ng-container>
         </div>

@@ -22,8 +22,8 @@ export class LoginService {
       this.auth.currentUser?.getIdToken()
       .then( token => {
 
-        sessionStorage.setItem('token', this.token);
         this.token = token
+        sessionStorage.setItem('token', this.token);
 
       }) 
     })

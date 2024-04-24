@@ -46,6 +46,7 @@ export class LoginService {
     .then(()=>{
       this.token = '';
       sessionStorage.setItem('token', this.token);
+      window.location.reload();
     })
   }
 

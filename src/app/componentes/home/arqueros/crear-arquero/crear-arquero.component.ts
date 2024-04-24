@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
-import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
+import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 
 @Component({
   selector: 'app-crear-arquero',
@@ -16,7 +16,11 @@ export class CrearArqueroComponent implements OnInit {
   formCrearArquero: FormGroup;
   listaArqueros: Arqueros[] = [];
 
-  constructor(private formBuilder: FormBuilder, private homeService: HomeService, public dialog: MatDialog) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private homeService: HomeService, 
+    public dialog: MatDialog
+  ) {
 
     this.formCrearArquero = this.formBuilder.group({
       nombreArquero: ['', [Validators.required]],

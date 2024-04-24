@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { BolsosComponent } from './home/bolsos/bolsos.component';
-import { DetalleBolsosComponent } from './home/bolsos/detalle-bolsos/detalle-bolsos.component';
-import { DetalleArquerosComponent } from './home/arqueros/detalle-arqueros/detalle-arqueros.component';
-import { ArquerosComponent } from './home/arqueros/arqueros.component';
-import { CrearBolsosComponent } from './home/bolsos/crear-bolsos/crear-bolsos.component';
-import { CrearArqueroComponent } from './home/arqueros/crear-arquero/crear-arquero.component';
-import { EditarComponent } from './shared/editar/editar.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { HomeComponent } from './componentes/home/home.component';
+import { BolsosComponent } from './componentes/home/bolsos/bolsos.component';
+import { DetalleBolsosComponent } from './componentes/home/bolsos/detalle-bolsos/detalle-bolsos.component';
+import { DetalleArquerosComponent } from './componentes/home/arqueros/detalle-arqueros/detalle-arqueros.component';
+import { ArquerosComponent } from './componentes/home/arqueros/arqueros.component';
+import { CrearBolsosComponent } from './componentes/home/bolsos/crear-bolsos/crear-bolsos.component';
+import { CrearArqueroComponent } from './componentes/home/arqueros/crear-arquero/crear-arquero.component';
+import { EditarComponent } from './componentes/shared/editar/editar.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'ingresar', component: LoginComponent },
+  { path: 'registrar', component: RegistroComponent },
+
   { path: '', component: HomeComponent },
   {
     path: 'bolsos', component: BolsosComponent,

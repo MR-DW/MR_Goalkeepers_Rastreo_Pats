@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Arqueros } from 'src/app/modelos/arqueros.model';
+import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
-import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
+import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 
 @Component({
-  selector: 'app-arqueros',
-  templateUrl: './arqueros.component.html',
-  styleUrls: ['./arqueros.component.scss']
+  selector: 'app-bolsos',
+  templateUrl: './bolsos.component.html',
+  styleUrls: ['./bolsos.component.scss']
 })
-export class ArquerosComponent implements OnInit {
+export class BolsosComponent implements OnInit {
 
-  listaArqueros!: Arqueros[];
+  listaBolsos!: Bolso[];
   mensajeCompoVacio: boolean = false;
 
   constructor(private homeService: HomeService, public dialog: MatDialog) { }
@@ -21,9 +21,9 @@ export class ArquerosComponent implements OnInit {
   }
 
   obtenerListaBolsos() {
-    this.homeService.getArqueros().subscribe((data: any) => {
+    this.homeService.getBolsos().subscribe((data: any) => {
       if (data) {
-        this.listaArqueros = data;
+        this.listaBolsos = data;
       }
       else {
         this.mensajeCompoVacio = true;
@@ -34,12 +34,13 @@ export class ArquerosComponent implements OnInit {
 
   eliminarBolso( id:number ) {
 
-    this.listaArqueros.splice(id, 1);
+    this.listaBolsos.splice(id, 1);
 
-    this.homeService.crearArquero( this.listaArqueros ).subscribe();
+    this.homeService.crearBolso( this.listaBolsos ).subscribe();
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
     });
   }
+
 }

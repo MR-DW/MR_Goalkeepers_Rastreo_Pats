@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
-import { ModalConfirmacionComponent } from 'src/app/shared/modal-confirmacion/modal-confirmacion.component';
+import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -26,6 +26,8 @@ export class CrearBolsosComponent implements OnInit {
     public dialog: MatDialog,
     private storage: Storage
   ) {
+    // Habilitar la recopilación automática de datos
+    this.storage.app.automaticDataCollectionEnabled = true;
 
     this.formCrearBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
@@ -37,16 +39,17 @@ export class CrearBolsosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.homeService.getBolsos().subscribe((data: any) => {
       this.listaBolsos = data ? data : [];
     });
   }
 
-
-
   subirArchivo($event: any) {
-    this.file = $event.target.files[0];
-    this.imgRef = ref(this.storage, `bolsos/${this.file.name}`)
+    const file = $event.target.files[0];
+    console.log("file: ", file)
+    this.imgRef = ref(this.storage, `bolsos/ ${file.name}`);
+    console.log("imgRef: ", this.imgRef)
   }
 
   crearBolso() {
@@ -66,17 +69,16 @@ export class CrearBolsosComponent implements OnInit {
       (data: any) => {
 
         uploadBytes(this.imgRef, this.file)
-          .then((resp) => { 
-            
-            this.dialog.open(ModalConfirmacionComponent, {
-              data: { mensaje: 'Bolso creado correctamente', esCrear: true }
-            });
-    
-            this.formCrearBolso.reset();
-            this.file = '';
-            this.imgRef = '';
-          })
-          .catch(error => console.log("error: ", error));
+        .then(resp => console.log("resp: ", resp))
+        .catch(error => console.log("error: ", error))
+
+        this.dialog.open(ModalConfirmacionComponent, {
+          data: { mensaje: 'Bolso creado correctamente', esCrear: true }
+        });
+
+        this.formCrearBolso.reset();
+        this.file = '';
+        this.imgRef = '';
       })
   }
 

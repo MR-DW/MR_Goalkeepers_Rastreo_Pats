@@ -2,11 +2,12 @@
     <div class="header-login">
         <img class="logo-img" [src]="urlImgLogo " alt="MR_Goalkeepers">
 
+        <h1 class="title-h1">Gestión Pats by MR_Goalkeepers</h1>
+
         <button mat-flat-button class="boton-login" [routerLink]="'/ingresar'" *ngIf="!estaLogueado()">
             Login
         </button>
-        
-        <h1 class="title-h1">Gestión Pats by MR_Goalkeepers</h1>
+
 
         <button mat-flat-button class="boton-login" (click)="salir()" *ngIf="estaLogueado()">
             Logout

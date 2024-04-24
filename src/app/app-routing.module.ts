@@ -17,26 +17,12 @@ const routes: Routes = [
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
   { path: '', component: HomeComponent },
-  {
-    path: 'bolsos', component: BolsosComponent,
-    // children:[
-    // {path:'detalle-bolso', component: DetalleBolsosComponent},
-    // {path:'crear-bolso', component: CrearBolsosComponent}
-    // ]
-  },
+  { path: 'bolsos', component: BolsosComponent},
   { path: 'bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
   {
-    path: 'bolsos/crear-bolso',
-    component: CrearBolsosComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['']))
+    path: 'bolsos/crear-bolso', component: CrearBolsosComponent, ...canActivate(() => redirectUnauthorizedTo(['']))
   },
-  {
-    path: 'arqueros', component: ArquerosComponent,
-    // children:[
-    // {path:'detalle-arquero', component: DetalleArquerosComponent},
-    // {path:'crear-arquero', component: CrearArqueroComponent}
-    // ]
-  },
+  {path: 'arqueros', component: ArquerosComponent},
   { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent },
   { path: 'arqueros/crear-arquero', component: CrearArqueroComponent, ...canActivate(() => redirectUnauthorizedTo([''])) },
   { path: 'bolsos/editar-bolso/:id', component: EditarComponent, ...canActivate(() => redirectUnauthorizedTo([''])) },

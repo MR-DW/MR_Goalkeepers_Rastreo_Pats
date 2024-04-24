@@ -20,22 +20,32 @@ export class LoginService {
     return signInWithEmailAndPassword(this.auth, email, password)
     .then( (resp) =>  {
       this.auth.currentUser?.getIdToken()
-      .then( token => this.token = token) 
+      .then( token => {
+
+        sessionStorage.setItem('token', this.token);
+        this.token = token
+
+      }) 
     })
   }
 
   getIdToken(){
-    return this.token;
+    // return this.token;
+    return sessionStorage.getItem('token');
+
   }
 
   estaLogueado(){
-    return this.token;
+    // return this.token;
+    return sessionStorage.getItem('token');
+
   }
 
   logout(){
     return signOut(this.auth)
     .then(()=>{
       this.token = '';
+      sessionStorage.setItem('token', this.token);
     })
   }
 

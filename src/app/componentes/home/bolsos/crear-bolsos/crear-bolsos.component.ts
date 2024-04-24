@@ -47,9 +47,7 @@ export class CrearBolsosComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    console.log("file: ", this.file.name)
     this.imgRef = ref(this.storage, `bolsos/ ${this.file.name}`);
-    console.log("imgRef: ", this.imgRef)
   }
 
   crearBolso() {
@@ -62,7 +60,6 @@ export class CrearBolsosComponent implements OnInit {
       rastreo: this.formCrearBolso.get('rastreo')?.value,
       urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
     }
-    console.log("dataFormulario.urlImgBolso: ", dataFormulario.urlImgBolso)
 
 
     this.listaBolsos.push(new Bolso(dataFormulario))
@@ -71,8 +68,8 @@ export class CrearBolsosComponent implements OnInit {
       (data: any) => {
 
         uploadBytes(this.imgRef, this.file)
-        .then(resp => console.log("resp: ", resp))
-        .catch(error => console.log("error: ", error))
+        .then()
+        .catch()
 
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso creado correctamente', esCrear: true }

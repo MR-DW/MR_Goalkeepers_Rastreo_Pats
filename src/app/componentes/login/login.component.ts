@@ -39,16 +39,12 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(dataForm)
     .then( resp => {
-      console.log("resp: ", resp)
-
       const mensaje = 'Ingresó correctamente!'
       this.openSnackBar(mensaje);
 
       this.router.navigate(['/']);  
     })
     .catch(error => {
-      console.log("error: ", error)
-
       const mensaje = 'Email o contraseña incorrecta.'
       this.openSnackBar(mensaje);
     })

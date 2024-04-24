@@ -2,15 +2,18 @@
     <div class="header-login">
         <img class="logo-img" [src]="urlImgLogo " alt="MR_Goalkeepers">
 
-        <button mat-flat-button class="boton-login" [routerLink]="'/ingresar'">
+        <button mat-flat-button class="boton-login" [routerLink]="'/ingresar'" *ngIf="!isLogged">
             Login
+        </button>
+        <button mat-flat-button class="boton-login" (click)="salir()" *ngIf="isLogged">
+            Logout
         </button>
     </div>
 
     <h1 class="title-h1">Gestión Pats by MR_Goalkeepers</h1>
 
     <app-botones-navegacion class="botones-navegacion-home" [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/arqueros'"
-        [textoVolver]="'Bolsos'" [textoHomeOCrear]="'Arqueros'">
+        [textoVolver]="'Bolsos'" [textoHomeOCrear]="'Arqueros'" >
     </app-botones-navegacion>
 
 </main>

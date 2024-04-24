@@ -11,11 +11,11 @@ import { CrearBolsosComponent } from './componentes/home/bolsos/crear-bolsos/cre
 import { CrearArqueroComponent } from './componentes/home/arqueros/crear-arquero/crear-arquero.component';
 import { EditarComponent } from './componentes/shared/editar/editar.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
-
   { path: '', component: HomeComponent },
   {
     path: 'bolsos', component: BolsosComponent,
@@ -25,7 +25,11 @@ const routes: Routes = [
     // ]
   },
   { path: 'bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
-  { path: 'bolsos/crear-bolso', component: CrearBolsosComponent },
+  {
+    path: 'bolsos/crear-bolso',
+    component: CrearBolsosComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['']))
+  },
   {
     path: 'arqueros', component: ArquerosComponent,
     // children:[
@@ -33,9 +37,9 @@ const routes: Routes = [
     // {path:'crear-arquero', component: CrearArqueroComponent}
     // ]
   },
-  { path: 'arqueros/crear-arquero', component: CrearArqueroComponent },
   { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent },
-  { path: 'bolsos/editar-bolso/:id', component: EditarComponent },
+  { path: 'arqueros/crear-arquero', component: CrearArqueroComponent, ...canActivate(() => redirectUnauthorizedTo([''])) },
+  { path: 'bolsos/editar-bolso/:id', component: EditarComponent, ...canActivate(() => redirectUnauthorizedTo([''])) },
 ];
 
 @NgModule({

@@ -38,19 +38,27 @@ export class LoginComponent implements OnInit {
       password: this.formLogin.get('password')?.value.toString(),
     }
 
-    // this.loginService.registro(dataForm)
-    // .then( resp => {
-    //   this.openSnackBar();
-    //   this.router.navigate(['/']);  
-    //   console.log("resp: ", resp)
-    // })
+    this.loginService.login(dataForm)
+    .then( resp => {
+      console.log("resp: ", resp)
 
-    // .catch(resp => console.log("resp: ", resp))
+      const mensaje = 'Ingresó correctamente!'
+      this.openSnackBar(mensaje);
+
+      this.router.navigate(['/']);  
+    })
+
+    .catch(error => {
+      console.log("error: ", error)
+
+      const mensaje = 'Email o contraseña incorrecta.'
+      this.openSnackBar(mensaje);
+    })
   }
 
-  openSnackBar() {
+  openSnackBar(value: string) {
     this._snackBar.openFromComponent(SnackBarComponent, {
-      data: { loginCorrecto: true}, 
+      data: { mensaje: value}, 
       duration: 5000,
     });
   }

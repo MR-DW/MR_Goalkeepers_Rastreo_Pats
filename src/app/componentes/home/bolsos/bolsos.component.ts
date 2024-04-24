@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-bolsos',
@@ -14,7 +15,7 @@ export class BolsosComponent implements OnInit {
   listaBolsos!: Bolso[];
   mensajeCompoVacio: boolean = false;
 
-  constructor(private homeService: HomeService, public dialog: MatDialog) { }
+  constructor(private homeService: HomeService, public dialog: MatDialog, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.obtenerListaBolsos();

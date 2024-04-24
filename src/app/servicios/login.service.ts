@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  ingreso:boolean = false;
+  token!: string;
 
-  constructor( private auth: Auth ) { }
+  constructor( private auth: Auth,  ) { }
 
   // Crear usuario
   registro({ email, password}:any){
@@ -16,13 +17,26 @@ export class LoginService {
   }
 
   login({ email, password}:any){
-    this.ingreso = true;
     return signInWithEmailAndPassword(this.auth, email, password)
+    .then( (resp) =>  {
+      this.auth.currentUser?.getIdToken()
+      .then( token => this.token = token) 
+    })
+  }
+
+  getIdToken(){
+    return this.token;
+  }
+
+  estaLogueado(){
+    return this.token;
   }
 
   logout(){
-    this.ingreso = false;
-    return signOut(this.auth);
+    return signOut(this.auth)
+    .then(()=>{
+      this.token = '';
+    })
   }
 
 }

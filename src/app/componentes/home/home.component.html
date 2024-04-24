@@ -2,10 +2,10 @@
     <div class="header-login">
         <img class="logo-img" [src]="urlImgLogo " alt="MR_Goalkeepers">
 
-        <button mat-flat-button class="boton-login" [routerLink]="'/ingresar'" *ngIf="!isLogged">
+        <button mat-flat-button class="boton-login" [routerLink]="'/ingresar'" *ngIf="!estaLogueado()">
             Login
         </button>
-        <button mat-flat-button class="boton-login" (click)="salir()" *ngIf="isLogged">
+        <button mat-flat-button class="boton-login" (click)="salir()" *ngIf="estaLogueado()">
             Logout
         </button>
     </div>

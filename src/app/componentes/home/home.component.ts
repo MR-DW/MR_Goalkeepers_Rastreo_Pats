@@ -18,6 +18,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.urlImgLogo = environment.urlImg + 'logo.png?alt=media&token=0eacfb2c-f34f-4bef-85f0-e96ae9713d44';
+    this.estaLogueado();
+  }
+
+  estaLogueado(){
+    return this.loginService.estaLogueado()
   }
 
   salir(){
@@ -25,7 +30,6 @@ export class HomeComponent implements OnInit {
     .then(()=>{
       const mensaje = 'Usted salió correctamente!'
       this.openSnackBar(mensaje);
-      this.isLogged = this.loginService.ingreso;
     })
     .catch(()=>{
       const mensaje = 'No pudo salir intente nuevamente.'

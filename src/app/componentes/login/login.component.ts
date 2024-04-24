@@ -28,8 +28,7 @@ export class LoginComponent implements OnInit {
 
    }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ingresar(){
 
@@ -47,7 +46,6 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['/']);  
     })
-
     .catch(error => {
       console.log("error: ", error)
 

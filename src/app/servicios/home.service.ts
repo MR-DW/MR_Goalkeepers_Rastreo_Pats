@@ -3,30 +3,37 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bolso } from '../modelos/bolso.model';
 import { Arqueros } from '../modelos/arqueros.model';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor( private httpClient: HttpClient ) { }
+  constructor( private httpClient: HttpClient, private loginService: LoginService ) { }
 
   firebaseUrl = 'https://mrgoalkeepers-rastreo-pats-default-rtdb.firebaseio.com';
   json = '.json';
   bolsos = '/bolsos';
   arqueros = '/arqueros';
+  auth= '?auth='
 
   listaBolsos: Bolso[] = []
   mensajeCompoVacio: boolean | undefined;
 
+  token = this.loginService.getIdToken();
+
+
   // Bolsos
 
   crearBolso( body:Bolso[] ): Observable<any>{
-    return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json, body);
+    
+    return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json + this.auth + this.token, body);
   }
 
   editarBolso( id:number, body:any ): Observable<any>{
-    return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json, body);
+    
+    return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + this.token, body);
   }
 
   getBolsos(): Observable<any>{
@@ -38,13 +45,13 @@ export class HomeService {
   }
 
   eliminarBolso( id:number ): Observable<any>{
-    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json);
+    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + this.token);
   }
 
 
   // Arqueros
   crearArquero( body:Arqueros[] ): Observable<any>{
-    return this.httpClient.put(this.firebaseUrl + this.arqueros + this.json, body);
+    return this.httpClient.put(this.firebaseUrl + this.arqueros + this.json + this.auth + this.token, body);
   }
 
   getArqueros(): Observable<any>{
@@ -56,7 +63,7 @@ export class HomeService {
   }
 
   eliminarArquero( id:number ): Observable<any>{
-    return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json);
+    return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + this.token);
   }
 
 }

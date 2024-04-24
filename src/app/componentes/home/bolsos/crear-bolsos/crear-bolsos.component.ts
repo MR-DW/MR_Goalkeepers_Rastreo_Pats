@@ -46,9 +46,9 @@ export class CrearBolsosComponent implements OnInit {
   }
 
   subirArchivo($event: any) {
-    const file = $event.target.files[0];
-    console.log("file: ", file)
-    this.imgRef = ref(this.storage, `bolsos/ ${file.name}`);
+    this.file = $event.target.files[0];
+    console.log("file: ", this.file.name)
+    this.imgRef = ref(this.storage, `bolsos/ ${this.file.name}`);
     console.log("imgRef: ", this.imgRef)
   }
 
@@ -60,8 +60,10 @@ export class CrearBolsosComponent implements OnInit {
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
       partes: this.formCrearBolso.get('partes')?.value,
       rastreo: this.formCrearBolso.get('rastreo')?.value,
-      // urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
+      urlImgBolso: environment.urlImgBolso + this.file.name + environment.urlImgBolsosFinal,
     }
+    console.log("dataFormulario.urlImgBolso: ", dataFormulario.urlImgBolso)
+
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 

@@ -1,11 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Storage, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
+import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
-import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-crear-bolsos',
@@ -50,38 +49,32 @@ export class CrearBolsosComponent implements OnInit {
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
     this.uploadRef = ref(this.storage, `bolsos/ ${this.file.name}`);
-    
+
     uploadBytes(this.uploadRef, this.file)
-    .then()
-    .catch()
+      .then(() => {
+        this.obtenerImagen();
+      })
+      .catch()
 
   }
 
-  obtenerImagen(){
+  obtenerImagen() {
     this.downloadRef = ref(this.storage, 'bolsos');
 
     listAll(this.downloadRef)
-    .then(async resp=> {
-      
-      resp.items.map(async (item) => {
-      console.log("item.name: ", item.name)
-      console.log("resp.items[resp.items.indexOf(item)].name: ", resp.items[resp.items.indexOf(item)].name )
-      console.log("resp.items[-1].name: ", resp.items[resp.items.length - 1].name )
+      .then(async resp => {
 
+        resp.items.map(async (item) => {
 
-        if (resp.items[resp.items.indexOf(item)].name == resp.items[resp.items.length - 1].name ) 
+          if (resp.items[resp.items.indexOf(item)].name == resp.items[resp.items.length - 1].name)
 
-          this.pathImg = await getDownloadURL(resp.items[resp.items.indexOf(item)]);
-
-          console.log("this.pathImg: ", this.pathImg)
+            this.pathImg = await getDownloadURL(resp.items[resp.items.indexOf(item)]);
         })
-    })
-    .catch(error => console.log(error))
+      })
+      .catch(error => {})
   }
 
   crearBolso() {
-
-    this.obtenerImagen();
 
     const dataFormulario = {
       arquero: this.formCrearBolso.get('arquero')?.value,
@@ -91,8 +84,6 @@ export class CrearBolsosComponent implements OnInit {
       rastreo: this.formCrearBolso.get('rastreo')?.value,
       urlImgBolso: this.pathImg,
     }
-
-    console.log("dataFormulario: ", dataFormulario.urlImgBolso)
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 
@@ -104,9 +95,16 @@ export class CrearBolsosComponent implements OnInit {
         });
 
         this.formCrearBolso.reset();
-        // this.file = '';
-        // this.imgRef = '';
       })
+  }
+
+  cancelar() {
+    if (this.pathImg != undefined) {
+
+      deleteObject(this.uploadRef)
+        .then(resp =>{})
+        .catch(error => {})
+    }
   }
 
 }

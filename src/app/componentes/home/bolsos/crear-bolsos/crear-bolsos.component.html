@@ -3,7 +3,7 @@
     <h2 class="titulo-h2">Crea tu bolso</h2>
 
     <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
-        [textoHomeOCrear]="'Home'">
+        [textoHomeOCrear]="'Home'" (cancelarImg)="cancelar()">
     </app-botones-navegacion>
 
     <div class="scroll-container">
@@ -11,7 +11,7 @@
             <mat-form-field>
                 <mat-label class="form-label">Nombre Bolso</mat-label>
                 <input matInput formControlName="nombreBolso">
-            </mat-form-field>           
+            </mat-form-field>
             <mat-form-field>
                 <mat-label class="form-label">Arquero/a</mat-label>
                 <input matInput formControlName="arquero">
@@ -29,12 +29,10 @@
                 <textarea matInput formControlName="estado"></textarea>
             </mat-form-field>
 
-            <input type="file" 
-                class="input-img-bolso"
-                (change)="subirArchivo($event)"
-            >
+            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)">
 
-            <button mat-flat-button class="boton-crear" (click)="crearBolso()" [disabled]="formCrearBolso.invalid">
+            <button mat-flat-button class="boton-crear" (click)="crearBolso()"
+                [disabled]="formCrearBolso.invalid || pathImg == undefined">
                 Crear
             </button>
         </form>

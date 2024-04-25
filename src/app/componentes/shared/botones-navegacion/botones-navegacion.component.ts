@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -14,12 +14,18 @@ export class BotonesNavegacionComponent implements OnInit {
   @Input() textoVolver: string | undefined;
   @Input() textoHomeOCrear: string | undefined;
 
-  esHome:boolean = false;
+  @Output() cancelarImg: EventEmitter<any> = new EventEmitter();
 
-  constructor( private router: Router ) { }
+  esHome: boolean = false;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.esHome = this.router.url == '/'
+  }
+
+  cancelar() {
+    this.cancelarImg.emit();
   }
 
 }

@@ -18,8 +18,8 @@ export class CrearBolsosComponent implements OnInit {
   file!: any;
   uploadRef!: any;
   downloadRef!: any;
-  pathImg!: string;
-  @ViewChild('form') formElement!: ElementRef;
+  pathImg!: any;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,19 +59,24 @@ export class CrearBolsosComponent implements OnInit {
   }
 
   obtenerImagen() {
-    this.downloadRef = ref(this.storage, 'bolsos');
-
-    listAll(this.downloadRef)
+    // this.downloadRef = ref(this.storage, 'bolsos');
+    console.log("this.uploadRef: ", this.uploadRef)
+    listAll(this.uploadRef)
       .then(async resp => {
 
-        resp.items.map(async (item) => {
+        this.pathImg = await getDownloadURL(this.uploadRef);
+        console.log("this.pathImg: ", this.pathImg)
 
-          if (resp.items[resp.items.indexOf(item)].name == resp.items[resp.items.length - 1].name)
 
-            this.pathImg = await getDownloadURL(resp.items[resp.items.indexOf(item)]);
-        })
+        // resp.items.map(async (item) => {
+
+        // if (resp.items[resp.items.indexOf(item)].name == resp.items[resp.items.length - 1].name)
+
+        // this.pathImg = await getDownloadURL(resp.items[resp.items.indexOf(item)]);
+
+        // })
       })
-      .catch(error => {})
+      .catch(error => { })
   }
 
   crearBolso() {
@@ -95,6 +100,10 @@ export class CrearBolsosComponent implements OnInit {
         });
 
         this.formCrearBolso.reset();
+        this.file = undefined;
+        this.pathImg = undefined;
+        this.fileInput.nativeElement.value = '';
+
       })
   }
 
@@ -102,8 +111,8 @@ export class CrearBolsosComponent implements OnInit {
     if (this.pathImg != undefined) {
 
       deleteObject(this.uploadRef)
-        .then(resp =>{})
-        .catch(error => {})
+        .then(resp => { })
+        .catch(error => { })
     }
   }
 

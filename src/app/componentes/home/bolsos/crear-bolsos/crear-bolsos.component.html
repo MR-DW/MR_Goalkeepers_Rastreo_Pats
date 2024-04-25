@@ -29,7 +29,7 @@
                 <textarea matInput formControlName="estado"></textarea>
             </mat-form-field>
 
-            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)">
+            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)" #fileInput>
 
             <button mat-flat-button class="boton-crear" (click)="crearBolso()"
                 [disabled]="formCrearBolso.invalid || pathImg == undefined">

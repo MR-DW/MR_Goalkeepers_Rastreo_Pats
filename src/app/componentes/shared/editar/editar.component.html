@@ -1,6 +1,6 @@
 <aside class="aside-form">
 
-    <h2 class="titulo-h2">Editar bolso: {{ bolso.nombreBolso.toUpperCase() }}</h2>
+    <!-- <h2 class="titulo-h2">Editar bolso: {{ bolso.nombreBolso.toUpperCase() }}</h2> -->
 
     <app-botones-navegacion 
         [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
@@ -32,12 +32,10 @@
                 <textarea matInput formControlName="estado"></textarea>
             </mat-form-field>
 
-            <!-- <input type="file" 
-                class="input-img-bolso"
-                (change)="subirArchivo($event)"
-            > -->
+            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)" >
 
-            <button mat-flat-button class="boton-crear" (click)="editarBolso()" [disabled]="formEditarBolso.invalid">
+            <button mat-flat-button class="boton-crear" (click)="editarBolso()" 
+                [disabled]="formEditarBolso.invalid ">
                 Editar
             </button>
         </form>

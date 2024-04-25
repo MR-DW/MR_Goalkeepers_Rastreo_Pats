@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomeService } from 'src/app/servicios/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
+import { getDownloadURL, listAll, ref, uploadBytes, Storage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-editar',
@@ -15,18 +16,30 @@ export class EditarComponent implements OnInit {
 
   formEditarBolso!: FormGroup;
   bolso!: Bolso;
-
-  @ViewChild('form') formElement!: ElementRef;
+  file!: any;
+  uploadRef!: any;
+  pathImg: any = undefined;
   idParam: any;
+  hayNuevaImg: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private homeService: HomeService,
     public dialog: MatDialog,
-    private rutaActiva:ActivatedRoute
-  ) {}
+    private rutaActiva: ActivatedRoute,
+    private storage: Storage
+  ) { 
+    this.formEditarBolso = this.formBuilder.group({
+      nombreBolso: ['', [Validators.required]],
+      arquero: ['', [Validators.required]],
+      partes: ['', [Validators.required]],
+      rastreo: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
+    })
+  }
 
   ngOnInit(): void {
+
     this.rutaActiva.params.subscribe((miParam: Params) => {
       this.idParam = miParam['id'];
     })
@@ -40,15 +53,33 @@ export class EditarComponent implements OnInit {
         arquero: [this.bolso.arquero, [Validators.required]],
         partes: [this.bolso.partes, [Validators.required]],
         rastreo: [this.bolso.rastreo, [Validators.required]],
-        estado: [this.bolso.estado, [Validators.required]]
+        estado: [this.bolso.estado, [Validators.required]],
       })
     });
 
   }
 
-  editarBolso() {
+  subirArchivo($event: any) {
+    this.file = $event.target.files[0];
+    this.uploadRef = ref(this.storage, `bolsos/ ${this.file.name}`);
 
-    const imgBolso = this.formEditarBolso.get('nombreBolso')?.value.toLowerCase().replace(/ /g, "-");
+    uploadBytes(this.uploadRef, this.file)
+      .then(() => {
+        this.obtenerImagen();
+      })
+      .catch()
+  }
+
+  obtenerImagen() {
+    listAll(this.uploadRef)
+      .then(async resp => {
+        this.pathImg = await getDownloadURL(this.uploadRef);
+        this.bolso.urlImgBolso = '';
+      })
+      .catch(error => { })
+  }
+
+  editarBolso() {
 
     const dataFormulario = {
       nombreBolso: this.formEditarBolso.get('nombreBolso')?.value,
@@ -56,8 +87,10 @@ export class EditarComponent implements OnInit {
       partes: this.formEditarBolso.get('partes')?.value,
       rastreo: this.formEditarBolso.get('rastreo')?.value,
       estado: this.formEditarBolso.get('estado')?.value,
-      urlImgBolso: imgBolso
-    }    
+      urlImgBolso: this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso,
+    }
+
+    console.log("this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso: ", this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso)
 
     this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
       (data: any) => {
@@ -65,6 +98,10 @@ export class EditarComponent implements OnInit {
           data: { mensaje: 'Bolso editado', esCrear: false }
         });
       })
+  }
+
+  evaluacionDehabilitarBotonEditar(){
+    return this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso
   }
 
 }

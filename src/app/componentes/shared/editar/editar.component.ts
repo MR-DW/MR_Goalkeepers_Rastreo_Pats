@@ -20,7 +20,7 @@ export class EditarComponent implements OnInit {
   uploadRef!: any;
   pathImg: any = undefined;
   idParam: any;
-  hayNuevaImg: any;
+  hayNuevaImg: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +28,7 @@ export class EditarComponent implements OnInit {
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
     private storage: Storage
-  ) { 
+  ) {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
       arquero: ['', [Validators.required]],
@@ -55,13 +55,18 @@ export class EditarComponent implements OnInit {
         rastreo: [this.bolso.rastreo, [Validators.required]],
         estado: [this.bolso.estado, [Validators.required]],
       })
-    });
 
+      this.pathImg = this.bolso.urlImgBolso;
+
+      console.log("this.pathImg: ", this.pathImg)
+
+    });
   }
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
     this.uploadRef = ref(this.storage, `bolsos/ ${this.file.name}`);
+    this.pathImg = undefined;
 
     uploadBytes(this.uploadRef, this.file)
       .then(() => {
@@ -73,8 +78,10 @@ export class EditarComponent implements OnInit {
   obtenerImagen() {
     listAll(this.uploadRef)
       .then(async resp => {
+
         this.pathImg = await getDownloadURL(this.uploadRef);
-        this.bolso.urlImgBolso = '';
+        console.log("this.pathImg luego de cambiar img: ", this.pathImg)
+
       })
       .catch(error => { })
   }
@@ -87,10 +94,9 @@ export class EditarComponent implements OnInit {
       partes: this.formEditarBolso.get('partes')?.value,
       rastreo: this.formEditarBolso.get('rastreo')?.value,
       estado: this.formEditarBolso.get('estado')?.value,
-      urlImgBolso: this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso,
+      urlImgBolso: this.pathImg,
     }
-
-    console.log("this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso: ", this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso)
+    console.log("urlImgBolso: ", this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso)
 
     this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
       (data: any) => {
@@ -99,9 +105,4 @@ export class EditarComponent implements OnInit {
         });
       })
   }
-
-  evaluacionDehabilitarBotonEditar(){
-    return this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso
-  }
-
 }

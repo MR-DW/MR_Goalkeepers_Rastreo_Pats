@@ -21,19 +21,16 @@ export class HomeService {
   listaBolsos: Bolso[] = []
   mensajeCompoVacio: boolean | undefined;
 
-  token = this.loginService.getIdToken();
-
-
   // Bolsos
 
-  crearBolso( body:Bolso[] ): Observable<any>{
-    
-    return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json + this.auth + this.token, body);
+  crearBolso( body:Bolso[] ): Observable<any>{    
+    const token = this.loginService.getIdToken();
+    return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json + this.auth + token, body);
   }
 
   editarBolso( id:number, body:any ): Observable<any>{
-    
-    return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + this.token, body);
+    const token = this.loginService.getIdToken();
+    return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token, body);
   }
 
   getBolsos(): Observable<any>{
@@ -45,13 +42,15 @@ export class HomeService {
   }
 
   eliminarBolso( id:number ): Observable<any>{
-    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + this.token);
+    const token = this.loginService.getIdToken();
+    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token );
   }
 
 
   // Arqueros
   crearArquero( body:Arqueros[] ): Observable<any>{
-    return this.httpClient.put(this.firebaseUrl + this.arqueros + this.json + this.auth + this.token, body);
+    const token = this.loginService.getIdToken();
+    return this.httpClient.put(this.firebaseUrl + this.arqueros + this.json + this.auth + token, body);
   }
 
   getArqueros(): Observable<any>{
@@ -63,7 +62,8 @@ export class HomeService {
   }
 
   eliminarArquero( id:number ): Observable<any>{
-    return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + this.token);
+    const token = this.loginService.getIdToken();
+    return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + token);
   }
 
 }

@@ -61,4 +61,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/registrar'])
   }
 
+  volveralHome(){
+    this.router.navigate(['/'])
+  }
+
 }

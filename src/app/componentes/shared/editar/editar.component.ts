@@ -58,8 +58,6 @@ export class EditarComponent implements OnInit {
 
       this.pathImg = this.bolso.urlImgBolso;
 
-      console.log("this.pathImg: ", this.pathImg)
-
     });
   }
 
@@ -78,10 +76,7 @@ export class EditarComponent implements OnInit {
   obtenerImagen() {
     listAll(this.uploadRef)
       .then(async resp => {
-
         this.pathImg = await getDownloadURL(this.uploadRef);
-        console.log("this.pathImg luego de cambiar img: ", this.pathImg)
-
       })
       .catch(error => { })
   }
@@ -96,7 +91,6 @@ export class EditarComponent implements OnInit {
       estado: this.formEditarBolso.get('estado')?.value,
       urlImgBolso: this.pathImg,
     }
-    console.log("urlImgBolso: ", this.pathImg != undefined ? this.pathImg : this.bolso.urlImgBolso)
 
     this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
       (data: any) => {

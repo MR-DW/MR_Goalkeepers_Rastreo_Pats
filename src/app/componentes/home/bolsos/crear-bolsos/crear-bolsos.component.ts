@@ -49,11 +49,7 @@ export class CrearBolsosComponent implements OnInit {
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
 
-    console.log("this.file.name: ", this.file.name)
-
     this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
-    console.log("this.uploadRef: ", this.uploadRef)
-
 
     uploadBytes(this.uploadRef, this.file)
       .then(() => {

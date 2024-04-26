@@ -36,6 +36,7 @@ import { EditarComponent } from './componentes/shared/editar/editar.component';
 import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { SnackBarComponent } from './componentes/shared/snack-bar/snack-bar.component';
+import { LoginGuard } from './servicios/login.guard';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,7 @@ import { SnackBarComponent } from './componentes/shared/snack-bar/snack-bar.comp
     CrearArqueroComponent,
     CrearBolsosComponent
   ],
-  providers: [],
+  providers: [LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

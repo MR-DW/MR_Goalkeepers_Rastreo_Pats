@@ -48,7 +48,12 @@ export class CrearBolsosComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    this.uploadRef = ref(this.storage, `bolsos/ ${this.file.name}`);
+
+    console.log("this.file.name: ", this.file.name)
+
+    this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
+    console.log("this.uploadRef: ", this.uploadRef)
+
 
     uploadBytes(this.uploadRef, this.file)
       .then(() => {
@@ -59,22 +64,11 @@ export class CrearBolsosComponent implements OnInit {
   }
 
   obtenerImagen() {
-    // this.downloadRef = ref(this.storage, 'bolsos');
-    console.log("this.uploadRef: ", this.uploadRef)
     listAll(this.uploadRef)
       .then(async resp => {
 
         this.pathImg = await getDownloadURL(this.uploadRef);
-        console.log("this.pathImg: ", this.pathImg)
 
-
-        // resp.items.map(async (item) => {
-
-        // if (resp.items[resp.items.indexOf(item)].name == resp.items[resp.items.length - 1].name)
-
-        // this.pathImg = await getDownloadURL(resp.items[resp.items.indexOf(item)]);
-
-        // })
       })
       .catch(error => { })
   }

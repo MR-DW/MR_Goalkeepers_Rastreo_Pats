@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage, deleteObject, getDownloadURL, listAll, ref } from '@angular/fire/storage';
+import { Storage, deleteObject, listAll, ref } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
@@ -14,10 +14,11 @@ export class BolsosComponent implements OnInit {
 
   listaBolsos!: Bolso[];
   mensajeCompoVacio: boolean = false;
+  bolsoEliminado!: any;
 
   constructor(
-    private homeService: HomeService, 
-    public dialog: MatDialog, 
+    private homeService: HomeService,
+    public dialog: MatDialog,
     private storage: Storage
   ) { }
 
@@ -37,24 +38,34 @@ export class BolsosComponent implements OnInit {
     )
   }
 
-  eliminarBolso( id:number ) {
+  eliminarBolso(id: number) {
 
-    this.listaBolsos.splice(id, 1);
+    this.bolsoEliminado = this.listaBolsos.splice(id, 1);
 
-    this.homeService.crearBolso( this.listaBolsos ).subscribe();
+    this.eliminarImagenBolso();
+
+    this.homeService.crearBolso(this.listaBolsos).subscribe();
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
     });
 
-    this.eliminarImagen();
   }
 
-  // Eliminar Foto
+  eliminarImagenBolso() {
 
-  eliminarImagen(){
+    this.bolsoEliminado.map((prop: any) => {
+      let pedasos = prop.urlImgBolso.split('?');
+      let pathParte = pedasos[0].split('%2F');
+      let pathImg = pathParte ? pathParte[1] : null;
 
-    // deleteObject()
+      const deleteRef = ref(this.storage, `bolsos/${pathImg}`);
+
+      deleteObject(deleteRef)
+      .then(resp => { })
+      .catch(error => { })
+
+    })
 
   }
 

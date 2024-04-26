@@ -30,7 +30,7 @@ export class CardComponent implements OnInit {
   }
 
   eliminarBolso( id: number ){
-    this.eliminar.emit( id )
+    this.eliminar.emit( id );
   }
 
 }

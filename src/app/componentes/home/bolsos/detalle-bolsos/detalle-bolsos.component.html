@@ -1,0 +1,10 @@
+<aside class="aside-form">
+  <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+    [textoHomeOCrear]="'Home'">
+  </app-botones-navegacion>
+
+  <div class="scroll-container" *ngIf="bolso">
+    <app-detalle [detalleBolso]="bolso" [idBolso]="idParam"></app-detalle>
+  </div>
+
+</aside>

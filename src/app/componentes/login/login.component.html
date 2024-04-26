@@ -1,0 +1,25 @@
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Ingresar con tu usuario</h2>
+
+    <form #form [formGroup]="formLogin" class="form">
+        <mat-form-field>
+            <mat-label class="form-label">Email</mat-label>
+            <input matInput type="email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label class="form-label">Contraseña</mat-label>
+            <input matInput type="password" formControlName="password">
+        </mat-form-field>
+        <button mat-flat-button class="boton-login" (click)="ingresar()" [disabled]="formLogin.invalid">
+            Ingresar
+        </button>
+        <button mat-flat-button class="boton-registrarse" (click)="irARegistrarse()">
+            Registrarse
+        </button>
+
+    </form>
+    <button mat-flat-button class="boton-registrarse" (click)="volveralHome()">
+        Home
+    </button>
+</aside>

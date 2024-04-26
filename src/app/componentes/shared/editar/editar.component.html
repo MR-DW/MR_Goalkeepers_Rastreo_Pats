@@ -1,0 +1,44 @@
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Editar bolso: {{ bolso.nombreBolso.toUpperCase() }}</h2>
+
+    <app-botones-navegacion 
+        [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
+        [urlHomeOCrear]="'/'" 
+        [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Home'">
+    </app-botones-navegacion>
+
+    <div class="scroll-container">
+        <form #form [formGroup]="formEditarBolso" class="form">
+            <mat-form-field>
+                <mat-label class="form-label">Nombre Bolso</mat-label>
+                <input matInput formControlName="nombreBolso" readonly>
+            </mat-form-field>           
+            <mat-form-field>
+                <mat-label class="form-label">Arquero/a</mat-label>
+                <input matInput formControlName="arquero">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label class="form-label">Partes</mat-label>
+                <textarea matInput formControlName="partes"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label class="form-label">Rastreo</mat-label>
+                <textarea matInput formControlName="rastreo"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label class="form-label">Estado</mat-label>
+                <textarea matInput formControlName="estado"></textarea>
+            </mat-form-field>
+
+            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)" >
+
+            <button mat-flat-button class="boton-crear" (click)="editarBolso()" 
+                [disabled]="formEditarBolso.invalid || pathImg == undefined">
+                Editar
+            </button>
+        </form>
+    </div>
+
+</aside>

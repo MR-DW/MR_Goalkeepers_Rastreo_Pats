@@ -1,0 +1,8 @@
+<button mat-flat-button [routerLink]="urlVolver" (click)="cancelar()"
+    [ngClass]="{'boton-navegacion': esHome, 'boton-navegacion-resto':!esHome}">
+    {{ textoVolver}}
+</button>
+<button mat-flat-button [routerLink]="urlHomeOCrear" (click)="cancelar()"
+    [ngClass]="{'boton-navegacion': esHome, 'boton-navegacion-resto':!esHome}">
+    {{ textoHomeOCrear }}
+</button>

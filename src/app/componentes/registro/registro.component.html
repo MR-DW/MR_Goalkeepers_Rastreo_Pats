@@ -1,0 +1,25 @@
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Crea tu usuario</h2>
+
+    <form [formGroup]="formRegistro" class="form">
+        <mat-form-field>
+            <mat-label class="form-label">Email</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label class="form-label">Contraseña</mat-label>
+            <input matInput type="password" formControlName="password">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label class="form-label">Repita su contraseña</mat-label>
+            <input matInput type="password" formControlName="contrasena">
+        </mat-form-field>
+        <button mat-flat-button class="boton-registrarse" (click)="registrarse()" [disabled]="formRegistro.invalid">
+            Registrarse
+        </button>
+        <button mat-flat-button class="boton-home" (click)="irHome()">
+            Cancelar
+        </button>
+    </form>
+</aside>

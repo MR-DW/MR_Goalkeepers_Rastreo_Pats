@@ -2,14 +2,11 @@
 
     <h2 class="titulo-h2">Editar bolso: {{ bolso.nombreBolso.toUpperCase() }}</h2>
 
-    <app-botones-navegacion 
-        [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
-        [urlHomeOCrear]="'/'" 
-        [textoVolver]="'Volver'"
-        [textoHomeOCrear]="'Home'"
+    <app-botones-navegacion [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
+        [urlHomeOCrear]="'/'"
+        [textoVolver]="'Volver'" [textoHomeOCrear]="'Home'" 
+        (cancelarImg)="cancelarCambioImg()"
     >
-    <!-- (cancelarImg)="noCambiaImagen()" -->
-
     </app-botones-navegacion>
 
     <div class="scroll-container">
@@ -17,7 +14,7 @@
             <mat-form-field>
                 <mat-label class="form-label">Nombre Bolso</mat-label>
                 <input matInput formControlName="nombreBolso">
-            </mat-form-field>           
+            </mat-form-field>
             <mat-form-field>
                 <mat-label class="form-label">Arquero/a</mat-label>
                 <input matInput formControlName="arquero">
@@ -35,9 +32,9 @@
                 <textarea matInput formControlName="estado"></textarea>
             </mat-form-field>
 
-            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)" >
+            <input type="file" class="input-img-bolso" (change)="subirArchivo($event)" #inputeditarimagen>
 
-            <button mat-flat-button class="boton-crear" (click)="editarBolso()" 
+            <button mat-flat-button class="boton-crear" (click)="editarBolso()"
                 [disabled]="formEditarBolso.invalid || pathImg == undefined">
                 Editar
             </button>

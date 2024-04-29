@@ -21,6 +21,8 @@ export class EditarComponent implements OnInit {
   pathImg: any = undefined;
   idParam: any;
   hayNuevaImg: boolean = false;
+  @ViewChild('inputeditarimagen') inputeditarimagen!: ElementRef<HTMLInputElement>;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,6 +66,9 @@ export class EditarComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
+    console.log(
+      " this.file: ",  this.file
+    )
     this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
     console.log()
     this.pathImg = undefined;
@@ -79,7 +84,6 @@ export class EditarComponent implements OnInit {
     listAll(this.uploadRef)
       .then(async resp => {
         this.pathImg = await getDownloadURL(this.uploadRef);
-        this.borrarImagenVieja();
       })
       .catch(error => { })
   }
@@ -97,11 +101,11 @@ export class EditarComponent implements OnInit {
       .catch(error => { })
   }
 
-  // noCambiaImagen(){
-  //   if(){
-  //     this.pathImg = this.bolso.urlImgBolso;
-  //   }
-  // }
+  cancelarCambioImg(){
+    deleteObject(this.uploadRef)
+    .then(resp => { })
+    .catch(error => { })
+  }
 
   editarBolso() {
 
@@ -119,6 +123,9 @@ export class EditarComponent implements OnInit {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }
         });
+        if(this.inputeditarimagen.nativeElement.value != ''){
+          this.borrarImagenVieja();
+        }
         this.router.navigate(['/bolsos']);
       })
   }

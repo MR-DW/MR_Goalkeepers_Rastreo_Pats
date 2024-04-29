@@ -30,15 +30,12 @@ export class LoginService {
   }
 
   getIdToken(){
-    // return this.token;
     return sessionStorage.getItem('token');
 
   }
 
   estaLogueado(){
-    // return this.token;
     return sessionStorage.getItem('token');
-
   }
 
   logout(){

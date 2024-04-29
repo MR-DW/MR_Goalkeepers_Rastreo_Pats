@@ -4,8 +4,8 @@ import { Bolso } from 'src/app/modelos/bolso.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomeService } from 'src/app/servicios/home.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Params } from '@angular/router';
-import { getDownloadURL, listAll, ref, uploadBytes, Storage } from '@angular/fire/storage';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { getDownloadURL, listAll, ref, uploadBytes, Storage, deleteObject } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-editar',
@@ -27,7 +27,8 @@ export class EditarComponent implements OnInit {
     private homeService: HomeService,
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
-    private storage: Storage
+    private storage: Storage,
+    private router: Router
   ) {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
@@ -63,7 +64,8 @@ export class EditarComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    this.uploadRef = ref(this.storage, `bolsos/ ${this.file.name}`);
+    this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
+    console.log()
     this.pathImg = undefined;
 
     uploadBytes(this.uploadRef, this.file)
@@ -77,9 +79,29 @@ export class EditarComponent implements OnInit {
     listAll(this.uploadRef)
       .then(async resp => {
         this.pathImg = await getDownloadURL(this.uploadRef);
+        this.borrarImagenVieja();
       })
       .catch(error => { })
   }
+
+  borrarImagenVieja() {
+
+      let pedasos = this.bolso.urlImgBolso.split('?');
+      let pathParte = pedasos[0].split('%2F');
+      let pathImgVieja = pathParte ? pathParte[1] : null;
+
+      const deleteRef = ref(this.storage, `bolsos/${pathImgVieja}`);
+
+      deleteObject(deleteRef)
+      .then(resp => { })
+      .catch(error => { })
+  }
+
+  // noCambiaImagen(){
+  //   if(){
+  //     this.pathImg = this.bolso.urlImgBolso;
+  //   }
+  // }
 
   editarBolso() {
 
@@ -97,6 +119,7 @@ export class EditarComponent implements OnInit {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }
         });
+        this.router.navigate(['/bolsos']);
       })
   }
 }

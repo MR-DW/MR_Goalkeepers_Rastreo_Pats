@@ -15,7 +15,8 @@
             <mat-label class="form-label">Repita su contraseña</mat-label>
             <input matInput type="password" formControlName="contrasena">
         </mat-form-field>
-        <button mat-flat-button class="boton-registrarse" (click)="registrarse()" [disabled]="formRegistro.invalid">
+        <button mat-flat-button class="boton-registrarse" 
+            (click)="registrarse()" [disabled]="formRegistro.invalid">
             Registrarse
         </button>
         <button mat-flat-button class="boton-home" (click)="irHome()">

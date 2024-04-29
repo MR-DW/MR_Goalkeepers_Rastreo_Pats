@@ -8,7 +8,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 })
 export class ReglamentoComponent implements OnInit {
 
-  miReglamento!:string;
+  miReglamento!:any;
 
   constructor( 
     private homeService: HomeService

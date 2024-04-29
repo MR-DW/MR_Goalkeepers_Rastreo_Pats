@@ -1,0 +1,21 @@
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Editar Reglamento</h2>
+
+    <app-botones-navegacion [urlVolver]="['/reglamento']" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Home'">
+    </app-botones-navegacion>
+
+    <div class="scroll-container">
+        <form #form [formGroup]="formEditarReglamento" class="form">
+            <mat-form-field>
+                <mat-label class="form-label">Nuevo reglamento</mat-label>
+                <textarea matInput formControlName="reglamento"></textarea>
+            </mat-form-field>
+            <button mat-flat-button class="boton-crear" (click)="editarReglamento()"
+                [disabled]="formEditarReglamento.invalid">
+                Editar
+            </button>
+        </form>
+    </div>
+</aside>

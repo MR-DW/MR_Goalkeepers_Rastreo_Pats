@@ -16,7 +16,8 @@ export class HomeService {
   json = '.json';
   bolsos = '/bolsos';
   arqueros = '/arqueros';
-  auth= '?auth='
+  auth= '?auth=';
+  reglamento = '/reglamento';
 
   listaBolsos: Bolso[] = []
   mensajeCompoVacio: boolean | undefined;
@@ -65,5 +66,22 @@ export class HomeService {
     const token = this.loginService.getIdToken();
     return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + token);
   }
+
+  editarArquero( id:number, body:any ): Observable<any>{
+    const token = this.loginService.getIdToken();
+    return this.httpClient.put(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + token, body);
+  }
+
+  // Reglamento
+  
+  getReglamento(): Observable<any>{
+    return this.httpClient.get(this.firebaseUrl + this.reglamento + this.json);
+  }
+  
+  editarReglamento(body:any ): Observable<any>{
+    const token = this.loginService.getIdToken();
+    return this.httpClient.put(this.firebaseUrl + this.reglamento + '/' + this.json + this.auth + token, body);
+  }
+
 
 }

@@ -12,11 +12,15 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { EditarComponent } from './componentes/shared/editar/editar.component';
 import { LoginGuard } from './servicios/login.guard';
+import { ReglamentoComponent } from './componentes/home/reglamento/reglamento.component';
+import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-reglamento/editar-reglamento.component';
 
 const routes: Routes = [
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
   { path: '', component: HomeComponent },
+  { path: 'reglamento', component: ReglamentoComponent },
+  { path: 'editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },
   { path: 'bolsos', component: BolsosComponent },
   { path: 'bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
   { path: 'bolsos/crear-bolso', component: CrearBolsosComponent, canActivate:[LoginGuard] },

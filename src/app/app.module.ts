@@ -37,6 +37,8 @@ import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { SnackBarComponent } from './componentes/shared/snack-bar/snack-bar.component';
 import { LoginGuard } from './servicios/login.guard';
+import { ReglamentoComponent } from './componentes/home/reglamento/reglamento.component';
+import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-reglamento/editar-reglamento.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { LoginGuard } from './servicios/login.guard';
     EditarComponent,
     RegistroComponent,
     SnackBarComponent,
+    ReglamentoComponent,
+    EditarReglamentoComponent,
   ],
   imports: [
     BrowserModule,

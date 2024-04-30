@@ -1,20 +1,18 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ModalConfirmacionComponent } from '../modal-confirmacion/modal-confirmacion.component';
-import { Bolso } from 'src/app/modelos/bolso.model';
+import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HomeService } from 'src/app/servicios/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { getDownloadURL, listAll, ref, uploadBytes, Storage, deleteObject } from '@angular/fire/storage';
-import { Arqueros } from 'src/app/modelos/arqueros.model';
+import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
+import { Bolso } from 'src/app/modelos/bolso.model';
+import { HomeService } from 'src/app/servicios/home.service';
 
 @Component({
-  selector: 'app-editar',
-  templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.scss']
+  selector: 'app-editar-bolso',
+  templateUrl: './editar-bolso.component.html',
+  styleUrls: ['./editar-bolso.component.scss']
 })
-export class EditarComponent implements OnInit {
-
+export class EditarBolsoComponent implements OnInit {
   idParam: any;
 
   formEditarBolso!: FormGroup;
@@ -25,10 +23,6 @@ export class EditarComponent implements OnInit {
   hayNuevaImg: boolean = false;
   @ViewChild('inputeditarimagen') inputeditarimagen!: ElementRef<HTMLInputElement>;
   seEditaBolso!:boolean;
-
-  arquero!: Arqueros;
-  formEditarArquero!: FormGroup;
-  seEditaArquero!:boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,12 +38,6 @@ export class EditarComponent implements OnInit {
       partes: ['', [Validators.required]],
       rastreo: ['', [Validators.required]],
       estado: ['', [Validators.required]],
-    });
-    this.formEditarArquero = this.formBuilder.group({
-      nombreArquero: ['', [Validators.required]],
-      division: ['', [Validators.required]],
-      equipamientoPropio: ['', [Validators.required]],
-      equipamientoClub: ['', [Validators.required]],
     })
   }
 
@@ -60,15 +48,11 @@ export class EditarComponent implements OnInit {
     })
 
     this.obtenerDetallesBolso();
-    this.obtenerDetallesArquero();
 
   }
 
   obtenerDetallesBolso() {
     this.homeService.getDetalleBolso(this.idParam).subscribe((data: any) => {
-
-      this.seEditaBolso = true;
-      this.seEditaArquero = false;
 
       this.bolso = new Bolso(data);
 
@@ -87,11 +71,7 @@ export class EditarComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    console.log(
-      " this.file: ", this.file
-    )
     this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
-    console.log()
     this.pathImg = undefined;
 
     uploadBytes(this.uploadRef, this.file)
@@ -151,36 +131,4 @@ export class EditarComponent implements OnInit {
       })
   }
 
-  obtenerDetallesArquero() {
-    this.homeService.getDetalleArquero(this.idParam).subscribe((data: any) => {
-      this.seEditaBolso = false;
-      this.seEditaArquero = true;
-      this.arquero = new Arqueros(data);
-
-      this.formEditarArquero = this.formBuilder.group({
-        nombreArquero: [this.arquero.nombreArquero, [Validators.required]],
-        division: [this.arquero.division, [Validators.required]],
-        equipamientoPropio: [this.arquero.equipamientoPropio, [Validators.required]],
-        equipamientoClub: [this.arquero.equipamientoClub, [Validators.required]],
-      })
-
-    })
-  }
-
-  editarArquero(){
-    const dataFormulario = {
-      nombreArquero: this.formEditarArquero.get('nombreArquero')?.value,
-      division: this.formEditarArquero.get('division')?.value,
-      equipamientoPropio: this.formEditarArquero.get('equipamientoPropio')?.value,
-      equipamientoClub: this.formEditarArquero.get('equipamientoClub')?.value,
-    }
-
-    this.homeService.editarArquero(this.idParam, dataFormulario).subscribe(
-      (data: any) => {
-        this.dialog.open(ModalConfirmacionComponent, {
-          data: { mensaje: 'Arquero editado', esCrear: false }
-        });
-        this.router.navigate(['/arqueros']);
-      })
-  }
 }

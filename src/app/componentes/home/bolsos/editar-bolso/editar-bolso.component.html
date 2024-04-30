@@ -1,9 +1,10 @@
 <!-- Editar Bolso -->
-<aside class="aside-form" *ngIf="seEditaBolso">
+<aside class="aside-form" >
 
     <h2 class="titulo-h2">Editar bolso: {{ bolso.nombreBolso.toUpperCase() }}</h2>
 
-    <app-botones-navegacion [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
+    <app-botones-navegacion 
+        [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
         [urlHomeOCrear]="'/'"
         [textoVolver]="'Volver'" [textoHomeOCrear]="'Home'" 
         (cancelarImg)="cancelarCambioImg()"
@@ -37,47 +38,6 @@
 
             <button mat-flat-button class="boton-crear" (click)="editarBolso()"
                 [disabled]="formEditarBolso.invalid || pathImg == undefined">
-                Editar
-            </button>
-        </form>
-    </div>
-
-</aside>
-
-
-<!-- Editar Arquero -->
-
-<aside class="aside-form" *ngIf="seEditaArquero">
-
-    <h2 class="titulo-h2">Editar Arquero: {{ arquero.nombreArquero.toUpperCase() }}</h2>
-
-    <app-botones-navegacion [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
-        [urlHomeOCrear]="'/'"
-        [textoVolver]="'Volver'" [textoHomeOCrear]="'Home'" 
-    >
-    </app-botones-navegacion>
-
-    <div class="scroll-container">
-        <form #form [formGroup]="formEditarBolso" class="form">
-            <mat-form-field>
-                <mat-label class="form-label">Nombre Arquero</mat-label>
-                <input matInput formControlName="nombreArquero">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label class="form-label">División</mat-label>
-                <input matInput formControlName="division">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label class="form-label">Equipamiento Propio</mat-label>
-                <textarea matInput formControlName="equipamientoPropio"></textarea>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label class="form-label">Equipamiento Club</mat-label>
-                <textarea matInput formControlName="equipamientoClub"></textarea>
-            </mat-form-field>
-
-            <button mat-flat-button class="boton-crear" (click)="editarArquero()"
-                [disabled]="formEditarArquero.invalid">
                 Editar
             </button>
         </form>

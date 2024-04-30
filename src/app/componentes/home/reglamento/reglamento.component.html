@@ -1,0 +1,22 @@
+<aside class="aside-registro">
+
+    <button mat-flat-button [routerLink]="'/'" class="boton-registro-volver">
+        Volver
+    </button>
+
+    <mat-card-header class="container-title">
+
+        <mat-card-title class="card-title">Reglamento</mat-card-title>
+        <button mat-fab aria-label="Editar bolso" class="boton-editar" [routerLink]="['/editar-reglamento']"
+            *ngIf="estaLogueado"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+    </mat-card-header>
+
+    <div class="scroll-container" *ngIf="!mensajeCompoVacio">
+        <p class="texto-reglamento">{{miReglamento?.reglamento}}</p>
+    </div>
+    <p class="texto-reglamento" *ngIf="mensajeCompoVacio">No tiene reglas creadas!</p>
+
+</aside>

@@ -12,18 +12,30 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { EditarComponent } from './componentes/shared/editar/editar.component';
 import { LoginGuard } from './servicios/login.guard';
+import { ReglamentoComponent } from './componentes/home/reglamento/reglamento.component';
+import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-reglamento/editar-reglamento.component';
+import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqueros/editar-arqueros.component';
+import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
 
 const routes: Routes = [
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
+
   { path: '', component: HomeComponent },
+
+  { path: 'reglamento', component: ReglamentoComponent },
+  { path: 'editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },
+
   { path: 'bolsos', component: BolsosComponent },
   { path: 'bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
   { path: 'bolsos/crear-bolso', component: CrearBolsosComponent, canActivate:[LoginGuard] },
+  { path: 'bolsos/editar-bolso/:id', component: EditarBolsoComponent, canActivate:[LoginGuard] },
+
   { path: 'arqueros', component: ArquerosComponent },
   { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent },
   { path: 'arqueros/crear-arquero', component: CrearArqueroComponent, canActivate:[LoginGuard] },
-  { path: 'bolsos/editar-bolso/:id', component: EditarComponent, canActivate:[LoginGuard] },
+  { path: 'arqueros/editar-arquero/:id', component: EditarArquerosComponent, canActivate:[LoginGuard] },
+
 ];
 
 @NgModule({

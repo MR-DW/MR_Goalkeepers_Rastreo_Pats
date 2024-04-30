@@ -1,41 +1,39 @@
 <!-- Card Bolsos -->
-<mat-card *ngFor="let bolso of listaBolsos; let i = index;" class="example-card"
-    >
+<mat-card *ngFor="let bolso of listaBolsos; let i = index;" class="example-card">
     <span class="span-card" [routerLink]="['/bolsos/detalle-bolso/', i]">
 
         <mat-card-header class="container-title">
             <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
         </mat-card-header>
 
-        <img mat-card-image 
-            class="card-img"
-            [src]="bolso.urlImgBolso"
-            [alt]="bolso.nombreBolso">
-            
+        <img mat-card-image class="card-img" [src]="bolso.urlImgBolso" [alt]="bolso.nombreBolso">
+
         <mat-card-content class="card-text">
             <ul>
                 <li>
-                    Rastreo:
+                    <strong>
+                        Rastreo:
+                    </strong>
                     {{ bolso.rastreo }}
                 </li>
                 <li>
-                    Estado:
+                    <strong>
+                        Estado:
+                    </strong>
                     {{ bolso.estado }}
                 </li>
             </ul>
         </mat-card-content>
     </span>
 
-    <button mat-flat-button class="boton-eliminar"
-        (click)="eliminarBolso(i)">
+    <button mat-flat-button class="boton-eliminar" *ngIf="estaLogueago" (click)="eliminarBolso(i)">
         Eliminar
     </button>
 
 </mat-card>
 
 <!-- Card Arqueros -->
-<mat-card *ngFor="let arquero of listaArqueros; let i = index;" class="example-card"
-    >
+<mat-card *ngFor="let arquero of listaArqueros; let i = index;" class="example-card">
     <span class="span-card" [routerLink]="['/arqueros/detalle-arquero/', i]">
         <mat-card-header class="container-title">
 
@@ -46,23 +44,28 @@
         <mat-card-content class="card-text">
             <ul>
                 <li>
-                    Division: 
+                    <strong>
+                        Division:
+                    </strong>
                     {{ arquero?.division }}
                 </li>
                 <li>
-                    Equipamiento de {{ arquero?.nombreArquero }}:
+                    <strong>
+                        Equipamiento de {{ arquero?.nombreArquero }}:
+                    </strong>
                     {{ arquero?.equipamientoPropio }}
                 </li>
                 <li>
-                    Utiliza del club:
+                    <strong>
+                        Utiliza del club:
+                    </strong>
                     {{ arquero?.equipamientoClub }}
                 </li>
             </ul>
         </mat-card-content>
     </span>
 
-    <button mat-flat-button class="boton-eliminar" 
-        (click)="eliminarBolso(i)">
+    <button mat-flat-button class="boton-eliminar" *ngIf="estaLogueago" (click)="eliminarBolso(i)">
         Eliminar
     </button>
 

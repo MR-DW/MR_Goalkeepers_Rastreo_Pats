@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
+import { LoginService } from 'src/app/servicios/login.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,6 +15,7 @@ export class CardComponent implements OnInit {
   urlImgBolso:string = '';
   listaBolsos: Bolso[]= [];
   listaArqueros: Arqueros[] = [];
+  estaLogueago: any;
 
   @Input() listadoBolsos: Bolso[] = [];
   @Input() listadoArqueros: Arqueros[] = [];
@@ -21,12 +23,13 @@ export class CardComponent implements OnInit {
   @Output() eliminar = new EventEmitter<any>();
 
 
-  constructor() { }
+  constructor( private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.urlImgBolso = environment.urlImgBolso;
     this.listaArqueros = this.listadoArqueros;
     this.listaBolsos = this.listadoBolsos;
+    this.estaLogueago = sessionStorage.getItem('token');
   }
 
   eliminarBolso( id: number ){

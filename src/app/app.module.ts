@@ -37,6 +37,10 @@ import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { SnackBarComponent } from './componentes/shared/snack-bar/snack-bar.component';
 import { LoginGuard } from './servicios/login.guard';
+import { ReglamentoComponent } from './componentes/home/reglamento/reglamento.component';
+import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-reglamento/editar-reglamento.component';
+import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqueros/editar-arqueros.component';
+import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,10 @@ import { LoginGuard } from './servicios/login.guard';
     EditarComponent,
     RegistroComponent,
     SnackBarComponent,
+    ReglamentoComponent,
+    EditarReglamentoComponent,
+    EditarArquerosComponent,
+    EditarBolsoComponent,
   ],
   imports: [
     BrowserModule,

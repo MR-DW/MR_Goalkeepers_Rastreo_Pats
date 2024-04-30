@@ -4,15 +4,14 @@
     <mat-card-header class="container-title">
 
         <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
-        <button mat-fab aria-label="Editar bolso" class="boton-editar"
+        <button mat-fab aria-label="Editar bolso" 
+            class="boton-editar" 
             [routerLink]="['/bolsos/editar-bolso/', bolsoId]"
-        >
+            *ngIf="estaLogueado">
             <mat-icon>edit</mat-icon>
         </button>
     </mat-card-header>
-    <img mat-card-image class="card-img" 
-        [src]="bolso.urlImgBolso"
-        [alt]=" bolso.nombreBolso ">
+    <img mat-card-image class="card-img" [src]="bolso.urlImgBolso" [alt]=" bolso.nombreBolso ">
 
     <mat-card-content class="card-text">
         <ul>
@@ -49,26 +48,30 @@
 
     <mat-card-header class="container-title">
         <mat-card-title class="card-title">{{ arquero.nombreArquero }}</mat-card-title>
+        <button mat-fab aria-label="Editar bolso" class="boton-editar" [routerLink]="['/arqueros/editar-arquero/', idArquero]"
+            *ngIf="estaLogueado">
+            <mat-icon>edit</mat-icon>
+        </button>
     </mat-card-header>
 
     <mat-card-content class="card-text">
         <ul>
             <li>
-                <span>
+                <strong>
                     División en la que juega:
-                </span>
+                </strong>
                 {{ arquero.division }}
             </li>
             <li>
-                <span>
+                <strong>
                     Equipamiento propio:
-                </span>
+                </strong>
                 {{ arquero.equipamientoPropio }}
             </li>
             <li>
-                <span>
+                <strong>
                     Equipamiento que utiliza del club:
-                </span>
+                </strong>
                 {{ arquero.equipamientoClub }}
             </li>
         </ul>

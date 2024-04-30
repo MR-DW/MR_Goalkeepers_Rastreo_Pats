@@ -42,19 +42,26 @@ export class RegistroComponent implements OnInit {
       password: this.formRegistro.get('password')?.value.toString(),
     }
 
-    this.loginService.registro(dataForm)
-    .then( resp => {
-
-      const mensaje = 'Se registró correctamente!'
+    if(this.contrasenasIguales){
+      this.loginService.registro(dataForm)
+      .then( resp => {
+  
+        const mensaje = 'Se registró correctamente!'
+        this.openSnackBar(mensaje);
+  
+        this.router.navigate(['/ingresar']);  
+      })
+  
+      .catch(error => {
+        const mensaje = 'No pudo registrarse, intente nuevamente.'
+        this.openSnackBar(mensaje);
+      })
+    }
+    else{
+      const mensaje = 'Sus contraseñas no coinciden. Intente nuevamente.'
       this.openSnackBar(mensaje);
+    }
 
-      this.router.navigate(['/ingresar']);  
-    })
-
-    .catch(error => {
-      const mensaje = 'No pudo registrarse, intente nuevamente.'
-      this.openSnackBar(mensaje);
-    })
   }
 
   openSnackBar(value: string) {

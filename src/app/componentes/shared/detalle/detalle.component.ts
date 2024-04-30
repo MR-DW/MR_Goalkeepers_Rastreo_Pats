@@ -11,14 +11,17 @@ import { environment } from 'src/environments/environment';
 })
 export class DetalleComponent implements OnInit {
 
+  estaLogueado!:boolean;
+
   urlImgBolso:string = '';
   bolso!: Bolso;
   bolsoId!:string;
   @Input() detalleBolso: any;
   @Input() idBolso: any;
+  
   arquero!: Arqueros;
   @Input() detalleArquero: any;
-  estaLogueado!:boolean;
+  @Input() idArquero: any;
 
   constructor( private loginService:LoginService ) { }
 

@@ -20,10 +20,10 @@ export class DetalleArquerosComponent implements OnInit {
       this.idParam = miParam['id'];
     })
 
-    this.obtenerDetalleBolso( this.idParam );
+    this.obtenerDetalleArquero( this.idParam );
   }
 
-  obtenerDetalleBolso( id:any ){
+  obtenerDetalleArquero( id:any ){
     this.homeService.getDetalleArquero( id ).subscribe((data: any) => {
       this.arqueros = new Arqueros(data);
     })

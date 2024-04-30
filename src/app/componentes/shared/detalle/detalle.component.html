@@ -6,6 +6,7 @@
         <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
         <button mat-fab aria-label="Editar bolso" class="boton-editar"
             [routerLink]="['/bolsos/editar-bolso/', bolsoId]"
+            *ngIf="estaLogueado"
         >
             <mat-icon>edit</mat-icon>
         </button>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
+import { LoginService } from 'src/app/servicios/login.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,14 +18,21 @@ export class DetalleComponent implements OnInit {
   @Input() idBolso: any;
   arquero!: Arqueros;
   @Input() detalleArquero: any;
+  estaLogueado!:boolean;
 
-  constructor() { }
+  constructor( private loginService:LoginService ) { }
 
   ngOnInit(): void {
+    this.obtenerTokenLogin();
+
     this.urlImgBolso = environment.urlImgBolso;
     this.bolso = this.detalleBolso;
     this.bolsoId = this.idBolso;
     this.arquero = this.detalleArquero;
+  }
+
+  obtenerTokenLogin(){
+    this.estaLogueado = this.loginService.estaLogueado() ? true : false;
   }
 
 }

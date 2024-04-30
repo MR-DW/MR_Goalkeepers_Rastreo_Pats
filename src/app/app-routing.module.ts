@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
 
-  { path: '', component: HomeComponent },
+  { path: ':club', component: HomeComponent },
 
   { path: 'reglamento', component: ReglamentoComponent },
   { path: 'editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },

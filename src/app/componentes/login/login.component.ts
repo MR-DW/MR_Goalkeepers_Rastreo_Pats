@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   clubs: string[] = ['LaSalle', 'Tala'];
   clubUsuarioCorrecto!:boolean;
   emailUsuarioCorrecto!:boolean;
+  club!:string;
   
   constructor( 
     private fb:FormBuilder, 
@@ -44,7 +45,9 @@ export class LoginComponent implements OnInit {
       club: this.formLogin.get('club')?.value.toString(),
     }
 
+    this.club = dataForm.club.toString();
     console.log("dataForm: ", dataForm)
+
     this.homeService.getUsuario().subscribe((x)=>{
       console.log("x: ", x)
 
@@ -70,7 +73,7 @@ export class LoginComponent implements OnInit {
     .then( resp => {
       const mensaje = 'Ingresó correctamente!'
       this.openSnackBar(mensaje);
-      this.router.navigate(['/']);  
+      this.router.navigate(['/', this.club]);  
     })
     .catch(error => {
       const mensaje = 'Email o contraseña incorrecta.'

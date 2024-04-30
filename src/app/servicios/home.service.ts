@@ -13,9 +13,8 @@ export class HomeService {
   constructor( private httpClient: HttpClient, private loginService: LoginService ) { }
 
   firebaseUrl = 'https://mrgoalkeepers-rastreo-pats-default-rtdb.firebaseio.com/';
-  users = '/users';
-  clubs = '/Clubs';
-  club = '/LaSalle';
+  users = 'users';
+  clubs = 'Clubs';
   json = '.json';
   bolsos = '/bolsos';
   arqueros = '/arqueros';
@@ -37,7 +36,7 @@ export class HomeService {
   }
 
   getBolsos(): Observable<any>{
-    return this.httpClient.get(this.firebaseUrl + this.club + this.bolsos + this.json)
+    return this.httpClient.get(this.firebaseUrl + this.bolsos + this.json)
   }
 
   getDetalleBolso(id:any): Observable<any>{
@@ -95,5 +94,10 @@ export class HomeService {
     return this.httpClient.get(this.firebaseUrl + this.users + this.json);
   }
 
+  // Club
+  getClub( club:any ): Observable<any>{
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.json + this.auth + token);
+  }
 
 }

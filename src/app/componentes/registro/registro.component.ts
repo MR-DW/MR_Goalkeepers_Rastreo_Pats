@@ -14,7 +14,6 @@ import { HomeService } from 'src/app/servicios/home.service';
 })
 export class RegistroComponent implements OnInit {
 
-  favoriteSeason!: string;
   clubs: string[] = ['LaSalle'];
 
   formRegistro!:FormGroup;

@@ -91,5 +91,9 @@ export class HomeService {
     return this.httpClient.put(this.firebaseUrl + this.users + this.json, body);
   }
 
+  getUsuario(): Observable<any>{
+    return this.httpClient.get(this.firebaseUrl + this.users + this.json);
+  }
+
 
 }

@@ -8,11 +8,12 @@
             Login
         </button>
 
-
         <button mat-stroked-button class="boton-login" (click)="salir()" *ngIf="estaLogueado()">
             Logout
         </button>
     </div>
+
+    <img [src]="club?.escudoClub">
 
     <app-botones-navegacion class="botones-navegacion-home" [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/arqueros'"
         [textoVolver]="'Bolsos'" [textoHomeOCrear]="'Arqueros'">

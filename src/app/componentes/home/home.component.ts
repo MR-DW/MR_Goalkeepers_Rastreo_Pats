@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   urlImgLogo!:string;
   isLogged:boolean = true;
   clubParam!:string;
+  club!:any;
 
   constructor( private loginService: LoginService, private _snackBar: MatSnackBar, private homeService: HomeService, 
     private rutaActiva:ActivatedRoute
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
   obtenerInfoClub(){
     this.homeService.getClub(this.clubParam).subscribe((resp :any) => {
       console.log("resp: ", resp)
+      this.club = resp;
     })
   }
 

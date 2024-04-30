@@ -15,8 +15,22 @@
             <mat-label class="form-label">Repita su contraseña</mat-label>
             <input matInput type="password" formControlName="contrasena">
         </mat-form-field>
-        <button mat-flat-button class="boton-registrarse" 
-            (click)="registrarse()" [disabled]="formRegistro.invalid">
+
+        <label id="example-radio-group-label">Seleccione su club</label>
+        <mat-radio-group 
+            aria-labelledby="example-radio-group-label" 
+            class="example-radio-group"
+            formControlName="club"
+        >
+            <mat-radio-button 
+                *ngFor="let club of clubs" 
+                class="example-radio-button" 
+                [value]="club">
+                {{club}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <button mat-flat-button class="boton-registrarse" (click)="registrarse()" [disabled]="formRegistro.invalid">
             Registrarse
         </button>
         <button mat-flat-button class="boton-home" (click)="irHome()">

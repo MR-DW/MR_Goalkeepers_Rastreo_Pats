@@ -16,6 +16,7 @@ export class LoginService {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
+// Login
   login({ email, password}:any){
     return signInWithEmailAndPassword(this.auth, email, password)
     .then( (resp) =>  {

@@ -1,6 +1,34 @@
 {
   "rules": {
-    ".read": true,
-    ".write": "auth != null"
+    "Clubs": {
+      "$club_id": {
+        ".read": "auth != null",
+        ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()",
+        "arqueros": {
+          ".read": "auth != null",
+          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+        },
+        "bolsos": {
+          ".read": "auth != null",
+          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+        },
+        "escudoClub": {
+          ".read": "auth != null",
+          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+        },
+        "nombreClub": {
+          ".read": "auth != null",
+          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+        },
+        "reglamento": {
+          ".read": "auth != null",
+          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+        }
+      }
+    },
+    "users":{
+      ".read": true,
+      ".write": true
+    }
   }
 }

@@ -12,7 +12,10 @@ export class HomeService {
 
   constructor( private httpClient: HttpClient, private loginService: LoginService ) { }
 
-  firebaseUrl = 'https://mrgoalkeepers-rastreo-pats-default-rtdb.firebaseio.com';
+  firebaseUrl = 'https://mrgoalkeepers-rastreo-pats-default-rtdb.firebaseio.com/';
+  users = '/users';
+  clubs = '/Clubs';
+  club = '/LaSalle';
   json = '.json';
   bolsos = '/bolsos';
   arqueros = '/arqueros';
@@ -23,7 +26,6 @@ export class HomeService {
   mensajeCompoVacio: boolean | undefined;
 
   // Bolsos
-
   crearBolso( body:Bolso[] ): Observable<any>{    
     const token = this.loginService.getIdToken();
     return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json + this.auth + token, body);
@@ -35,7 +37,7 @@ export class HomeService {
   }
 
   getBolsos(): Observable<any>{
-    return this.httpClient.get(this.firebaseUrl + this.bolsos + this.json)
+    return this.httpClient.get(this.firebaseUrl + this.club + this.bolsos + this.json)
   }
 
   getDetalleBolso(id:any): Observable<any>{
@@ -81,6 +83,12 @@ export class HomeService {
   editarReglamento(body:any ): Observable<any>{
     const token = this.loginService.getIdToken();
     return this.httpClient.put(this.firebaseUrl + this.reglamento + '/' + this.json + this.auth + token, body);
+  }
+
+
+  // Usuarios
+  crearUsuario(body:any): Observable<any>{
+    return this.httpClient.put(this.firebaseUrl + this.users + this.json, body);
   }
 
 

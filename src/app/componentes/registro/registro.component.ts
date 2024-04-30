@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servicios/login.service';
 import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
+import { HomeService } from 'src/app/servicios/home.service';
+
 
 @Component({
   selector: 'app-registro',
@@ -11,6 +13,9 @@ import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit {
+
+  favoriteSeason!: string;
+  clubs: string[] = ['LaSalle'];
 
   formRegistro!:FormGroup;
   contrasenasIguales!: boolean;
@@ -20,12 +25,14 @@ export class RegistroComponent implements OnInit {
     private loginService: LoginService, 
     private router:Router,
     private _snackBar: MatSnackBar,
+    private homeService: HomeService
   ) {
 
     this.formRegistro = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)] ],
       contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)] ],
+      club: ['', [Validators.required] ],
     })
 
    }
@@ -48,8 +55,9 @@ export class RegistroComponent implements OnInit {
   
         const mensaje = 'Se registró correctamente!'
         this.openSnackBar(mensaje);
-  
+        this.saveUsuario();
         this.router.navigate(['/ingresar']);  
+
       })
   
       .catch(error => {
@@ -62,6 +70,16 @@ export class RegistroComponent implements OnInit {
       this.openSnackBar(mensaje);
     }
 
+  }
+
+  saveUsuario(){
+    const dataForm = {
+      email: this.formRegistro.get('email')?.value.toString(),
+      club: this.formRegistro.get('club')?.value.toString(),
+    }
+    this.homeService.crearUsuario(dataForm).subscribe((data:any)=>{
+      console.log("data: ", data)
+    })
   }
 
   openSnackBar(value: string) {

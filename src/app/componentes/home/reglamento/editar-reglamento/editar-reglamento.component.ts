@@ -13,6 +13,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 export class EditarReglamentoComponent implements OnInit {
 
   formEditarReglamento!: FormGroup;
+  miReglamento!:any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,8 +29,10 @@ export class EditarReglamentoComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getReglamento().subscribe((data: any) => {
 
+      this.miReglamento = data;
+
       this.formEditarReglamento = this.formBuilder.group({
-        reglamento: [ data, [Validators.required]]
+        reglamento: [ this.miReglamento?.reglamento, [Validators.required]]
       })
     })
   }

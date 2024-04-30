@@ -1,10 +1,17 @@
-.aside-form{
+.aside-registro{
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    padding: 1rem 0 0 .5rem;
+}
+
+.boton-registro-volver{
+    border: 1px solid #d6d2ea;
+    background-color: #295ec1;
+    color: #d6d2ea;
+    text-align: center;
 }
 
 .container-title{
@@ -13,6 +20,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%!important;
+    margin-bottom: .5rem;
 }
 
 .card-title{
@@ -27,6 +35,13 @@
     color: #d6d2ea;
 }
 
+.scroll-container{
+    height: 70%;
+    overflow-y: auto; 
+    width: auto;
+}
+
 .texto-reglamento{
     text-align: center;
+    line-height: 1.8;
 }

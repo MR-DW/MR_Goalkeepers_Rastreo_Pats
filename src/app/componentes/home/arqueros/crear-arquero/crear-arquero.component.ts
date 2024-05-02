@@ -5,6 +5,7 @@ import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-crear-arquero',
@@ -15,11 +16,13 @@ export class CrearArqueroComponent implements OnInit {
 
   formCrearArquero: FormGroup;
   listaArqueros: Arqueros[] = [];
+  clubParam!:string;
 
   constructor(
     private formBuilder: FormBuilder, 
     private homeService: HomeService, 
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private rutaActiva: ActivatedRoute
   ) {
 
     this.formCrearArquero = this.formBuilder.group({
@@ -31,7 +34,18 @@ export class CrearArqueroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.homeService.getArqueros().subscribe((data: any) => {
+    this.obtenerArqueros();
+    this.obtenerClubParam();
+  }
+  obtenerClubParam(){
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+      console.log("This.clubParam: ", this.clubParam)
+    })
+  }
+
+  obtenerArqueros(){
+    this.homeService.getArqueros( this.clubParam ).subscribe((data: any) => {
       this.listaArqueros = data ? data : [];
     });
   }

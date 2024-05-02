@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage, deleteObject, listAll, ref } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
@@ -15,19 +16,29 @@ export class BolsosComponent implements OnInit {
   listaBolsos!: Bolso[];
   mensajeCompoVacio: boolean = false;
   bolsoEliminado!: any;
+  clubParam!:string;
 
   constructor(
     private homeService: HomeService,
     public dialog: MatDialog,
-    private storage: Storage
+    private storage: Storage,
+    private rutaActiva: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.obtenerClubParam();
     this.obtenerListaBolsos();
   }
 
+  obtenerClubParam(){
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+      console.log("This.clubParam: ", this.clubParam)
+    })
+  }
+
   obtenerListaBolsos() {
-    this.homeService.getBolsos().subscribe((data: any) => {
+    this.homeService.getBolsos(this.clubParam).subscribe((data: any) => {
       if (data) {
         this.listaBolsos = data;
       }

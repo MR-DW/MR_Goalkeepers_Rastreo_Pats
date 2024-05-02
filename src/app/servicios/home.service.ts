@@ -35,8 +35,9 @@ export class HomeService {
     return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token, body);
   }
 
-  getBolsos(): Observable<any>{
-    return this.httpClient.get(this.firebaseUrl + this.bolsos + this.json)
+  getBolsos( club:string ): Observable<any>{
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + this.json + this.auth + token)
   }
 
   getDetalleBolso(id:any): Observable<any>{
@@ -55,8 +56,9 @@ export class HomeService {
     return this.httpClient.put(this.firebaseUrl + this.arqueros + this.json + this.auth + token, body);
   }
 
-  getArqueros(): Observable<any>{
-    return this.httpClient.get(this.firebaseUrl + this.arqueros + this.json)
+  getArqueros(club:string): Observable<any>{
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + this.json + this.auth + token)
   }
 
   getDetalleArquero(id:any): Observable<any>{
@@ -75,8 +77,9 @@ export class HomeService {
 
   // Reglamento
   
-  getReglamento(): Observable<any>{
-    return this.httpClient.get(this.firebaseUrl + this.reglamento + this.json);
+  getReglamento( club:string ): Observable<any>{
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token);
   }
   
   editarReglamento(body:any ): Observable<any>{

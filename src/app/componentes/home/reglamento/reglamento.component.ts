@@ -3,6 +3,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from 'src/app/servicios/login.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-reglamento',
@@ -14,15 +15,18 @@ export class ReglamentoComponent implements OnInit {
   miReglamento!:any;
   mensajeCompoVacio!:boolean;
   estaLogueado!:boolean;
+  clubParam!:string;
 
   constructor( 
     private homeService: HomeService,
     private _snackBar: MatSnackBar,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private rutaActiva: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.obtenerTokenLogin();
+    this.obtenerClubParam();
     this.obtenerReglas();
   }
 
@@ -30,8 +34,15 @@ export class ReglamentoComponent implements OnInit {
     this.estaLogueado = this.loginService.estaLogueado() ? true : false;
   }
 
+  obtenerClubParam(){
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+      console.log("This.clubParam: ", this.clubParam)
+    })
+  }
+
   obtenerReglas(){
-    this.homeService.getReglamento().subscribe((resp:string)=>{
+    this.homeService.getReglamento( this.clubParam ).subscribe((resp:string)=>{
       
       this.miReglamento = resp;
 

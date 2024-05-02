@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
@@ -20,12 +21,14 @@ export class CrearBolsosComponent implements OnInit {
   downloadRef!: any;
   pathImg!: any;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  clubParam!:string;
 
   constructor(
     private formBuilder: FormBuilder,
     private homeService: HomeService,
     public dialog: MatDialog,
-    private storage: Storage
+    private storage: Storage,
+    private rutaActiva: ActivatedRoute
   ) {
     // Habilitar la recopilación automática de datos
     this.storage.app.automaticDataCollectionEnabled = true;
@@ -40,8 +43,19 @@ export class CrearBolsosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerClubParam();
+    this.obtenerBolsos;
+  }
 
-    this.homeService.getBolsos().subscribe((data: any) => {
+  obtenerClubParam(){
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+      console.log("This.clubParam: ", this.clubParam)
+    })
+  }
+
+  obtenerBolsos(){
+    this.homeService.getBolsos(this.clubParam).subscribe((data: any) => {
       this.listaBolsos = data ? data : [];
     });
   }

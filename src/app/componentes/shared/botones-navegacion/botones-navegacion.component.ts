@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -10,18 +10,24 @@ import { Router } from '@angular/router';
 export class BotonesNavegacionComponent implements OnInit {
 
   @Input() urlVolver: any | undefined;
-  @Input() urlHomeOCrear: string | undefined;
+  @Input() urlHomeOCrear: any | undefined;
   @Input() textoVolver: string | undefined;
   @Input() textoHomeOCrear: string | undefined;
 
   @Output() cancelarImg: EventEmitter<any> = new EventEmitter();
 
   esHome: boolean = false;
+  clubParam!:string;
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.esHome = this.router.url == '/'
+      this.rutaActiva.params.subscribe((miParam: Params) => {
+        this.clubParam = miParam['club'];
+        console.log("This.clubParam: ", this.clubParam)
+      })
+    this.esHome = this.router.url == `/${this.clubParam}`
   }
 
   cancelar() {

@@ -32,12 +32,12 @@ export class HomeComponent implements OnInit {
   obtenerClubParam(){
     this.rutaActiva.params.subscribe((miParam: Params) => {
       this.clubParam = miParam['club'];
+      console.log("This.clubParam: ", this.clubParam)
     })
   }
 
   obtenerInfoClub(){
     this.homeService.getClub(this.clubParam).subscribe((resp :any) => {
-      console.log("resp: ", resp)
       this.club = resp;
     })
   }

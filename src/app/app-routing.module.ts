@@ -18,23 +18,25 @@ import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqu
 import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/ingresar', pathMatch: 'full' },
+
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
 
   { path: ':club', component: HomeComponent },
 
-  { path: 'reglamento', component: ReglamentoComponent },
-  { path: 'editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },
+  { path: ':club/reglamento', component: ReglamentoComponent },
+  { path: ':club/editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },
 
-  { path: 'bolsos', component: BolsosComponent },
-  { path: 'bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
-  { path: 'bolsos/crear-bolso', component: CrearBolsosComponent, canActivate:[LoginGuard] },
-  { path: 'bolsos/editar-bolso/:id', component: EditarBolsoComponent, canActivate:[LoginGuard] },
+  { path: ':club/bolsos', component: BolsosComponent },
+  { path: ':club/bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },
+  { path: ':club/bolsos/crear-bolso', component: CrearBolsosComponent, canActivate:[LoginGuard] },
+  { path: ':club/bolsos/editar-bolso/:id', component: EditarBolsoComponent, canActivate:[LoginGuard] },
 
-  { path: 'arqueros', component: ArquerosComponent },
-  { path: 'arqueros/detalle-arquero/:id', component: DetalleArquerosComponent },
-  { path: 'arqueros/crear-arquero', component: CrearArqueroComponent, canActivate:[LoginGuard] },
-  { path: 'arqueros/editar-arquero/:id', component: EditarArquerosComponent, canActivate:[LoginGuard] },
+  { path: ':club/arqueros', component: ArquerosComponent },
+  { path: ':club/arqueros/detalle-arquero/:id', component: DetalleArquerosComponent },
+  { path: ':club/arqueros/crear-arquero', component: CrearArqueroComponent, canActivate:[LoginGuard] },
+  { path: ':club/arqueros/editar-arquero/:id', component: EditarArquerosComponent, canActivate:[LoginGuard] },
 
 ];
 

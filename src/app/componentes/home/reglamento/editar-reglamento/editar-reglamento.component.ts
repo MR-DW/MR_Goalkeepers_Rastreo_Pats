@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { HomeService } from 'src/app/servicios/home.service';
 
@@ -14,12 +14,14 @@ export class EditarReglamentoComponent implements OnInit {
 
   formEditarReglamento!: FormGroup;
   miReglamento!:any;
+  clubParam!:string;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     public dialog: MatDialog,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private rutaActiva: ActivatedRoute
   ) {
     this.formEditarReglamento = this.formBuilder.group({
       reglamento: ['', [Validators.required]]
@@ -27,7 +29,19 @@ export class EditarReglamentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.homeService.getReglamento().subscribe((data: any) => {
+    this.obtenerClubParam();
+    this.obtenerReglamento();
+  }
+
+  obtenerClubParam(){
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+      console.log("This.clubParam: ", this.clubParam)
+    })
+  }
+
+  obtenerReglamento(){
+    this.homeService.getReglamento( this.clubParam ).subscribe((data: any) => {
 
       this.miReglamento = data;
 

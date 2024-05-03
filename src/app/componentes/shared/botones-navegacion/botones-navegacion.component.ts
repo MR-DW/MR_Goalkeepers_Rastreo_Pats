@@ -23,9 +23,10 @@ export class BotonesNavegacionComponent implements OnInit {
   constructor(private router: Router, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log("urlVolver: ", this.urlVolver.toString())
       this.rutaActiva.params.subscribe((miParam: Params) => {
         this.clubParam = miParam['club'];
-        console.log("This.clubParam: ", this.clubParam)
+        console.log("this.clubParam en botones-nav: ", this.clubParam)
       })
     this.esHome = this.router.url == `/${this.clubParam}`
   }

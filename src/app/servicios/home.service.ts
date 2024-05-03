@@ -82,9 +82,9 @@ export class HomeService {
     return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token);
   }
   
-  editarReglamento(body:any ): Observable<any>{
+  editarReglamento( club:string, body:any ): Observable<any>{
     const token = this.loginService.getIdToken();
-    return this.httpClient.put(this.firebaseUrl + this.reglamento + '/' + this.json + this.auth + token, body);
+    return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token, body);
   }
 
 

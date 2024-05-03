@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: ':club', component: HomeComponent },
 
   { path: ':club/reglamento', component: ReglamentoComponent },
-  { path: ':club/editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },
+  { path: ':club/reglamento/editar-reglamento', component: EditarReglamentoComponent, canActivate:[LoginGuard] },
 
   { path: ':club/bolsos', component: BolsosComponent },
   { path: ':club/bolsos/detalle-bolso/:id', component: DetalleBolsosComponent },

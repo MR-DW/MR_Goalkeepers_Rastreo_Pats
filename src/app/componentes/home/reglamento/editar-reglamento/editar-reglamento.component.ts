@@ -36,7 +36,7 @@ export class EditarReglamentoComponent implements OnInit {
   obtenerClubParam(){
     this.rutaActiva.params.subscribe((miParam: Params) => {
       this.clubParam = miParam['club'];
-      console.log("This.clubParam: ", this.clubParam)
+      console.log("this.clubParam: ", this.clubParam)
     })
   }
 
@@ -57,14 +57,19 @@ export class EditarReglamentoComponent implements OnInit {
       reglamento: this.formEditarReglamento.get('reglamento')?.value,
     }
 
-    this.homeService.editarReglamento(dataFormulario).subscribe(
+    this.homeService.editarReglamento(this.clubParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Reglamento editado', esCrear: false }
         });
 
-        this.router.navigate(['/reglamento']);
-      })
+        this.router.navigate([`${this.clubParam}/reglamento`]);
+      },
+    (error: any) => {
+      this.dialog.open(ModalConfirmacionComponent, {
+        data: { mensaje: 'El reglamento no pudo ser editado intente más tarde', esCrear: false }
+      });
+    })
   }
 }
 

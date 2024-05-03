@@ -42,6 +42,7 @@ import { ReglamentoComponent } from './componentes/home/reglamento/reglamento.co
 import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-reglamento/editar-reglamento.component';
 import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqueros/editar-arqueros.component';
 import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
+import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,7 @@ import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/edi
     CrearArqueroComponent,
     CrearBolsosComponent
   ],
-  providers: [LoginGuard],
+  providers: [LoginGuard, ClubUsuarioGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

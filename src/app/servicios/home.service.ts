@@ -84,7 +84,14 @@ export class HomeService {
   
   editarReglamento( club:string, body:any ): Observable<any>{
     const token = this.loginService.getIdToken();
-    return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token, body);
+    const clubUsuario = this.loginService.getClubUsuario()
+    if(club == clubUsuario){
+      return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token, body);
+    }else{
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
 

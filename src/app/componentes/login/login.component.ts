@@ -67,6 +67,8 @@ export class LoginComponent implements OnInit {
     const dataForm = {
       email: this.formLogin.get('email')?.value.toString(),
       password: this.formLogin.get('password')?.value.toString(),
+      club: this.formLogin.get('club')?.value.toString(),
+
     }
 
     this.loginService.login(dataForm)

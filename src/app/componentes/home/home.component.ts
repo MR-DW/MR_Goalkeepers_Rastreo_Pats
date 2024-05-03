@@ -18,8 +18,11 @@ export class HomeComponent implements OnInit {
   clubParam!:string;
   club!:any;
 
-  constructor( private loginService: LoginService, private _snackBar: MatSnackBar, private homeService: HomeService, 
-    private rutaActiva:ActivatedRoute
+  constructor( private loginService: LoginService,
+     private _snackBar: MatSnackBar,
+     private homeService: HomeService, 
+      private rutaActiva:ActivatedRoute,
+      private router: Router
    ) { }
 
   ngOnInit(): void {
@@ -32,7 +35,6 @@ export class HomeComponent implements OnInit {
   obtenerClubParam(){
     this.rutaActiva.params.subscribe((miParam: Params) => {
       this.clubParam = miParam['club'];
-      console.log("This.clubParam: ", this.clubParam)
     })
   }
 
@@ -51,6 +53,7 @@ export class HomeComponent implements OnInit {
     .then(()=>{
       const mensaje = 'Usted salió correctamente!'
       this.openSnackBar(mensaje);
+      this.router.navigate(['/ingresar'])
     })
     .catch(()=>{
       const mensaje = 'No pudo salir intente nuevamente.'

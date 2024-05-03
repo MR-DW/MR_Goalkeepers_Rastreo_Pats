@@ -14,7 +14,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 })
 export class RegistroComponent implements OnInit {
 
-  clubs: string[] = ['LaSalle'];
+  clubs: string[] = ['LaSalle', 'Tala'];
 
   formRegistro!:FormGroup;
   contrasenasIguales!: boolean;

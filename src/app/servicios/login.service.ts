@@ -8,6 +8,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 export class LoginService {
 
   token!: string;
+  clubDelUsuario!: string;
 
   constructor( private auth: Auth,  ) { }
 
@@ -17,22 +18,28 @@ export class LoginService {
   }
 
 // Login
-  login({ email, password}:any){
+  login({ email, password, club}:any){
     return signInWithEmailAndPassword(this.auth, email, password)
     .then( (resp) =>  {
+      console.log("response: ", resp)
       this.auth.currentUser?.getIdToken()
       .then( token => {
+        console.log("token: ", token)
 
-        this.token = token
+        this.token = token;
+        this.clubDelUsuario = club;
         sessionStorage.setItem('token', this.token);
-
+        sessionStorage.setItem('clubDelUsuario', this.clubDelUsuario);
       }) 
     })
   }
 
   getIdToken(){
     return sessionStorage.getItem('token');
+  }
 
+  getClubUsuario(){
+    return sessionStorage.getItem('clubDelUsuario');
   }
 
   estaLogueado(){

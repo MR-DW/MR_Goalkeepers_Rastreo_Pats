@@ -11,6 +11,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 export class DetalleArquerosComponent implements OnInit {
   idParam!: string;
   arqueros!: Arqueros;
+  clubParam!: string;
 
   constructor( private homeService: HomeService, private rutaActiva:ActivatedRoute ) { }
 
@@ -20,11 +21,15 @@ export class DetalleArquerosComponent implements OnInit {
       this.idParam = miParam['id'];
     })
 
-    this.obtenerDetalleArquero( this.idParam );
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+    })
+
+    this.obtenerDetalleArquero( this.clubParam, this.idParam );
   }
 
-  obtenerDetalleArquero( id:any ){
-    this.homeService.getDetalleArquero( id ).subscribe((data: any) => {
+  obtenerDetalleArquero( club:string, id:any ){
+    this.homeService.getDetalleArquero( club, id ).subscribe((data: any) => {
       this.arqueros = new Arqueros(data);
     })
   }

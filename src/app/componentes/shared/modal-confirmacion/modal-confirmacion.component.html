@@ -8,7 +8,7 @@
     <button class="boton-navegacion" mat-flat-button mat-dialog-close *ngIf="esCrear">
         Crear otro
     </button>
-    <button class="boton-navegacion" mat-flat-button routerLink="/" mat-dialog-close *ngIf="esCrear">
+    <button class="boton-navegacion" mat-flat-button [routerLink]="[ '/', clubParam ]" mat-dialog-close *ngIf="esCrear">
         Home
     </button>
 

@@ -41,3 +41,5 @@ npm install rxfire@latest firebase@latest
 Mover usuarios a dentro del club? 
 Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un array y hacer push del nuevo usuario y luego hacer un put de todo el arreglo a la base de datos.
  -->
+
+ <!-- En el crear arquero me está pisando el arquero creado, debe agregarse uno al arreglo no pisarse. -->

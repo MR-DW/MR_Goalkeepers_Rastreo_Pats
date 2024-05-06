@@ -1,12 +1,12 @@
 <!-- <h2>Arquero: "Nombre Arquero"</h2> -->
 <aside class="aside-detalle-arqueros">
-  <app-botones-navegacion [urlVolver]="'/arqueros'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+  <app-botones-navegacion [urlVolver]="['../../']" [urlHomeOCrear]="[ '/', clubParam ]" [textoVolver]="'Volver'"
     [textoHomeOCrear]="'Home'">
   </app-botones-navegacion>
 
   <div class="scroll-container">
       <ng-container *ngIf="arqueros">
-        <app-detalle [detalleArquero]="arqueros" [idArquero]="idParam"></app-detalle>
+        <app-detalle [detalleArquero]="arqueros" [idArquero]="idParam" [clubParam]="clubParam"></app-detalle>
       </ng-container>
   </div>
   

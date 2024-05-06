@@ -17,6 +17,7 @@ export class EditarArquerosComponent implements OnInit {
   arquero!: Arqueros;
   formEditarArquero!: FormGroup;
   seEditaArquero!:boolean;
+  clubParam!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,11 +40,15 @@ export class EditarArquerosComponent implements OnInit {
       this.idParam = miParam['id'];
     })
 
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+    })
+
     this.obtenerDetallesArquero();
   }
 
   obtenerDetallesArquero() {
-    this.homeService.getDetalleArquero(this.idParam).subscribe((data: any) => {
+    this.homeService.getDetalleArquero(this.clubParam, this.idParam).subscribe((data: any) => {
 
       this.arquero = new Arqueros(data);
 
@@ -65,12 +70,12 @@ export class EditarArquerosComponent implements OnInit {
       equipamientoClub: this.formEditarArquero.get('equipamientoClub')?.value,
     }
 
-    this.homeService.editarArquero(this.idParam, dataFormulario).subscribe(
+    this.homeService.editarArquero(this.clubParam, this.idParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Arquero editado', esCrear: false }
         });
-        this.router.navigate(['/arqueros']);
+        this.router.navigate([this.clubParam, 'arqueros']);
       })
   }
 

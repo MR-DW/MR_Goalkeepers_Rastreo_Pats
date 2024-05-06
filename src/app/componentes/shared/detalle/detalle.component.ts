@@ -23,6 +23,8 @@ export class DetalleComponent implements OnInit {
   @Input() detalleArquero: any;
   @Input() idArquero: any;
 
+  @Input() clubParam!: string;
+
   constructor( private loginService:LoginService ) { }
 
   ngOnInit(): void {

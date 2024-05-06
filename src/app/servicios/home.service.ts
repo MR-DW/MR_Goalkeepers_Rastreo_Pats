@@ -10,7 +10,7 @@ import { LoginService } from './login.service';
 })
 export class HomeService {
 
-  constructor( private httpClient: HttpClient, private loginService: LoginService ) { }
+  constructor(private httpClient: HttpClient, private loginService: LoginService) { }
 
   firebaseUrl = 'https://mrgoalkeepers-rastreo-pats-default-rtdb.firebaseio.com/';
   users = 'users';
@@ -18,83 +18,105 @@ export class HomeService {
   json = '.json';
   bolsos = '/bolsos';
   arqueros = '/arqueros';
-  auth= '?auth=';
+  auth = '?auth=';
   reglamento = '/reglamento';
 
   listaBolsos: Bolso[] = []
   mensajeCompoVacio: boolean | undefined;
 
   // Bolsos
-  crearBolso( body:Bolso[] ): Observable<any>{    
+  crearBolso(body: Bolso[]): Observable<any> {
     const token = this.loginService.getIdToken();
     return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json + this.auth + token, body);
   }
 
-  editarBolso( id:number, body:any ): Observable<any>{
+  editarBolso(id: number, body: any): Observable<any> {
     const token = this.loginService.getIdToken();
     return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token, body);
   }
 
-  getBolsos( club:string ): Observable<any>{
+  getBolsos(club: string): Observable<any> {
     const token = this.loginService.getIdToken();
     return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + this.json + this.auth + token)
   }
 
-  getDetalleBolso(id:any): Observable<any>{
+  getDetalleBolso(id: any): Observable<any> {
     return this.httpClient.get(this.firebaseUrl + this.bolsos + '/' + id + this.json);
   }
 
-  eliminarBolso( id:number ): Observable<any>{
+  eliminarBolso(id: number): Observable<any> {
     const token = this.loginService.getIdToken();
-    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token );
+    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token);
   }
 
 
   // Arqueros
-  crearArquero( club:string, body:Arqueros[] ): Observable<any>{
+  crearArquero(club: string, body: Arqueros[]): Observable<any> {
     const token = this.loginService.getIdToken();
     const clubUsuario = this.loginService.getClubUsuario();
-    if(club == clubUsuario){
+    if (club == clubUsuario) {
       return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + this.json + this.auth + token, body);
-    }else{
+    } else {
       return new Observable<never>(observer => {
         observer.complete();
       });
     }
   }
 
-  getArqueros(club:string): Observable<any>{
+  getArqueros(club: string): Observable<any> {
     const token = this.loginService.getIdToken();
     return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + this.json + this.auth + token)
   }
 
-  getDetalleArquero(id:any): Observable<any>{
-    return this.httpClient.get(this.firebaseUrl + this.arqueros + '/' + id + this.json);
+  getDetalleArquero(club: string, id: any): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
+    const token = this.loginService.getIdToken();
+    if (club == clubUsuario) {
+      return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + '/' + id + this.json + this.auth + token);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
-  eliminarArquero( id:number ): Observable<any>{
+  eliminarArquero(id: number): Observable<any> {
     const token = this.loginService.getIdToken();
     return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + token);
   }
 
-  editarArquero( id:number, body:any ): Observable<any>{
+  editarArquero( club:string, id: number, body: any): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
-    return this.httpClient.put(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + token, body);
+    if (club == clubUsuario) {
+    return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + '/' + id + this.json + this.auth + token, body);
+  } else {
+    return new Observable<never>(observer => {
+      observer.complete();
+    });
+  }
   }
 
   // Reglamento
-  
-  getReglamento( club:string ): Observable<any>{
-    const token = this.loginService.getIdToken();
-    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token);
-  }
-  
-  editarReglamento( club:string, body:any ): Observable<any>{
+
+  getReglamento(club: string): Observable<any> {
     const token = this.loginService.getIdToken();
     const clubUsuario = this.loginService.getClubUsuario();
-    if(club == clubUsuario){
+    if (club == clubUsuario) {
+      return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
+  }
+
+  editarReglamento(club: string, body: any): Observable<any> {
+    const token = this.loginService.getIdToken();
+    const clubUsuario = this.loginService.getClubUsuario();
+    if (club == clubUsuario) {
       return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token, body);
-    }else{
+    } else {
       return new Observable<never>(observer => {
         observer.complete();
       });
@@ -103,16 +125,16 @@ export class HomeService {
 
 
   // Usuarios
-  crearUsuario(body:any): Observable<any>{
+  crearUsuario(body: any): Observable<any> {
     return this.httpClient.put(this.firebaseUrl + this.users + this.json, body);
   }
 
-  getUsuario(): Observable<any>{
+  getUsuario(): Observable<any> {
     return this.httpClient.get(this.firebaseUrl + this.users + this.json);
   }
 
   // Club
-  getClub( club:any ): Observable<any>{
+  getClub(club: any): Observable<any> {
     const token = this.loginService.getIdToken();
     return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.json + this.auth + token);
   }

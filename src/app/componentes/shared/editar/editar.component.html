@@ -51,14 +51,15 @@
 
     <h2 class="titulo-h2">Editar Arquero: {{ arquero.nombreArquero.toUpperCase() }}</h2>
 
-    <app-botones-navegacion [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
-        [urlHomeOCrear]="'/'"
+    <app-botones-navegacion 
+        [urlVolver]="[ clubParam, 'arqueros', 'detalle-arquero', idParam ]" 
+        [urlHomeOCrear]="[ '/', clubParam ]"
         [textoVolver]="'Volver'" [textoHomeOCrear]="'Home'" 
     >
     </app-botones-navegacion>
 
     <div class="scroll-container">
-        <form #form [formGroup]="formEditarBolso" class="form">
+        <form #form [formGroup]="formEditarArquero" class="form">
             <mat-form-field>
                 <mat-label class="form-label">Nombre Arquero</mat-label>
                 <input matInput formControlName="nombreArquero">

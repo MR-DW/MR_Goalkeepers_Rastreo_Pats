@@ -63,7 +63,7 @@ export class CrearArqueroComponent implements OnInit {
     this.homeService.crearArquero(this.clubParam, this.listaArqueros).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
-          data: { mensaje: 'Bolso creado correctamente', esCrear: true }
+          data: { mensaje: 'Bolso creado correctamente', esCrear: true, clubParam: this.clubParam }
       });
         this.formCrearArquero.reset();
       })

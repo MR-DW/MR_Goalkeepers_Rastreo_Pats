@@ -34,7 +34,7 @@
 
 <!-- Card Arqueros -->
 <mat-card *ngFor="let arquero of listaArqueros; let i = index;" class="example-card">
-    <span class="span-card" [routerLink]="['/arqueros/detalle-arquero/', i]">
+    <span class="span-card" [routerLink]="['detalle-arquero/', i]">
         <mat-card-header class="container-title">
 
             <mat-card-title class="card-title">{{ arquero?.nombreArquero }}</mat-card-title>

@@ -25,28 +25,64 @@ export class HomeService {
   mensajeCompoVacio: boolean | undefined;
 
   // Bolsos
-  crearBolso(body: Bolso[]): Observable<any> {
+  crearBolso(club: string, body: Bolso[]): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
-    return this.httpClient.put(this.firebaseUrl + this.bolsos + this.json + this.auth + token, body);
+    if (club == clubUsuario) {
+      return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + this.json + this.auth + token, body);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
-  editarBolso(id: number, body: any): Observable<any> {
+  editarBolso(club: string, id: number, body: any): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
-    return this.httpClient.put(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token, body);
+    if (club == clubUsuario) {
+      return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + '/' + id + this.json + this.auth + token, body);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
   getBolsos(club: string): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
-    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + this.json + this.auth + token)
+    if (club == clubUsuario) {
+      return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + this.json + this.auth + token)
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
-  getDetalleBolso(id: any): Observable<any> {
-    return this.httpClient.get(this.firebaseUrl + this.bolsos + '/' + id + this.json);
+  getDetalleBolso(club: string, id: any): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
+    const token = this.loginService.getIdToken();
+    if (club == clubUsuario) {
+      return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + '/' + id + this.json + this.auth + token);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
-  eliminarBolso(id: number): Observable<any> {
+  eliminarBolso(club: string, id: number): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
-    return this.httpClient.delete(this.firebaseUrl + this.bolsos + '/' + id + this.json + this.auth + token);
+    if (club == clubUsuario) {
+      return this.httpClient.delete(this.firebaseUrl + this.clubs + `/${club}` + this.bolsos + '/' + id + this.json + this.auth + token);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
 
@@ -64,8 +100,15 @@ export class HomeService {
   }
 
   getArqueros(club: string): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
-    return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + this.json + this.auth + token)
+    if (club == clubUsuario) {
+      return this.httpClient.get(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + this.json + this.auth + token)
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
   getDetalleArquero(club: string, id: any): Observable<any> {
@@ -80,21 +123,28 @@ export class HomeService {
     }
   }
 
-  eliminarArquero(id: number): Observable<any> {
-    const token = this.loginService.getIdToken();
-    return this.httpClient.delete(this.firebaseUrl + this.arqueros + '/' + id + this.json + this.auth + token);
-  }
-
-  editarArquero( club:string, id: number, body: any): Observable<any> {
+  eliminarArquero(club: string, id: number): Observable<any> {
     const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
     if (club == clubUsuario) {
-    return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + '/' + id + this.json + this.auth + token, body);
-  } else {
-    return new Observable<never>(observer => {
-      observer.complete();
-    });
+      return this.httpClient.delete(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + '/' + id + this.json + this.auth + token);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
+
+  editarArquero(club: string, id: number, body: any): Observable<any> {
+    const clubUsuario = this.loginService.getClubUsuario();
+    const token = this.loginService.getIdToken();
+    if (club == clubUsuario) {
+      return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + '/' + id + this.json + this.auth + token, body);
+    } else {
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
   // Reglamento

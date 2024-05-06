@@ -12,6 +12,7 @@ export class DetalleBolsosComponent implements OnInit {
 
   idParam!: string;
   bolso!: Bolso;
+  clubParam!:string;
 
   constructor( private homeService: HomeService, private rutaActiva:ActivatedRoute ) { }
 
@@ -21,11 +22,15 @@ export class DetalleBolsosComponent implements OnInit {
       this.idParam = miParam['id'];
     })
 
-    this.obtenerDetalleBolso( this.idParam );
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+    })
+
+    this.obtenerDetalleBolso( this.clubParam, this.idParam );
   }
 
-  obtenerDetalleBolso( id:any ){
-    this.homeService.getDetalleBolso( id ).subscribe((data: any) => {
+  obtenerDetalleBolso( club:string, id:any ){
+    this.homeService.getDetalleBolso( club, id ).subscribe((data: any) => {
       this.bolso = new Bolso(data);
     })
   }

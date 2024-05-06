@@ -23,6 +23,7 @@ export class EditarBolsoComponent implements OnInit {
   hayNuevaImg: boolean = false;
   @ViewChild('inputeditarimagen') inputeditarimagen!: ElementRef<HTMLInputElement>;
   seEditaBolso!:boolean;
+  clubParam!:string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,12 +48,16 @@ export class EditarBolsoComponent implements OnInit {
       this.idParam = miParam['id'];
     })
 
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+    })
+
     this.obtenerDetallesBolso();
 
   }
 
   obtenerDetallesBolso() {
-    this.homeService.getDetalleBolso(this.idParam).subscribe((data: any) => {
+    this.homeService.getDetalleBolso(this.clubParam, this.idParam).subscribe((data: any) => {
 
       this.bolso = new Bolso(data);
 
@@ -119,7 +124,7 @@ export class EditarBolsoComponent implements OnInit {
       urlImgBolso: this.pathImg,
     }
 
-    this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
+    this.homeService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }

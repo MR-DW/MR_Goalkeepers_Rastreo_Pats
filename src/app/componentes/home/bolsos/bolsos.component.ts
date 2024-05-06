@@ -55,7 +55,7 @@ export class BolsosComponent implements OnInit {
 
     this.eliminarImagenBolso();
 
-    this.homeService.crearBolso(this.listaBolsos).subscribe();
+    this.homeService.crearBolso(this.clubParam, this.listaBolsos).subscribe();
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }

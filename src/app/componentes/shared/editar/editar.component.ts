@@ -70,7 +70,7 @@ export class EditarComponent implements OnInit {
   }
 
   obtenerDetallesBolso() {
-    this.homeService.getDetalleBolso(this.idParam).subscribe((data: any) => {
+    this.homeService.getDetalleBolso(this.clubParam, this.idParam).subscribe((data: any) => {
 
       this.seEditaBolso = true;
       this.seEditaArquero = false;
@@ -144,7 +144,7 @@ export class EditarComponent implements OnInit {
       urlImgBolso: this.pathImg,
     }
 
-    this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
+    this.homeService.editarBolso(this.clubParam,this.idParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }

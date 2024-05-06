@@ -96,7 +96,7 @@ export class CrearBolsosComponent implements OnInit {
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 
-    this.homeService.crearBolso(this.listaBolsos).subscribe(
+    this.homeService.crearBolso(this.clubParam, this.listaBolsos).subscribe(
       (data: any) => {
 
         this.dialog.open(ModalConfirmacionComponent, {

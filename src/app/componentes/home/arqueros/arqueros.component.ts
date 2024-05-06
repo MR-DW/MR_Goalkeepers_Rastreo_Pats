@@ -49,7 +49,7 @@ export class ArquerosComponent implements OnInit {
 
     this.listaArqueros.splice(id, 1);
 
-    this.homeService.crearArquero( this.listaArqueros ).subscribe();
+    this.homeService.crearArquero( this.clubParam, this.listaArqueros ).subscribe();
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }

@@ -51,9 +51,16 @@ export class HomeService {
 
 
   // Arqueros
-  crearArquero( body:Arqueros[] ): Observable<any>{
+  crearArquero( club:string, body:Arqueros[] ): Observable<any>{
     const token = this.loginService.getIdToken();
-    return this.httpClient.put(this.firebaseUrl + this.arqueros + this.json + this.auth + token, body);
+    const clubUsuario = this.loginService.getClubUsuario();
+    if(club == clubUsuario){
+      return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.arqueros + this.json + this.auth + token, body);
+    }else{
+      return new Observable<never>(observer => {
+        observer.complete();
+      });
+    }
   }
 
   getArqueros(club:string): Observable<any>{
@@ -84,7 +91,7 @@ export class HomeService {
   
   editarReglamento( club:string, body:any ): Observable<any>{
     const token = this.loginService.getIdToken();
-    const clubUsuario = this.loginService.getClubUsuario()
+    const clubUsuario = this.loginService.getClubUsuario();
     if(club == clubUsuario){
       return this.httpClient.put(this.firebaseUrl + this.clubs + `/${club}` + this.reglamento + this.json + this.auth + token, body);
     }else{

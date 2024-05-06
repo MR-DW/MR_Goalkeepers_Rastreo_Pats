@@ -37,10 +37,10 @@ export class CrearArqueroComponent implements OnInit {
     this.obtenerArqueros();
     this.obtenerClubParam();
   }
+
   obtenerClubParam(){
     this.rutaActiva.params.subscribe((miParam: Params) => {
       this.clubParam = miParam['club'];
-      console.log("This.clubParam: ", this.clubParam)
     })
   }
 
@@ -60,7 +60,7 @@ export class CrearArqueroComponent implements OnInit {
 
     this.listaArqueros.push(new Arqueros(dataFormulario))
 
-    this.homeService.crearArquero(this.listaArqueros).subscribe(
+    this.homeService.crearArquero(this.clubParam, this.listaArqueros).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso creado correctamente', esCrear: true }

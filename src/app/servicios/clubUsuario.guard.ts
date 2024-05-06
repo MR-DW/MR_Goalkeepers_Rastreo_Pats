@@ -15,19 +15,15 @@ export class ClubUsuarioGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
 
-        console.log("route: ", route )
-        console.log("this.loginService.getClubUsuario();: ", this.loginService.getClubUsuario() )
-
         const clubParam: string = route.params['club'];
         const clubActual: any = this.loginService.getClubUsuario();
 
         if (clubParam === clubActual) {
             return true;
         } else {
-            console.log("Usuario cambió de club:", clubActual);
             this.router.navigate([`/${clubActual}`]);
             this._snackBar.openFromComponent(SnackBarComponent, {
-                data: { mensaje: 'ruta incorrecta' },
+                data: { mensaje: 'Ruta incorrecta' },
                 duration: 5000,
             });
             return false;

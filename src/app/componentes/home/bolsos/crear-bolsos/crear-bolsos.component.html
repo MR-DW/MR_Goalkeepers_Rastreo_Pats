@@ -2,7 +2,8 @@
 
     <h2 class="titulo-h2">Crea tu bolso</h2>
 
-    <app-botones-navegacion [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/'" [textoVolver]="'Volver'"
+    <app-botones-navegacion [urlVolver]="['../']" 
+        [urlHomeOCrear]="[ '/', clubParam ]" [textoVolver]="'Volver'"
         [textoHomeOCrear]="'Home'" (cancelarImg)="cancelar()">
     </app-botones-navegacion>
 

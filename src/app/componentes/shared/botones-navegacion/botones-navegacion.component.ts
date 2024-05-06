@@ -17,18 +17,15 @@ export class BotonesNavegacionComponent implements OnInit {
   @Output() cancelarImg: EventEmitter<any> = new EventEmitter();
 
   esHome: boolean = false;
-  clubParam!:string;
+  clubParam!: string;
 
 
   constructor(private router: Router, private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log("urlVolver: ", this.urlVolver.toString())
-    console.log("urlVolvurlHomeOCrearer: ", this.urlHomeOCrear.toString())
-
-      this.rutaActiva.params.subscribe((miParam: Params) => {
-        this.clubParam = miParam['club'];
-      })
+    this.rutaActiva.params.subscribe((miParam: Params) => {
+      this.clubParam = miParam['club'];
+    })
     this.esHome = this.router.url == `/${this.clubParam}`
   }
 

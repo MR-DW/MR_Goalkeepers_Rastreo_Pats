@@ -52,8 +52,7 @@ Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un arr
 
  <!-- En el componente registro: 
  - Como se crea un nuevo club? 
- - Bad Request al registrarme, me pide el servicio que tenga 6 caracteres, modificar la cantidad minima de caracteres a 6.
- - Al crear u nnuevo usuario me pisa los usuarios ya creados.
+ - Al crear un nuevo usuario me pisa los usuarios ya creados.
  
   -->
 
@@ -86,7 +85,7 @@ Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un arr
 - Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url. 
 -->
 
-<!-- Featuing:
+<!-- Featuring:
 - Crear los bolsos por piezas para de esa manera poder contabilizar un stock de cantidad. 
 -->
 

@@ -14,7 +14,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 export class LoginComponent implements OnInit {
   formLogin!:FormGroup;
   contrasenasIguales!: boolean;
-  clubs: string[] = ['LaSalle', 'Tala'];
+  clubs: string[] = [];
   clubUsuarioCorrecto!:boolean;
   emailUsuarioCorrecto!:boolean;
   club!:string;
@@ -36,10 +36,19 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.obtenerClubsRegistrados();
+
+  }
+
+  obtenerClubsRegistrados(){
+    this.loginService.getClubsRegistrados().subscribe((data:any)=>{
+      data.map((club:any) => {
+        this.clubs.push(club.clubRegistrado);
+      } )
+    })
   }
 
   obtenerClubUsuario(){
-
     const dataForm = {
       email: this.formLogin.get('email')?.value.toString(),
       club: this.formLogin.get('club')?.value.toString(),

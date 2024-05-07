@@ -29,6 +29,10 @@
     "users":{
       ".read": true,
       ".write": true
+    },
+    "clubRegistrado":{
+      ".read": true,
+      ".write": true
     }
   }
 }

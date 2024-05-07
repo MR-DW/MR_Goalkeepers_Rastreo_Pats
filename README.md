@@ -43,3 +43,50 @@ Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un arr
  -->
 
  <!-- En el crear arquero me está pisando el arquero creado, debe agregarse uno al arreglo no pisarse. -->
+
+ <!-- En componenete login: 
+ - al hacer un click en los inputs no toma el club seleccionado, se deben hacer dos clicks para obtener el valor del formulario. 
+ - Boton Home no funciona. Va a quedar?
+ -
+ -->
+
+ <!-- En el componente registro: 
+ - Como se crea un nuevo club? 
+ - Bad Request al registrarme, me pide el servicio que tenga 6 caracteres, modificar la cantidad minima de caracteres a 6.
+ - Al crear u nnuevo usuario me pisa los usuarios ya creados.
+ 
+  -->
+
+<!-- Home:
+- Se rompe al querer ingresar a una URL de un club sin loguearse. Debe salir un mensaje no romperse.
+- Redirección de logout debe ser a /ingesar.
+-->
+   
+<!-- Arqueros:
+- El arquero que estoy creando pisa a los viejos.
+- Al eliminar arquero, la var mensajeVacío debe pasar a True para que se muestre el mensaje y no quede el scrol solo.
+
+-->
+
+<!-- Bolsos:
+- Editar bolso al hacer click en el boton me aparece el mensaje de ruta incorrecta.
+- El bolso que estoy creando pisa a los viejos.
+- Al eliminar bolso, la var mensajeVacío debe pasar a True para que se muestre el mensaje y no quede el scrol solo.
+ -->
+
+<!-- Modal:
+- Boton Home no tiene clubParam.
+-->
+
+<!-- Servicios:
+- Pasar servicios a donde corresponda.
+-->
+
+<!-- Router:
+- Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url. 
+-->
+
+<!-- Featuing:
+- Crear los bolsos por piezas para de esa manera poder contabilizar un stock de cantidad. 
+-->
+

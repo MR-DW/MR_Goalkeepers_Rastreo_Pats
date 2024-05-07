@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { UrlService } from './url.service';
 
 
 @Injectable({
@@ -10,9 +13,14 @@ export class LoginService {
   token!: string;
   clubDelUsuario!: string;
 
-  constructor( private auth: Auth,  ) { }
+  constructor( private auth: Auth, private httpClient:HttpClient, private urlService: UrlService ) { }
 
-  // Crear usuario
+  // Registro
+
+  getClubsRegistrados():Observable<any>{
+    return this.httpClient.get( this.urlService.serviceUrl.registro.getClubRegistrado );
+  }
+
   registro({ email, password}:any){
     return createUserWithEmailAndPassword(this.auth, email, password);
   }

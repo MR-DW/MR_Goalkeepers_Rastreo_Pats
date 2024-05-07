@@ -14,7 +14,7 @@ import { HomeService } from 'src/app/servicios/home.service';
 })
 export class RegistroComponent implements OnInit {
 
-  clubs: string[] = ['LaSalle', 'Tala'];
+  clubs: string[] = [];
 
   formRegistro!:FormGroup;
   contrasenasIguales!: boolean;
@@ -29,14 +29,23 @@ export class RegistroComponent implements OnInit {
 
     this.formRegistro = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)] ],
-      contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)] ],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)] ],
+      contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)] ],
       club: ['', [Validators.required] ],
     })
 
    }
 
   ngOnInit(): void {
+    this.obtenerClubsRegistrados();
+  }
+
+  obtenerClubsRegistrados(){
+    this.loginService.getClubsRegistrados().subscribe((data:any)=>{
+      data.map((club:any) => {
+        this.clubs.push(club.clubRegistrado);
+      } )
+    })
   }
 
   registrarse(){

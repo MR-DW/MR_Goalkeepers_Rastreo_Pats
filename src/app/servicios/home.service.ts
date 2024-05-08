@@ -175,13 +175,9 @@ export class HomeService {
 
 
   // Usuarios
-  crearUsuario(body: any): Observable<any> {
-    return this.httpClient.put(this.firebaseUrl + this.users + this.json, body);
-  }
 
-  getUsuario(): Observable<any> {
-    return this.httpClient.get(this.firebaseUrl + this.users + this.json);
-  }
+
+
 
   // Club
   getClub(club: any): Observable<any> {

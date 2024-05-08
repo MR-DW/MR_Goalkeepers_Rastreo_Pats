@@ -17,9 +17,13 @@ export class UrlService {
   clubRegistrado: string = 'clubRegistrado';
 
 
-  serviceUrl = {
+  urlService = {
     registro:{
       getClubRegistrado: this.firebaseUrl + this.clubRegistrado + this.json,
+    },
+    usuarios:{
+      crearUsuario: this.firebaseUrl + this.users + this.json,
+      getUsuario: this.firebaseUrl + this.users + this.json,
     }
   }
 

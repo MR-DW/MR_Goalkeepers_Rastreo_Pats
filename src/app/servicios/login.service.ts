@@ -18,7 +18,7 @@ export class LoginService {
   // Registro
 
   getClubsRegistrados():Observable<any>{
-    return this.httpClient.get( this.urlService.serviceUrl.registro.getClubRegistrado );
+    return this.httpClient.get( this.urlService.urlService.registro.getClubRegistrado );
   }
 
   registro({ email, password}:any){

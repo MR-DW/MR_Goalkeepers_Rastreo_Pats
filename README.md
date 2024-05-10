@@ -52,13 +52,10 @@ Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un arr
 
  <!-- En el componente registro: 
  - Como se crea un nuevo club? 
- - Al crear un nuevo usuario me pisa los usuarios ya creados.
- 
-  -->
+ -->
 
 <!-- Home:
-- Se rompe al querer ingresar a una URL de un club sin loguearse. Debe salir un mensaje no romperse.
-- Redirección de logout debe ser a /ingesar.
+- Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.
 -->
    
 <!-- Arqueros:

@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'ingresar', component: LoginComponent },
   { path: 'registrar', component: RegistroComponent },
 
-  { path: ':club', component: HomeComponent, canActivate: [ClubUsuarioGuard] },
+  { path: ':club', component: HomeComponent },
 
   { path: ':club/reglamento', component: ReglamentoComponent, canActivate: [ClubUsuarioGuard] },
   { path: ':club/reglamento/editar-reglamento', component: EditarReglamentoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },

@@ -6,13 +6,11 @@
         <mat-form-field>
             <mat-label class="form-label">Email</mat-label>
             <input matInput type="email" formControlName="email"
-            (blur)="obtenerClubUsuario()"    
             >
         </mat-form-field>
         <mat-form-field>
             <mat-label class="form-label">Contraseña</mat-label>
             <input matInput type="password" formControlName="password" 
-            (blur)="obtenerClubUsuario()"    
             >
         </mat-form-field>
 
@@ -25,15 +23,13 @@
             <mat-radio-button 
                 *ngFor="let club of clubs" 
                 class="example-radio-button" 
-                [value]="club"
-                (click)="obtenerClubUsuario()"    
+                [value]="club"    
             >
                 {{club}}
             </mat-radio-button>
         </mat-radio-group>
-
-        <button mat-flat-button class="boton-login" (click)="ingresar()" 
-            [disabled]="formLogin.invalid || !clubUsuarioCorrecto || !emailUsuarioCorrecto"
+        <button mat-flat-button class="boton-login" (click)="obtenerClubUsuario()"
+            [disabled]="formLogin.invalid"
         >
             Ingresar
         </button>
@@ -42,7 +38,4 @@
         </button>
 
     </form>
-    <button mat-flat-button class="boton-registrarse" (click)="volveralHome()">
-        Home
-    </button>
 </aside>

@@ -52,15 +52,14 @@ export class LoginComponent implements OnInit {
     }
     this.club = dataForm.club.toString();
 
-    this.usuarioService.getUsuario().subscribe((x) => {
-      for (let user of x) {
+    this.usuarioService.getUsuario().subscribe((resp) => {
+      for (let user of resp) {
         if (user.club == dataForm.club && user.email == dataForm.email) {
-          this.clubUsuarioCorrecto = true;
-          this.emailUsuarioCorrecto = true;
+          this.ingresar();
         }
         else {
-          this.clubUsuarioCorrecto = false;
-          this.emailUsuarioCorrecto = false;
+          const mensaje = 'Algún dato es incorrecto o su email no está registrado.'
+          this.openSnackBar(mensaje);
         }
       }
     })
@@ -95,8 +94,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/registrar'])
   }
 
-  volveralHome() {
-    this.router.navigate(['/'])
-  }
+  // volveralHome() {
+  //   this.router.navigate(['/'])
+  // }
 
 }

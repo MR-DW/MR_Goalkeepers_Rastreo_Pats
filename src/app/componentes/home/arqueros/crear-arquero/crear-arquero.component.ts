@@ -6,6 +6,7 @@ import { Bolso } from 'src/app/modelos/bolso.model';
 import { HomeService } from 'src/app/servicios/home.service';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ArquerosService } from 'src/app/servicios/arqueros.service';
 
 @Component({
   selector: 'app-crear-arquero',
@@ -22,7 +23,8 @@ export class CrearArqueroComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private homeService: HomeService, 
     public dialog: MatDialog,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private arquerosService:ArquerosService
   ) {
 
     this.formCrearArquero = this.formBuilder.group({
@@ -34,8 +36,8 @@ export class CrearArqueroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerArqueros();
     this.obtenerClubParam();
+    this.obtenerArqueros();
   }
 
   obtenerClubParam(){
@@ -45,7 +47,7 @@ export class CrearArqueroComponent implements OnInit {
   }
 
   obtenerArqueros(){
-    this.homeService.getArqueros( this.clubParam ).subscribe((data: any) => {
+    this.arquerosService.getArqueros( this.clubParam ).subscribe((data: any) => {
       this.listaArqueros = data ? data : [];
     });
   }
@@ -58,9 +60,9 @@ export class CrearArqueroComponent implements OnInit {
       equipamientoClub: this.formCrearArquero.get('equipamientoClub')?.value
     }
 
-    this.listaArqueros.push(new Arqueros(dataFormulario))
+    this.listaArqueros.push(new Arqueros(dataFormulario));
 
-    this.homeService.crearArquero(this.clubParam, this.listaArqueros).subscribe(
+    this.arquerosService.crearArquero(this.clubParam, this.listaArqueros).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso creado correctamente', esCrear: true, clubParam: this.clubParam }

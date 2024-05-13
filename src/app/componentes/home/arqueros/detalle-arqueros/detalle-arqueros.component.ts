@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
+import { ArquerosService } from 'src/app/servicios/arqueros.service';
 import { HomeService } from 'src/app/servicios/home.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class DetalleArquerosComponent implements OnInit {
   arqueros!: Arqueros;
   clubParam!: string;
 
-  constructor( private homeService: HomeService, private rutaActiva:ActivatedRoute ) { }
+  constructor( 
+    private arquerosService: ArquerosService, private rutaActiva:ActivatedRoute ) { }
 
   ngOnInit(): void {
 
@@ -29,7 +31,7 @@ export class DetalleArquerosComponent implements OnInit {
   }
 
   obtenerDetalleArquero( club:string, id:any ){
-    this.homeService.getDetalleArquero( club, id ).subscribe((data: any) => {
+    this.arquerosService.getDetalleArquero( club, id ).subscribe((data: any) => {
       this.arqueros = new Arqueros(data);
     })
   }

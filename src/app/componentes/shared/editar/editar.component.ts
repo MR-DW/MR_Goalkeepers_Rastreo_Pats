@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { getDownloadURL, listAll, ref, uploadBytes, Storage, deleteObject } from '@angular/fire/storage';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
+import { ArquerosService } from 'src/app/servicios/arqueros.service';
 
 @Component({
   selector: 'app-editar',
@@ -37,7 +38,8 @@ export class EditarComponent implements OnInit {
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private arquerosService:ArquerosService
   ) {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
@@ -157,7 +159,7 @@ export class EditarComponent implements OnInit {
   }
 
   obtenerDetallesArquero() {
-    this.homeService.getDetalleArquero( this.clubParam ,this.idParam).subscribe((data: any) => {
+    this.arquerosService.getDetalleArquero( this.clubParam ,this.idParam).subscribe((data: any) => {
       this.seEditaBolso = false;
       this.seEditaArquero = true;
       this.arquero = new Arqueros(data);
@@ -180,7 +182,7 @@ export class EditarComponent implements OnInit {
       equipamientoClub: this.formEditarArquero.get('equipamientoClub')?.value,
     }
 
-    this.homeService.editarArquero(this.clubParam ,this.idParam, dataFormulario).subscribe(
+    this.arquerosService.editarArquero(this.clubParam ,this.idParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Arquero editado', esCrear: false }

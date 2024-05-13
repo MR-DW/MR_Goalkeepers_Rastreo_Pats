@@ -24,6 +24,9 @@ export class UrlService {
     usuarios:{
       crearUsuario: this.firebaseUrl + this.users + this.json,
       getUsuario: this.firebaseUrl + this.users + this.json,
+    },
+    clubs:{
+      clubs: this.firebaseUrl + this.clubs,
     }
   }
 

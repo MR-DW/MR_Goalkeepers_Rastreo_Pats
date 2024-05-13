@@ -37,7 +37,6 @@ export class ReglamentoComponent implements OnInit {
   obtenerClubParam(){
     this.rutaActiva.params.subscribe((miParam: Params) => {
       this.clubParam = miParam['club'];
-      console.log("This.clubParam: ", this.clubParam)
     })
   }
 

@@ -38,7 +38,8 @@ npm install rxfire@latest firebase@latest
 
 
 <!-- Bugs:
-- Dar estilos al login
+- Dar estilos al login.
+- Poner los mensajes de error al usuario.
  -->
 
 <!-- Home:

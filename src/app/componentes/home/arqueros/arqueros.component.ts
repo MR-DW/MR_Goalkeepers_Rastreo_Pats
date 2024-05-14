@@ -64,14 +64,14 @@ export class ArquerosComponent implements OnInit {
         (resp: any) => {
           this.mensajeCompoVacio = true;
           this.dialog.open(ModalConfirmacionComponent, {
-            data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
+            data: { mensaje: 'Arquero eliminado correctamente', esEliminar: true }
           });
         }
       ),
       error: (
         (error: any) => {
           this.dialog.open(ModalConfirmacionComponent, {
-            data: { mensaje: 'Tu bolso no pudo eliminarse, intente nuevamente!', esEliminar: true }
+            data: { mensaje: 'Tu arquero no pudo eliminarse, intente nuevamente!', esEliminar: true }
           })
         }
       )

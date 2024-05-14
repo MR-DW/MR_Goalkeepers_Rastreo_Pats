@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
 
 @Component({
   selector: 'app-editar-bolso',
@@ -27,11 +27,12 @@ export class EditarBolsoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService,
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private bolsosService:BolsosService
+
   ) {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
@@ -57,7 +58,7 @@ export class EditarBolsoComponent implements OnInit {
   }
 
   obtenerDetallesBolso() {
-    this.homeService.getDetalleBolso(this.clubParam, this.idParam).subscribe((data: any) => {
+    this.bolsosService.getDetalleBolso(this.clubParam, this.idParam).subscribe((data: any) => {
 
       this.bolso = new Bolso(data);
 
@@ -124,7 +125,7 @@ export class EditarBolsoComponent implements OnInit {
       urlImgBolso: this.pathImg,
     }
 
-    this.homeService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe(
+    this.bolsosService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }

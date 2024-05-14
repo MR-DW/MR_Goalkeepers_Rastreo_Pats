@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
 
 @Component({
   selector: 'app-detalle-bolsos',
@@ -14,7 +14,10 @@ export class DetalleBolsosComponent implements OnInit {
   bolso!: Bolso;
   clubParam!:string;
 
-  constructor( private homeService: HomeService, private rutaActiva:ActivatedRoute ) { }
+  constructor( 
+    private rutaActiva:ActivatedRoute,
+    private bolsosService:BolsosService
+   ) { }
 
   ngOnInit(): void {
 
@@ -30,7 +33,7 @@ export class DetalleBolsosComponent implements OnInit {
   }
 
   obtenerDetalleBolso( club:string, id:any ){
-    this.homeService.getDetalleBolso( club, id ).subscribe((data: any) => {
+    this.bolsosService.getDetalleBolso( club, id ).subscribe((data: any) => {
       this.bolso = new Bolso(data);
     })
   }

@@ -58,12 +58,6 @@ Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un arr
 - Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.
 -->
 
-<!-- Bolsos:
-- Editar bolso al hacer click en el boton me aparece el mensaje de ruta incorrecta.
-- El bolso que estoy creando pisa a los viejos.
-- Al eliminar bolso, la var mensajeVacío debe pasar a True para que se muestre el mensaje y no quede el scrol solo.
- -->
-
 <!-- Modal:
 - Boton Home no tiene clubParam.
 -->

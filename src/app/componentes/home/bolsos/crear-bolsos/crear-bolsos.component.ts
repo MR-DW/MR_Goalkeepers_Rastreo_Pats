@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
 
 @Component({
   selector: 'app-crear-bolsos',
@@ -25,10 +25,10 @@ export class CrearBolsosComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService,
     public dialog: MatDialog,
     private storage: Storage,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private bolsosService:BolsosService
   ) {
     // Habilitar la recopilación automática de datos
     this.storage.app.automaticDataCollectionEnabled = true;
@@ -44,7 +44,7 @@ export class CrearBolsosComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerClubParam();
-    this.obtenerBolsos;
+    this.obtenerBolsos();
   }
 
   obtenerClubParam(){
@@ -54,7 +54,7 @@ export class CrearBolsosComponent implements OnInit {
   }
 
   obtenerBolsos(){
-    this.homeService.getBolsos(this.clubParam).subscribe((data: any) => {
+    this.bolsosService.getBolsos(this.clubParam).subscribe((data: any) => {
       this.listaBolsos = data ? data : [];
     });
   }
@@ -95,7 +95,7 @@ export class CrearBolsosComponent implements OnInit {
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 
-    this.homeService.crearBolso(this.clubParam, this.listaBolsos).subscribe(
+    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe(
       (data: any) => {
 
         this.dialog.open(ModalConfirmacionComponent, {

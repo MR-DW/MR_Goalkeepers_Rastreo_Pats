@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage, deleteObject, listAll, ref } from '@angular/fire/storage';
+import { Storage, deleteObject, ref } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
 
 @Component({
   selector: 'app-bolsos',
@@ -19,10 +19,10 @@ export class BolsosComponent implements OnInit {
   clubParam!:string;
 
   constructor(
-    private homeService: HomeService,
     public dialog: MatDialog,
     private storage: Storage,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private bolsosService:BolsosService,
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class BolsosComponent implements OnInit {
   }
 
   obtenerListaBolsos() {
-    this.homeService.getBolsos(this.clubParam).subscribe((data: any) => {
+    this.bolsosService.getBolsos(this.clubParam).subscribe((data: any) => {
       if (data) {
         this.listaBolsos = data;
       }
@@ -54,7 +54,23 @@ export class BolsosComponent implements OnInit {
 
     this.eliminarImagenBolso();
 
-    this.homeService.crearBolso(this.clubParam, this.listaBolsos).subscribe();
+    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe({
+      next: (
+        (resp: any) => {
+          this.mensajeCompoVacio = true;
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
+          });
+        }
+      ),
+      error: (
+        (error: any) => {
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Tu bolso no pudo eliminarse, intente nuevamente!', esEliminar: true }
+          })
+        }
+      )
+    });
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }

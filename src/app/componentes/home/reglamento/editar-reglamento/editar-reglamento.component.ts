@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
-import { HomeService } from 'src/app/servicios/home.service';
+import { ReglamentoService } from 'src/app/servicios/reglamento.service';
 
 @Component({
   selector: 'app-editar-reglamento',
@@ -20,8 +20,8 @@ export class EditarReglamentoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public dialog: MatDialog,
-    private homeService: HomeService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private reglamentoService: ReglamentoService
   ) {
     this.formEditarReglamento = this.formBuilder.group({
       reglamento: ['', [Validators.required]]
@@ -40,7 +40,7 @@ export class EditarReglamentoComponent implements OnInit {
   }
 
   obtenerReglamento(){
-    this.homeService.getReglamento( this.clubParam ).subscribe((data: any) => {
+    this.reglamentoService.getReglamento( this.clubParam ).subscribe((data: any) => {
 
       this.miReglamento = data;
 
@@ -56,7 +56,7 @@ export class EditarReglamentoComponent implements OnInit {
       reglamento: this.formEditarReglamento.get('reglamento')?.value,
     }
 
-    this.homeService.editarReglamento(this.clubParam, dataFormulario).subscribe(
+    this.reglamentoService.editarReglamento(this.clubParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Reglamento editado', esCrear: false }

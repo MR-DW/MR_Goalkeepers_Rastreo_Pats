@@ -1,13 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ModalConfirmacionComponent } from '../modal-confirmacion/modal-confirmacion.component';
-import { Bolso } from 'src/app/modelos/bolso.model';
+import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HomeService } from 'src/app/servicios/home.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { getDownloadURL, listAll, ref, uploadBytes, Storage, deleteObject } from '@angular/fire/storage';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
+import { Bolso } from 'src/app/modelos/bolso.model';
 import { ArquerosService } from 'src/app/servicios/arqueros.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
+import { ModalConfirmacionComponent } from '../modal-confirmacion/modal-confirmacion.component';
 
 @Component({
   selector: 'app-editar',
@@ -34,12 +34,12 @@ export class EditarComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService,
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
     private storage: Storage,
     private router: Router,
-    private arquerosService:ArquerosService
+    private arquerosService:ArquerosService,
+    private bolsosService:BolsosService
   ) {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
@@ -72,7 +72,7 @@ export class EditarComponent implements OnInit {
   }
 
   obtenerDetallesBolso() {
-    this.homeService.getDetalleBolso(this.clubParam, this.idParam).subscribe((data: any) => {
+    this.bolsosService.getDetalleBolso(this.clubParam, this.idParam).subscribe((data: any) => {
 
       this.seEditaBolso = true;
       this.seEditaArquero = false;
@@ -146,7 +146,7 @@ export class EditarComponent implements OnInit {
       urlImgBolso: this.pathImg,
     }
 
-    this.homeService.editarBolso(this.clubParam,this.idParam, dataFormulario).subscribe(
+    this.bolsosService.editarBolso(this.clubParam,this.idParam, dataFormulario).subscribe(
       (data: any) => {
         this.dialog.open(ModalConfirmacionComponent, {
           data: { mensaje: 'Bolso editado', esCrear: false }

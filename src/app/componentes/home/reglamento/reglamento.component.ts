@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from 'src/app/servicios/home.service';
-import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginService } from 'src/app/servicios/login.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { LoginService } from 'src/app/servicios/login.service';
+import { ReglamentoService } from 'src/app/servicios/reglamento.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-reglamento',
@@ -18,10 +18,10 @@ export class ReglamentoComponent implements OnInit {
   clubParam!:string;
 
   constructor( 
-    private homeService: HomeService,
     private _snackBar: MatSnackBar,
     private loginService: LoginService,
-    private rutaActiva: ActivatedRoute
+    private rutaActiva: ActivatedRoute,
+    private reglamentoService:ReglamentoService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class ReglamentoComponent implements OnInit {
   }
 
   obtenerReglas(){
-    this.homeService.getReglamento( this.clubParam ).subscribe((resp:string)=>{
+    this.reglamentoService.getReglamento( this.clubParam ).subscribe((resp:string)=>{
       
       this.miReglamento = resp;
 

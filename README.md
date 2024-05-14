@@ -37,33 +37,10 @@ Si da error en este archivo dentro del noce_module: rxfire, instalar:
 npm install rxfire@latest firebase@latest
 
 
-<!-- 
-Mover usuarios a dentro del club? 
-Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un array y hacer push del nuevo usuario y luego hacer un put de todo el arreglo a la base de datos.
- -->
 
- <!-- En el crear arquero me está pisando el arquero creado, debe agregarse uno al arreglo no pisarse. -->
-
- <!-- En componenete login: 
- - al hacer un click en los inputs no toma el club seleccionado, se deben hacer dos clicks para obtener el valor del formulario. 
- - Boton Home no funciona. Va a quedar?
- -
- -->
-
- <!-- En el componente registro: 
- - Como se crea un nuevo club? 
- -->
 
 <!-- Home:
 - Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.
--->
-
-<!-- Modal:
-- Boton Home no tiene clubParam.
--->
-
-<!-- Servicios:
-- Pasar servicios a donde corresponda.
 -->
 
 <!-- Router:
@@ -72,5 +49,11 @@ Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un arr
 
 <!-- Featuring:
 - Crear los bolsos por piezas para de esa manera poder contabilizar un stock de cantidad. 
+- Carrucel de fotos para subir foto de cada parte del equipamiento.
+
+- Mover usuarios a dentro del club? 
+- Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un array y hacer push del nuevo usuario y luego hacer un put de todo el arreglo a la base de datos.
+ - Como se crea un nuevo club? 
+
 -->
 

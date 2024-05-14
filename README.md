@@ -37,7 +37,9 @@ Si da error en este archivo dentro del noce_module: rxfire, instalar:
 npm install rxfire@latest firebase@latest
 
 
-
+<!-- Bugs:
+- Dar estilos al login
+ -->
 
 <!-- Home:
 - Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.

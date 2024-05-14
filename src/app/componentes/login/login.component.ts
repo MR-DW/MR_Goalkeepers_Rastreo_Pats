@@ -38,10 +38,20 @@ export class LoginComponent implements OnInit {
   }
 
   obtenerClubsRegistrados() {
-    this.loginService.getClubsRegistrados().subscribe((data: any) => {
-      data.map((club: any) => {
-        this.clubs.push(club.clubRegistrado);
-      })
+    this.loginService.getClubsRegistrados().subscribe({
+      next: (
+        (data: any) => {
+          data.map((club: any) => {
+            this.clubs.push(club.clubRegistrado);
+          })
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener los clubs registrados, intente ingresar más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 
@@ -52,16 +62,26 @@ export class LoginComponent implements OnInit {
     }
     this.club = dataForm.club.toString();
 
-    this.usuarioService.getUsuario().subscribe((resp) => {
-      for (let user of resp) {
-        if (user.club == dataForm.club && user.email == dataForm.email) {
-          this.ingresar();
+    this.usuarioService.getUsuario().subscribe({
+      next: (
+        (resp: any) => {
+          for (let user of resp) {
+            if (user.club == dataForm.club && user.email == dataForm.email) {
+              this.ingresar();
+            }
+            else {
+              const mensaje = 'Algún dato es incorrecto o su email no está registrado.'
+              this.openSnackBar(mensaje);
+            }
+          }
         }
-        else {
-          const mensaje = 'Algún dato es incorrecto o su email no está registrado.'
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No pudimos obtener los usuarios registrados, intente más tarde.'
           this.openSnackBar(mensaje);
         }
-      }
+      )
     })
   }
 

@@ -21,7 +21,7 @@ export class ArquerosService {
     const clubUsuario = this.loginService.getClubUsuario();
     if (club == clubUsuario) {
       return this.httpClient.put(
-        this.urlService.urlService.clubs.clubs + `/${club}` + this.urlService.arqueros + this.urlService.json + this.urlService.auth + token,
+        this.urlService.urlService.clubs + `/${club}` + this.urlService.arqueros + this.urlService.json + this.urlService.auth + token,
         body
       );
     } else {
@@ -36,7 +36,7 @@ export class ArquerosService {
     const token = this.loginService.getIdToken();
     if (club == clubUsuario) {
       return this.httpClient.get(
-        this.urlService.urlService.clubs.clubs + `/${club}` + this.urlService.arqueros + this.urlService.json + this.urlService.auth + token
+        this.urlService.urlService.clubs + `/${club}` + this.urlService.arqueros + this.urlService.json + this.urlService.auth + token
       );
     } else {
       return new Observable<never>(observer => {
@@ -50,7 +50,7 @@ export class ArquerosService {
     const token = this.loginService.getIdToken();
     if (club == clubUsuario) {
       return this.httpClient.get(
-        this.urlService.urlService.clubs.clubs + `/${club}` + this.urlService.arqueros + '/' + id + this.urlService.json + this.urlService.auth + token
+        this.urlService.urlService.clubs + `/${club}` + this.urlService.arqueros + '/' + id + this.urlService.json + this.urlService.auth + token
       );
     } else {
       return new Observable<never>(observer => {
@@ -64,7 +64,7 @@ export class ArquerosService {
     const token = this.loginService.getIdToken();
     if (club == clubUsuario) {
       return this.httpClient.put(
-        this.urlService.urlService.clubs.clubs + `/${club}` + this.urlService.arqueros + '/' + id + this.urlService.json + this.urlService.auth + token, 
+        this.urlService.urlService.clubs + `/${club}` + this.urlService.arqueros + '/' + id + this.urlService.json + this.urlService.auth + token, 
         body
       );
     } else {
@@ -79,7 +79,7 @@ export class ArquerosService {
     const token = this.loginService.getIdToken();
     if (club == clubUsuario) {
       return this.httpClient.delete(
-        this.urlService.urlService.clubs.clubs + `/${club}` + this.urlService.arqueros + '/' + id + this.urlService.json + this.urlService.auth + token);
+        this.urlService.urlService.clubs + `/${club}` + this.urlService.arqueros + '/' + id + this.urlService.json + this.urlService.auth + token);
     } else {
       return new Observable<never>(observer => {
         observer.complete();

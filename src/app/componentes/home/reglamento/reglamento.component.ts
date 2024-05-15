@@ -12,16 +12,16 @@ import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 })
 export class ReglamentoComponent implements OnInit {
 
-  miReglamento!:any;
-  mensajeCompoVacio!:boolean;
-  estaLogueado!:boolean;
-  clubParam!:string;
+  miReglamento!: any;
+  mensajeCompoVacio!: boolean;
+  estaLogueado!: boolean;
+  clubParam!: string;
 
-  constructor( 
+  constructor(
     private _snackBar: MatSnackBar,
     private loginService: LoginService,
     private rutaActiva: ActivatedRoute,
-    private reglamentoService:ReglamentoService
+    private reglamentoService: ReglamentoService
   ) { }
 
   ngOnInit(): void {
@@ -30,35 +30,55 @@ export class ReglamentoComponent implements OnInit {
     this.obtenerReglas();
   }
 
-  obtenerTokenLogin(){
+  obtenerTokenLogin() {
     this.estaLogueado = this.loginService.estaLogueado() ? true : false;
   }
 
-  obtenerClubParam(){
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.clubParam = miParam['club'];
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    }
+    )
+  }
+
+  obtenerReglas() {
+    this.reglamentoService.getReglamento(this.clubParam).subscribe({
+      next: (
+        (resp: string) => {
+
+          this.miReglamento = resp;
+
+          if (this.miReglamento.reglamento != '') {
+            this.mensajeCompoVacio = false;
+          }
+          else {
+            this.mensajeCompoVacio = true;
+          }
+
+        }
+      ),
+      error: ((error: any) => {
+        const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+        this.openSnackBar(mensaje);
+      })
     })
   }
 
-  obtenerReglas(){
-    this.reglamentoService.getReglamento( this.clubParam ).subscribe((resp:string)=>{
-      
-      this.miReglamento = resp;
-
-      if( this.miReglamento.reglamento != ''){
-        this.mensajeCompoVacio = false;
-      }
-      else{
-        this.mensajeCompoVacio = true;
-      }
-
-    },
-  (error)=>{
+  openSnackBar(value: string) {
     this._snackBar.openFromComponent(SnackBarComponent, {
-      data: { mensaje: "No pudimos cargar su reglamento, intente nuevamente!"}, 
+      data: { mensaje: value },
       duration: 5000,
     });
-  })
   }
 
 }

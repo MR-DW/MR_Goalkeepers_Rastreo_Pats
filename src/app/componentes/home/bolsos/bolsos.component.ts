@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage, deleteObject, ref } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { BolsosService } from 'src/app/servicios/bolsos.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-bolsos',
@@ -16,13 +18,15 @@ export class BolsosComponent implements OnInit {
   listaBolsos!: Bolso[];
   mensajeCompoVacio: boolean = false;
   bolsoEliminado!: any;
-  clubParam!:string;
+  clubParam!: string;
 
   constructor(
     public dialog: MatDialog,
     private storage: Storage,
     private rutaActiva: ActivatedRoute,
-    private bolsosService:BolsosService,
+    private bolsosService: BolsosService,
+    private _snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
@@ -30,21 +34,41 @@ export class BolsosComponent implements OnInit {
     this.obtenerListaBolsos();
   }
 
-  obtenerClubParam(){
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.clubParam = miParam['club'];
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 
   obtenerListaBolsos() {
-    this.bolsosService.getBolsos(this.clubParam).subscribe((data: any) => {
-      if (data) {
-        this.listaBolsos = data;
-      }
-      else {
-        this.mensajeCompoVacio = true;
-      }
+    this.bolsosService.getBolsos(this.clubParam).subscribe({
+      next: (
+        (data: any) => {
+          if (data) {
+            this.listaBolsos = data;
+          }
+          else {
+            this.mensajeCompoVacio = true;
+          }
+        }
+      ),
+      error: (
+        (error:any) => {
+          const mensaje = 'No pudimos obtener los bolsos del tu club, intente más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
     }
+
     )
   }
 
@@ -87,12 +111,20 @@ export class BolsosComponent implements OnInit {
 
       const deleteRef = ref(this.storage, `bolsos/${pathImg}`);
 
+      // No le tengo que mostrar mensaje al usuario por que se borra img por código.
       deleteObject(deleteRef)
-      .then(resp => { })
-      .catch(error => { })
+        .then(resp => { })
+        .catch(error => {  })
 
     })
 
+  }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
   }
 
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servicios/login.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerClubsRegistrados();
     this.obtenerClubUsuario();
-    this.escudoGenerico = "https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
+    this.escudoGenerico = environment.urlImg + "escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
   }
 
   obtenerClubsRegistrados() {
@@ -72,14 +73,12 @@ export class RegistroComponent implements OnInit {
     if (this.contrasenasIguales) {
       this.loginService.registro(dataForm)
         .then(resp => {
-
           const mensaje = 'Se registró correctamente!'
           this.openSnackBar(mensaje);
           this.saveUsuario();
           this.router.navigate(['/ingresar']);
 
         })
-
         .catch(error => {
           const mensaje = 'No pudo registrarse, intente nuevamente.'
           this.openSnackBar(mensaje);
@@ -94,12 +93,21 @@ export class RegistroComponent implements OnInit {
 
   obtenerClubUsuario() {
 
-    this.usuarioService.getUsuario().subscribe((resp) => {
-      if (resp) {
-        resp.map((x: any) => {
-          this.usuarios.push(x)
+    this.usuarioService.getUsuario().subscribe({
+      next: (
+        (resp) => {
+          if (resp) {
+            resp.map((x: any) => {
+              this.usuarios.push(x)
+            })
+          }
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No pudimos registrar tu usuario, intente más tarde.'
+          this.openSnackBar(mensaje);
         })
-      }
     })
   }
 
@@ -109,7 +117,20 @@ export class RegistroComponent implements OnInit {
       club: this.formRegistro.get('club')?.value.toString(),
     }
     this.usuarios.push(dataForm)
-    this.usuarioService.crearUsuario(this.usuarios).subscribe((data: any) => { })
+    this.usuarioService.crearUsuario(this.usuarios).subscribe({
+      next: (
+        (data: any) => {
+          const mensaje = 'Usuario guardado.'
+          this.openSnackBar(mensaje);
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No pudimos guardar tu usuario, intente más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
   }
 
   openSnackBar(value: string) {

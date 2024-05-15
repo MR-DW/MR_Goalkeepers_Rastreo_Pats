@@ -4,6 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { ArquerosService } from 'src/app/servicios/arqueros.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-arqueros',
@@ -19,20 +21,32 @@ export class ArquerosComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
-    private arquerosService: ArquerosService
+    private arquerosService: ArquerosService,
+    private _snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
     this.obtenerClubParam();
-    this.obtenerListaBolsos();
+    this.obtenerListaArqueros();
   }
+
   obtenerClubParam() {
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.clubParam = miParam['club'];
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 
-  obtenerListaBolsos() {
+  obtenerListaArqueros() {
     this.arquerosService.getArqueros(this.clubParam).subscribe({
       next: (
         (data: any) => {
@@ -55,7 +69,7 @@ export class ArquerosComponent implements OnInit {
     })
   }
 
-  eliminarBolso(id: number) {
+  eliminarArquero(id: number) {
 
     this.listaArqueros.splice(id, 1);
 
@@ -77,4 +91,12 @@ export class ArquerosComponent implements OnInit {
       )
     })
   }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
+  }
+  
 }

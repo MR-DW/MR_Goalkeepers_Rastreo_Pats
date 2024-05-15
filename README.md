@@ -38,8 +38,7 @@ npm install rxfire@latest firebase@latest
 
 
 <!-- Bugs:
-- Dar estilos al login.
-- Poner los mensajes de error al usuario.
+- Se agrega mensaje error al consumo de servicios, faltan editar bolsos y editar arqueros y los shared components
  -->
 
 <!-- Home:

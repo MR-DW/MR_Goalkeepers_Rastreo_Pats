@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servicios/login.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerClubsRegistrados();
-    this.escudoGenerico = "https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
+    this.escudoGenerico = environment.urlImg + "escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
   }
 
   obtenerClubsRegistrados() {

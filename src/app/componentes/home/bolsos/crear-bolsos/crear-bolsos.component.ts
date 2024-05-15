@@ -2,8 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
+import { SnackBarComponent } from 'src/app/componentes/shared/snack-bar/snack-bar.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
 import { BolsosService } from 'src/app/servicios/bolsos.service';
 
@@ -28,7 +30,9 @@ export class CrearBolsosComponent implements OnInit {
     public dialog: MatDialog,
     private storage: Storage,
     private rutaActiva: ActivatedRoute,
-    private bolsosService:BolsosService
+    private bolsosService:BolsosService,
+    private _snackBar: MatSnackBar,
+
   ) {
     // Habilitar la recopilación automática de datos
     this.storage.app.automaticDataCollectionEnabled = true;
@@ -47,16 +51,36 @@ export class CrearBolsosComponent implements OnInit {
     this.obtenerBolsos();
   }
 
-  obtenerClubParam(){
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.clubParam = miParam['club'];
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 
   obtenerBolsos(){
-    this.bolsosService.getBolsos(this.clubParam).subscribe((data: any) => {
-      this.listaBolsos = data ? data : [];
-    });
+    this.bolsosService.getBolsos(this.clubParam).subscribe({
+      next: (
+        (data: any) => {
+          this.listaBolsos = data ? data : [];
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudieron obtener los bolsos de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    }
+);
   }
 
   subirArchivo($event: any) {
@@ -95,19 +119,29 @@ export class CrearBolsosComponent implements OnInit {
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 
-    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe(
-      (data: any) => {
+    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe({
+      next:(
+        (data: any) => {
 
-        this.dialog.open(ModalConfirmacionComponent, {
-          data: { mensaje: 'Bolso creado correctamente', esCrear: true }
-        });
-
-        this.formCrearBolso.reset();
-        this.file = undefined;
-        this.pathImg = undefined;
-        this.fileInput.nativeElement.value = '';
-
-      })
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Bolso creado correctamente', esCrear: true }
+          });
+  
+          this.formCrearBolso.reset();
+          this.file = undefined;
+          this.pathImg = undefined;
+          this.fileInput.nativeElement.value = '';
+  
+        }
+      ),
+      error:(
+        (error:any) => {
+          const mensaje = 'No se pudo crear su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    }
+)
   }
 
   cancelar() {
@@ -117,6 +151,13 @@ export class CrearBolsosComponent implements OnInit {
         .then(resp => { })
         .catch(error => { })
     }
+  }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
   }
 
 }

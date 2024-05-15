@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerClubParam();
-    this.urlImgLogo = environment.urlImg + 'logo.png?alt=media&token=0eacfb2c-f34f-4bef-85f0-e96ae9713d44';
     this.estaLogueado();
+    this.urlImgLogo = environment.urlImg + 'logo.png?alt=media&token=0eacfb2c-f34f-4bef-85f0-e96ae9713d44';
   }
 
   obtenerClubParam() {
@@ -50,8 +50,18 @@ export class HomeComponent implements OnInit {
   }
 
   obtenerInfoClub() {
-    this.homeService.getClub(this.clubParam).subscribe((resp: any) => {
-      this.club = resp;
+    this.homeService.getClub(this.clubParam).subscribe({
+      next: (
+        (resp: any) => {
+          this.club = resp;
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 

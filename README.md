@@ -45,15 +45,14 @@ npm install rxfire@latest firebase@latest
 - Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.
 -->
 
-<!-- Router:
-- Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url. 
--->
-
-<!-- SNACKBAR:
-- Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
- -->
-
 <!-- Featuring:
+
+Router:
+- Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url.
+
+SNACKBAR:
+- Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
+
 - Crear los bolsos por piezas para de esa manera poder contabilizar un stock de cantidad. 
 - Carrucel de fotos para subir foto de cada parte del equipamiento.
 

@@ -94,11 +94,7 @@ export class EditarComponent implements OnInit {
 
   subirArchivo($event: any) {
     this.file = $event.target.files[0];
-    console.log(
-      " this.file: ", this.file
-    )
     this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
-    console.log()
     this.pathImg = undefined;
 
     uploadBytes(this.uploadRef, this.file)

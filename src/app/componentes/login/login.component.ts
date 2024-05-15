@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,10 +14,11 @@ import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
   contrasenasIguales!: boolean;
-  clubs: string[] = [];
+  clubs: any[] = [];
   clubUsuarioCorrecto!: boolean;
   emailUsuarioCorrecto!: boolean;
   club!: string;
+  escudoGenerico!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerClubsRegistrados();
+    this.escudoGenerico = "https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
   }
 
   obtenerClubsRegistrados() {
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
       next: (
         (data: any) => {
           data.map((club: any) => {
-            this.clubs.push(club.clubRegistrado);
+            this.clubs.push(club);
           })
         }
       ),
@@ -113,9 +115,5 @@ export class LoginComponent implements OnInit {
   irARegistrarse() {
     this.router.navigate(['/registrar'])
   }
-
-  // volveralHome() {
-  //   this.router.navigate(['/'])
-  // }
 
 }

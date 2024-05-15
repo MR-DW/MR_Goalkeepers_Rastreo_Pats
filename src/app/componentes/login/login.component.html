@@ -2,35 +2,36 @@
 
     <h2 class="titulo-h2">Ingresar con tu usuario</h2>
 
+
     <form #form [formGroup]="formLogin" class="form">
         <mat-form-field>
             <mat-label class="form-label">Email</mat-label>
-            <input matInput type="email" formControlName="email"
-            >
+            <input matInput type="email" formControlName="email">
         </mat-form-field>
         <mat-form-field>
             <mat-label class="form-label">Contraseña</mat-label>
-            <input matInput type="password" formControlName="password" 
-            >
+            <input matInput type="password" formControlName="password">
         </mat-form-field>
 
-        <label id="example-radio-group-label">Seleccione su club</label>
-        <mat-radio-group 
-            aria-labelledby="example-radio-group-label" 
-            class="example-radio-group"
-            formControlName="club"
-        >
-            <mat-radio-button 
-                *ngFor="let club of clubs" 
-                class="example-radio-button" 
-                [value]="club"    
-            >
-                {{club}}
-            </mat-radio-button>
-        </mat-radio-group>
-        <button mat-flat-button class="boton-login" (click)="obtenerClubUsuario()"
-            [disabled]="formLogin.invalid"
-        >
+        <div class="radio-button-container">
+            <label id="example-radio-group-label">Seleccione su club </label>
+            <div class="scroll-container">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    formControlName="club">
+                    <mat-radio-button *ngFor="let club of clubs" class="example-radio-button"
+                        [value]="club.clubRegistrado">
+                        <span class="detalle-club">
+                            <img class="icon-club" [alt]="club.clubRegistrado"
+                                [src]="club.imgClubRegistrado ? club.imgClubRegistrado : escudoGenerico">
+                            {{club.clubRegistrado}}
+                        </span>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+
+        <button mat-flat-button class="boton-login" (click)="obtenerClubUsuario()" [disabled]="formLogin.invalid">
             Ingresar
         </button>
         <button mat-flat-button class="boton-registrarse" (click)="irARegistrarse()">
@@ -38,4 +39,5 @@
         </button>
 
     </form>
+
 </aside>

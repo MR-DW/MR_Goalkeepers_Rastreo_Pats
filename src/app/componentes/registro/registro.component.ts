@@ -14,10 +14,12 @@ import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
 })
 export class RegistroComponent implements OnInit {
 
-  clubs: string[] = [];
+  clubs: any[] = [];
   usuarios: any[] = [];
   formRegistro!: FormGroup;
   contrasenasIguales!: boolean;
+  escudoGenerico!: string;
+
 
   constructor(
     private fb: FormBuilder,
@@ -37,13 +39,24 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerClubsRegistrados();
     this.obtenerClubUsuario();
+    this.escudoGenerico = "https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
   }
 
   obtenerClubsRegistrados() {
-    this.loginService.getClubsRegistrados().subscribe((data: any) => {
-      data.map((club: any) => {
-        this.clubs.push(club.clubRegistrado);
-      })
+    this.loginService.getClubsRegistrados().subscribe({
+      next: (
+        (data: any) => {
+          data.map((club: any) => {
+            this.clubs.push(club);
+          })
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener los clubs registrados, intente ingresar más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 

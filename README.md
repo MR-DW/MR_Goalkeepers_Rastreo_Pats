@@ -54,7 +54,9 @@ SNACKBAR:
 
 - Mover usuarios a dentro del club? 
 - Para crear usuarios debo hacer lo mismo que para bolsos y arqueros, crear un array y hacer push del nuevo usuario y luego hacer un put de todo el arreglo a la base de datos.
- - Como se crea un nuevo club? 
+- Como se crea un nuevo club? 
+
+- Mejorar los permisos de quien puede eliminar
 
 -->
 

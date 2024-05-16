@@ -12,7 +12,9 @@ export class ModalConfirmacionComponent implements OnInit {
   esCrear: boolean = false;
   clubParam!: string | undefined;
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: any ) { }
+  constructor( 
+    @Inject(MAT_DIALOG_DATA) public data: any 
+  ) { }
 
   ngOnInit(): void {
     this.mensaje = this.data.mensaje;

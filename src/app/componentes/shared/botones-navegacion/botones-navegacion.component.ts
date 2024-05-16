@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,13 +22,37 @@ export class BotonesNavegacionComponent implements OnInit {
   clubParam!: string;
 
 
-  constructor(private router: Router, private rutaActiva: ActivatedRoute) { }
+  constructor(
+    private router: Router, 
+    private rutaActiva: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.clubParam = miParam['club'];
-    })
+    this.obtenerClubParam();
     this.esHome = this.router.url == `/${this.clubParam}`
+  }
+
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
   }
 
   cancelar() {

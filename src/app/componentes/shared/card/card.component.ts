@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { LoginService } from 'src/app/servicios/login.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,7 +22,7 @@ export class CardComponent implements OnInit {
   @Output() eliminar = new EventEmitter<any>();
 
 
-  constructor( private loginService: LoginService) { }
+  constructor( ) { }
 
   ngOnInit(): void {
     this.urlImgBolso = environment.urlImgBolso;

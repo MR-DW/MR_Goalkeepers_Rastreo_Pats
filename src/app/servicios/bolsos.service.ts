@@ -17,8 +17,10 @@ export class BolsosService {
   ) { }
 
   crearBolso(club: string, body: Bolso[]): Observable<any> {
+
     const clubUsuario = this.loginService.getClubUsuario();
     const token = this.loginService.getIdToken();
+    
     if (club == clubUsuario) {
       return this.httpClient.put(
         this.urlService.urlService.clubs + `/${club}` + this.urlService.bolsos + this.urlService.json + this.urlService.auth + token, 

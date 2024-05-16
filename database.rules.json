@@ -6,11 +6,11 @@
         ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()",
         "arqueros": {
           ".read": "auth != null",
-          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+          ".write": "auth != null"
         },
         "bolsos": {
           ".read": "auth != null",
-          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+          ".write": "auth != null"
         },
         "escudoClub": {
           ".read": "auth != null",
@@ -22,7 +22,7 @@
         },
         "reglamento": {
           ".read": "auth != null",
-          ".write": "auth != null && root.child('Clubs/' + $club_id + '/members/' + auth.uid).exists()"
+          ".write": "auth != null"
         }
       }
     },

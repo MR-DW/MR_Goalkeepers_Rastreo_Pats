@@ -33,7 +33,6 @@ import { BotonesNavegacionComponent } from './componentes/shared/botones-navegac
 import { CardComponent } from './componentes/shared/card/card.component';
 import { DetalleComponent } from './componentes/shared/detalle/detalle.component';
 import { ModalConfirmacionComponent } from './componentes/shared/modal-confirmacion/modal-confirmacion.component';
-import { EditarComponent } from './componentes/shared/editar/editar.component';
 import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { SnackBarComponent } from './componentes/shared/snack-bar/snack-bar.component';
@@ -59,7 +58,6 @@ import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
     CardComponent,
     BotonesNavegacionComponent,
     DetalleComponent,
-    EditarComponent,
     RegistroComponent,
     SnackBarComponent,
     ReglamentoComponent,

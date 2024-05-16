@@ -119,8 +119,9 @@ export class CrearBolsosComponent implements OnInit {
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 
-    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe({
-      next:(
+    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe(
+      // {
+      // next:(
         (data: any) => {
 
           this.dialog.open(ModalConfirmacionComponent, {
@@ -132,16 +133,15 @@ export class CrearBolsosComponent implements OnInit {
           this.pathImg = undefined;
           this.fileInput.nativeElement.value = '';
   
-        }
-      ),
-      error:(
-        (error:any) => {
-          const mensaje = 'No se pudo crear su bolso, intente nuevamente.'
-          this.openSnackBar(mensaje);
-        }
-      )
-    }
-)
+      //   }
+      // ),
+      // error:(
+      //   (error:any) => {
+      //     const mensaje = 'No se pudo crear su bolso, intente nuevamente.'
+      //     this.openSnackBar(mensaje);
+      //   }
+      // )
+    })
   }
 
   cancelar() {

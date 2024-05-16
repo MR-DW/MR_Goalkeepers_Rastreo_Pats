@@ -2,10 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
+import { SnackBarComponent } from 'src/app/componentes/shared/snack-bar/snack-bar.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
 
 @Component({
   selector: 'app-editar-bolso',
@@ -22,15 +24,17 @@ export class EditarBolsoComponent implements OnInit {
   pathImg: any = undefined;
   hayNuevaImg: boolean = false;
   @ViewChild('inputeditarimagen') inputeditarimagen!: ElementRef<HTMLInputElement>;
-  seEditaBolso!:boolean;
+  seEditaBolso!: boolean;
+  clubParam!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService,
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private bolsosService: BolsosService,
+    private _snackBar: MatSnackBar,
   ) {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
@@ -42,31 +46,67 @@ export class EditarBolsoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.idParam = miParam['id'];
-    })
-
+    this.obtenerClubParam();
+    this.obtenerIdParam();
     this.obtenerDetallesBolso();
+  }
 
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  obtenerIdParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['id'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
   }
 
   obtenerDetallesBolso() {
-    this.homeService.getDetalleBolso(this.idParam).subscribe((data: any) => {
+    this.bolsosService.getDetalleBolso(this.clubParam, this.idParam).subscribe({
+      next: (
+        (data: any) => {
 
-      this.bolso = new Bolso(data);
+          this.bolso = new Bolso(data);
 
-      this.formEditarBolso = this.formBuilder.group({
-        nombreBolso: [this.bolso.nombreBolso, [Validators.required]],
-        arquero: [this.bolso.arquero, [Validators.required]],
-        partes: [this.bolso.partes, [Validators.required]],
-        rastreo: [this.bolso.rastreo, [Validators.required]],
-        estado: [this.bolso.estado, [Validators.required]],
-      })
+          this.formEditarBolso = this.formBuilder.group({
+            nombreBolso: [this.bolso.nombreBolso, [Validators.required]],
+            arquero: [this.bolso.arquero, [Validators.required]],
+            partes: [this.bolso.partes, [Validators.required]],
+            rastreo: [this.bolso.rastreo, [Validators.required]],
+            estado: [this.bolso.estado, [Validators.required]],
+          })
 
-      this.pathImg = this.bolso.urlImgBolso;
+          this.pathImg = this.bolso.urlImgBolso;
 
-    });
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
   }
 
   subirArchivo($event: any) {
@@ -119,16 +159,32 @@ export class EditarBolsoComponent implements OnInit {
       urlImgBolso: this.pathImg,
     }
 
-    this.homeService.editarBolso(this.idParam, dataFormulario).subscribe(
-      (data: any) => {
-        this.dialog.open(ModalConfirmacionComponent, {
-          data: { mensaje: 'Bolso editado', esCrear: false }
-        });
-        if (this.inputeditarimagen.nativeElement.value != '') {
-          this.borrarImagenVieja();
+    this.bolsosService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe({
+      next: (
+        (data: any) => {
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Bolso editado', esCrear: false }
+          });
+          if (this.inputeditarimagen.nativeElement.value != '') {
+            this.borrarImagenVieja();
+          }
+          this.router.navigate(['/bolsos']);
         }
-        this.router.navigate(['/bolsos']);
-      })
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo editar la información de su arquero, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
   }
 
 }

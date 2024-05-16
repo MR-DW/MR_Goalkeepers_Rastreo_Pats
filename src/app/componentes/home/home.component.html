@@ -8,17 +8,22 @@
             Login
         </button>
 
-
         <button mat-stroked-button class="boton-login" (click)="salir()" *ngIf="estaLogueado()">
             Logout
         </button>
     </div>
 
-    <app-botones-navegacion class="botones-navegacion-home" [urlVolver]="'/bolsos'" [urlHomeOCrear]="'/arqueros'"
-        [textoVolver]="'Bolsos'" [textoHomeOCrear]="'Arqueros'">
+    <img [src]="club?.escudoClub" class="img-club">
+
+    <app-botones-navegacion class="botones-navegacion-home" 
+        [urlVolver]="['bolsos']" 
+        [textoVolver]="'Bolsos'" 
+
+        [urlHomeOCrear]="['arqueros']"
+        [textoHomeOCrear]="'Arqueros'">
     </app-botones-navegacion>
 
-    <button mat-stroked-button class="boton-reglamento" [routerLink]="'/reglamento'">
+    <button mat-stroked-button class="boton-reglamento" [routerLink]="['reglamento']">
         Reglamento
     </button>
 

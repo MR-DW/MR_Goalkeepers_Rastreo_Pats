@@ -15,13 +15,14 @@ export class DetalleComponent implements OnInit {
 
   urlImgBolso:string = '';
   bolso!: Bolso;
-  bolsoId!:string;
   @Input() detalleBolso: any;
   @Input() idBolso: any;
   
   arquero!: Arqueros;
   @Input() detalleArquero: any;
   @Input() idArquero: any;
+
+  @Input() clubParam!: string;
 
   constructor( private loginService:LoginService ) { }
 
@@ -30,7 +31,6 @@ export class DetalleComponent implements OnInit {
 
     this.urlImgBolso = environment.urlImgBolso;
     this.bolso = this.detalleBolso;
-    this.bolsoId = this.idBolso;
     this.arquero = this.detalleArquero;
   }
 

@@ -4,8 +4,8 @@
     <h2 class="titulo-h2">Editar bolso: {{ bolso.nombreBolso.toUpperCase() }}</h2>
 
     <app-botones-navegacion 
-        [urlVolver]="['/bolsos/detalle-bolso/', idParam]" 
-        [urlHomeOCrear]="'/'"
+        [urlVolver]="['../../', ]" 
+        [urlHomeOCrear]="[ '/', clubParam ]"
         [textoVolver]="'Volver'" [textoHomeOCrear]="'Home'" 
         (cancelarImg)="cancelarCambioImg()"
     >

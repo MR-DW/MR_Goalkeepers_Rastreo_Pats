@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from 'src/app/servicios/home.service';
-import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params } from '@angular/router';
 import { LoginService } from 'src/app/servicios/login.service';
+import { ReglamentoService } from 'src/app/servicios/reglamento.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-reglamento',
@@ -11,44 +12,73 @@ import { LoginService } from 'src/app/servicios/login.service';
 })
 export class ReglamentoComponent implements OnInit {
 
-  miReglamento!:any;
-  mensajeCompoVacio!:boolean;
-  estaLogueado!:boolean;
+  miReglamento!: any;
+  mensajeCompoVacio!: boolean;
+  estaLogueado!: boolean;
+  clubParam!: string;
 
-  constructor( 
-    private homeService: HomeService,
+  constructor(
     private _snackBar: MatSnackBar,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private rutaActiva: ActivatedRoute,
+    private reglamentoService: ReglamentoService
   ) { }
 
   ngOnInit(): void {
     this.obtenerTokenLogin();
+    this.obtenerClubParam();
     this.obtenerReglas();
   }
 
-  obtenerTokenLogin(){
+  obtenerTokenLogin() {
     this.estaLogueado = this.loginService.estaLogueado() ? true : false;
   }
 
-  obtenerReglas(){
-    this.homeService.getReglamento().subscribe((resp:string)=>{
-      
-      this.miReglamento = resp;
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    }
+    )
+  }
 
-      if( this.miReglamento.reglamento != ''){
-        this.mensajeCompoVacio = false;
-      }
-      else{
-        this.mensajeCompoVacio = true;
-      }
+  obtenerReglas() {
+    this.reglamentoService.getReglamento(this.clubParam).subscribe({
+      next: (
+        (resp: string) => {
 
-    },
-  (error)=>{
+          this.miReglamento = resp;
+
+          if (this.miReglamento.reglamento != '') {
+            this.mensajeCompoVacio = false;
+          }
+          else {
+            this.mensajeCompoVacio = true;
+          }
+
+        }
+      ),
+      error: ((error: any) => {
+        const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+        this.openSnackBar(mensaje);
+      })
+    })
+  }
+
+  openSnackBar(value: string) {
     this._snackBar.openFromComponent(SnackBarComponent, {
-      data: { mensaje: "No pudimos cargar su reglamento, intente nuevamente!"}, 
+      data: { mensaje: value },
       duration: 5000,
     });
-  })
   }
 
 }

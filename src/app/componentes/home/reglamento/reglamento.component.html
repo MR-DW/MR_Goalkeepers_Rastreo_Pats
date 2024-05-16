@@ -1,13 +1,13 @@
 <aside class="aside-registro">
 
-    <button mat-flat-button [routerLink]="'/'" class="boton-registro-volver">
+    <button mat-flat-button [routerLink]="['/',clubParam]" class="boton-registro-volver">
         Volver
     </button>
 
     <mat-card-header class="container-title">
 
         <mat-card-title class="card-title">Reglamento</mat-card-title>
-        <button mat-fab aria-label="Editar bolso" class="boton-editar" [routerLink]="['/editar-reglamento']"
+        <button mat-fab aria-label="Editar bolso" class="boton-editar" [routerLink]="['editar-reglamento']"
             *ngIf="estaLogueado"
         >
             <mat-icon>edit</mat-icon>

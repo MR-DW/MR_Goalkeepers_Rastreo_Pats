@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/servicios/login.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-registro',
@@ -12,28 +15,53 @@ import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
 })
 export class RegistroComponent implements OnInit {
 
-  formRegistro!:FormGroup;
+  clubs: any[] = [];
+  usuarios: any[] = [];
+  formRegistro!: FormGroup;
   contrasenasIguales!: boolean;
-  
-  constructor( 
-    private fb:FormBuilder, 
-    private loginService: LoginService, 
-    private router:Router,
+  escudoGenerico!: string;
+
+
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private usuarioService: UsuarioService,
+    private router: Router,
     private _snackBar: MatSnackBar,
   ) {
-
     this.formRegistro = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)] ],
-      contrasena: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)] ],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+      contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+      club: ['', [Validators.required]],
     })
-
-   }
-
-  ngOnInit(): void {
   }
 
-  registrarse(){
+  ngOnInit(): void {
+    this.obtenerClubsRegistrados();
+    this.obtenerClubUsuario();
+    this.escudoGenerico = environment.urlImg + "escudosClubs%2Fescudo-generico.png?alt=media&token=94baea87-fc76-434b-bbc0-4579fb6b772d"
+  }
+
+  obtenerClubsRegistrados() {
+    this.loginService.getClubsRegistrados().subscribe({
+      next: (
+        (data: any) => {
+          data.map((club: any) => {
+            this.clubs.push(club);
+          })
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener los clubs registrados, intente ingresar más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  registrarse() {
 
     this.contrasenasIguales = this.formRegistro.get('password')?.value.toString() === this.formRegistro.get('contrasena')?.value.toString();
 
@@ -42,36 +70,77 @@ export class RegistroComponent implements OnInit {
       password: this.formRegistro.get('password')?.value.toString(),
     }
 
-    if(this.contrasenasIguales){
+    if (this.contrasenasIguales) {
       this.loginService.registro(dataForm)
-      .then( resp => {
-  
-        const mensaje = 'Se registró correctamente!'
-        this.openSnackBar(mensaje);
-  
-        this.router.navigate(['/ingresar']);  
-      })
-  
-      .catch(error => {
-        const mensaje = 'No pudo registrarse, intente nuevamente.'
-        this.openSnackBar(mensaje);
-      })
+        .then(resp => {
+          const mensaje = 'Se registró correctamente!'
+          this.openSnackBar(mensaje);
+          this.saveUsuario();
+          this.router.navigate(['/ingresar']);
+
+        })
+        .catch(error => {
+          const mensaje = 'No pudo registrarse, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        })
     }
-    else{
+    else {
       const mensaje = 'Sus contraseñas no coinciden. Intente nuevamente.'
       this.openSnackBar(mensaje);
     }
 
   }
 
+  obtenerClubUsuario() {
+
+    this.usuarioService.getUsuario().subscribe({
+      next: (
+        (resp) => {
+          if (resp) {
+            resp.map((x: any) => {
+              this.usuarios.push(x)
+            })
+          }
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No pudimos registrar tu usuario, intente más tarde.'
+          this.openSnackBar(mensaje);
+        })
+    })
+  }
+
+  saveUsuario() {
+    const dataForm = {
+      email: this.formRegistro.get('email')?.value.toString(),
+      club: this.formRegistro.get('club')?.value.toString(),
+    }
+    this.usuarios.push(dataForm)
+    this.usuarioService.crearUsuario(this.usuarios).subscribe({
+      next: (
+        (data: any) => {
+          const mensaje = 'Usuario guardado.'
+          this.openSnackBar(mensaje);
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No pudimos guardar tu usuario, intente más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
   openSnackBar(value: string) {
     this._snackBar.openFromComponent(SnackBarComponent, {
-      data: { mensaje: value}, 
+      data: { mensaje: value },
       duration: 5000,
     });
   }
 
-  irHome(){
+  irHome() {
     this.router.navigate(['/'])
   }
 

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage, deleteObject, listAll, ref } from '@angular/fire/storage';
+import { Storage, deleteObject, ref } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
 import { Bolso } from 'src/app/modelos/bolso.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { BolsosService } from 'src/app/servicios/bolsos.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-bolsos',
@@ -15,26 +18,57 @@ export class BolsosComponent implements OnInit {
   listaBolsos!: Bolso[];
   mensajeCompoVacio: boolean = false;
   bolsoEliminado!: any;
+  clubParam!: string;
 
   constructor(
-    private homeService: HomeService,
     public dialog: MatDialog,
-    private storage: Storage
+    private storage: Storage,
+    private rutaActiva: ActivatedRoute,
+    private bolsosService: BolsosService,
+    private _snackBar: MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
+    this.obtenerClubParam();
     this.obtenerListaBolsos();
   }
 
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su club, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
   obtenerListaBolsos() {
-    this.homeService.getBolsos().subscribe((data: any) => {
-      if (data) {
-        this.listaBolsos = data;
-      }
-      else {
-        this.mensajeCompoVacio = true;
-      }
+    this.bolsosService.getBolsos(this.clubParam).subscribe({
+      next: (
+        (data: any) => {
+          if (data) {
+            this.listaBolsos = data;
+          }
+          else {
+            this.mensajeCompoVacio = true;
+          }
+        }
+      ),
+      error: (
+        (error:any) => {
+          const mensaje = 'No pudimos obtener los bolsos del tu club, intente más tarde.'
+          this.openSnackBar(mensaje);
+        }
+      )
     }
+
     )
   }
 
@@ -44,7 +78,23 @@ export class BolsosComponent implements OnInit {
 
     this.eliminarImagenBolso();
 
-    this.homeService.crearBolso(this.listaBolsos).subscribe();
+    this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe({
+      next: (
+        (resp: any) => {
+          this.mensajeCompoVacio = true;
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
+          });
+        }
+      ),
+      error: (
+        (error: any) => {
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Tu bolso no pudo eliminarse, intente nuevamente!', esEliminar: true }
+          })
+        }
+      )
+    });
 
     this.dialog.open(ModalConfirmacionComponent, {
       data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
@@ -61,12 +111,20 @@ export class BolsosComponent implements OnInit {
 
       const deleteRef = ref(this.storage, `bolsos/${pathImg}`);
 
+      // No le tengo que mostrar mensaje al usuario por que se borra img por código.
       deleteObject(deleteRef)
-      .then(resp => { })
-      .catch(error => { })
+        .then(resp => { })
+        .catch(error => {  })
 
     })
 
+  }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
   }
 
 }

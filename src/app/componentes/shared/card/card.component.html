@@ -1,6 +1,6 @@
 <!-- Card Bolsos -->
 <mat-card *ngFor="let bolso of listaBolsos; let i = index;" class="example-card">
-    <span class="span-card" [routerLink]="['/bolsos/detalle-bolso/', i]">
+    <span class="span-card" [routerLink]="['detalle-bolso/', i]">
 
         <mat-card-header class="container-title">
             <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
@@ -34,7 +34,7 @@
 
 <!-- Card Arqueros -->
 <mat-card *ngFor="let arquero of listaArqueros; let i = index;" class="example-card">
-    <span class="span-card" [routerLink]="['/arqueros/detalle-arquero/', i]">
+    <span class="span-card" [routerLink]="['detalle-arquero/', i]">
         <mat-card-header class="container-title">
 
             <mat-card-title class="card-title">{{ arquero?.nombreArquero }}</mat-card-title>

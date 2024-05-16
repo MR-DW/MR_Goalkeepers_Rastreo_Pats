@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +33,6 @@ import { BotonesNavegacionComponent } from './componentes/shared/botones-navegac
 import { CardComponent } from './componentes/shared/card/card.component';
 import { DetalleComponent } from './componentes/shared/detalle/detalle.component';
 import { ModalConfirmacionComponent } from './componentes/shared/modal-confirmacion/modal-confirmacion.component';
-import { EditarComponent } from './componentes/shared/editar/editar.component';
 import { environment } from 'src/environments/environment';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { SnackBarComponent } from './componentes/shared/snack-bar/snack-bar.component';
@@ -41,6 +41,7 @@ import { ReglamentoComponent } from './componentes/home/reglamento/reglamento.co
 import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-reglamento/editar-reglamento.component';
 import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqueros/editar-arqueros.component';
 import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
+import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,6 @@ import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/edi
     CardComponent,
     BotonesNavegacionComponent,
     DetalleComponent,
-    EditarComponent,
     RegistroComponent,
     SnackBarComponent,
     ReglamentoComponent,
@@ -80,6 +80,7 @@ import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/edi
     HttpClientModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatRadioModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
@@ -95,7 +96,7 @@ import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/edi
     CrearArqueroComponent,
     CrearBolsosComponent
   ],
-  providers: [LoginGuard],
+  providers: [LoginGuard, ClubUsuarioGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

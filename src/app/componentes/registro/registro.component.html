@@ -15,12 +15,30 @@
             <mat-label class="form-label">Repita su contraseña</mat-label>
             <input matInput type="password" formControlName="contrasena">
         </mat-form-field>
-        <button mat-flat-button class="boton-registrarse" 
-            (click)="registrarse()" [disabled]="formRegistro.invalid">
+
+        <div class="radio-button-container">
+            <label id="example-radio-group-label">Seleccione su club </label>
+            <div class="scroll-container">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                    formControlName="club">
+                    <mat-radio-button *ngFor="let club of clubs" class="example-radio-button"
+                        [value]="club.clubRegistrado">
+                        <span class="detalle-club">
+                            <img class="icon-club" [alt]="club.clubRegistrado"
+                                [src]="club.imgClubRegistrado ? club.imgClubRegistrado : escudoGenerico">
+                            {{club.clubRegistrado}}
+                        </span>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <button mat-flat-button class="boton-registrarse" (click)="registrarse()" [disabled]="formRegistro.invalid">
             Registrarse
         </button>
         <button mat-flat-button class="boton-home" (click)="irHome()">
             Cancelar
         </button>
     </form>
+
 </aside>

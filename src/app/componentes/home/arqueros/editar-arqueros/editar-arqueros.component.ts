@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalConfirmacionComponent } from 'src/app/componentes/shared/modal-confirmacion/modal-confirmacion.component';
+import { SnackBarComponent } from 'src/app/componentes/shared/snack-bar/snack-bar.component';
 import { Arqueros } from 'src/app/modelos/arqueros.model';
-import { HomeService } from 'src/app/servicios/home.service';
+import { ArquerosService } from 'src/app/servicios/arqueros.service';
 
 @Component({
   selector: 'app-editar-arqueros',
@@ -12,18 +14,20 @@ import { HomeService } from 'src/app/servicios/home.service';
   styleUrls: ['./editar-arqueros.component.scss']
 })
 export class EditarArquerosComponent implements OnInit {
-  
+
   idParam: any;
   arquero!: Arqueros;
   formEditarArquero!: FormGroup;
-  seEditaArquero!:boolean;
+  seEditaArquero!: boolean;
+  clubParam!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private homeService: HomeService,
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private arquerosService: ArquerosService,
+    private _snackBar: MatSnackBar,
   ) {
 
     this.formEditarArquero = this.formBuilder.group({
@@ -35,29 +39,68 @@ export class EditarArquerosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe((miParam: Params) => {
-      this.idParam = miParam['id'];
-    })
+    this.obtenerClubParam();
+    this.obtenerIdParam();
 
     this.obtenerDetallesArquero();
   }
 
-  obtenerDetallesArquero() {
-    this.homeService.getDetalleArquero(this.idParam).subscribe((data: any) => {
-
-      this.arquero = new Arqueros(data);
-
-      this.formEditarArquero = this.formBuilder.group({
-        nombreArquero: [this.arquero.nombreArquero, [Validators.required]],
-        division: [this.arquero.division, [Validators.required]],
-        equipamientoPropio: [this.arquero.equipamientoPropio, [Validators.required]],
-        equipamientoClub: [this.arquero.equipamientoClub, [Validators.required]],
-      })
-
+  obtenerClubParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['club'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 
-  editarArquero(){
+  obtenerIdParam() {
+    this.rutaActiva.params.subscribe({
+      next: (
+        (miParam: Params) => {
+          this.clubParam = miParam['id'];
+        }),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  obtenerDetallesArquero() {
+    this.arquerosService.getDetalleArquero(this.clubParam, this.idParam).subscribe({
+      next: (
+        (data: any) => {
+
+          this.arquero = new Arqueros(data);
+
+          this.formEditarArquero = this.formBuilder.group({
+            nombreArquero: [this.arquero.nombreArquero, [Validators.required]],
+            division: [this.arquero.division, [Validators.required]],
+            equipamientoPropio: [this.arquero.equipamientoPropio, [Validators.required]],
+            equipamientoClub: [this.arquero.equipamientoClub, [Validators.required]],
+          })
+
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo obtener la información de su arquero, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  editarArquero() {
     const dataFormulario = {
       nombreArquero: this.formEditarArquero.get('nombreArquero')?.value,
       division: this.formEditarArquero.get('division')?.value,
@@ -65,13 +108,29 @@ export class EditarArquerosComponent implements OnInit {
       equipamientoClub: this.formEditarArquero.get('equipamientoClub')?.value,
     }
 
-    this.homeService.editarArquero(this.idParam, dataFormulario).subscribe(
-      (data: any) => {
-        this.dialog.open(ModalConfirmacionComponent, {
-          data: { mensaje: 'Arquero editado', esCrear: false }
-        });
-        this.router.navigate(['/arqueros']);
-      })
+    this.arquerosService.editarArquero(this.clubParam, this.idParam, dataFormulario).subscribe({
+      next: (
+        (data: any) => {
+          this.dialog.open(ModalConfirmacionComponent, {
+            data: { mensaje: 'Arquero editado', esCrear: false }
+          });
+          this.router.navigate([this.clubParam, 'arqueros']);
+        }
+      ),
+      error: (
+        (error: any) => {
+          const mensaje = 'No se pudo editar la información de su arquero, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
+    })
+  }
+
+  openSnackBar(value: string) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      data: { mensaje: value },
+      duration: 5000,
+    });
   }
 
 }

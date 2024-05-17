@@ -28,7 +28,6 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerTokenLogin();
-
     this.urlImgBolso = environment.urlImgBolso;
     this.bolso = this.detalleBolso;
     this.arquero = this.detalleArquero;

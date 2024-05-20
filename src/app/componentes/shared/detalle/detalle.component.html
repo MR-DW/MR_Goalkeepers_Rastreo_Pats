@@ -2,12 +2,16 @@
 <mat-card class="example-card" *ngIf="bolso">
 
     <mat-card-header class="container-title">
-        <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
-
+        <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
+        <button mat-fab aria-label="Editar bolso" class="boton-editar"
+            [routerLink]="['/', clubParam, 'bolsos', 'ubicacion-bolso', idBolso]" *ngIf="estaLogueado">
+            <mat-icon>add_location_alt</mat-icon>
+        </button>
         <button mat-fab aria-label="Editar bolso" class="boton-editar"
             [routerLink]="['/', clubParam, 'bolsos', 'editar-bolso', idBolso]" *ngIf="estaLogueado">
             <mat-icon>edit</mat-icon>
         </button>
+
     </mat-card-header>
     <img mat-card-image class="card-img" [src]="bolso.urlImgBolso" [alt]=" bolso.nombreBolso ">
 

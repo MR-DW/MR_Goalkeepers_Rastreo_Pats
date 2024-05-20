@@ -3,7 +3,6 @@ export class Bolso {
     arquero: string;
     observaciones: string;
     ubicacion: string;
-
     casco: string;
     cuello: string;
     pechera: string;
@@ -22,7 +21,6 @@ export class Bolso {
       this.arquero = obj.arquero;
       this.observaciones = obj.observaciones;
       this.ubicacion = obj.ubicacion;
-
       this.casco = obj.casco;
       this.cuello = obj.cuello;
       this.pechera = obj.pechera;

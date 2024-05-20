@@ -49,20 +49,20 @@ SNACKBAR:
 - Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
 
 BOLSOS:
-- Crear los bolsos por piezas para de esa manera poder contabilizar un stock de cantidad. 
+- Crear sección donde se puede var el total de cada parte del equipamiento. Por ejemplo Cascos: 5 unidades. Y que al hacer click me muestre un listado con todos los cascos del club.
+- Se crea sección para editar la ubicación del equipamiento pero se deja suspendido el tema de colocarle fecha.
 - Carrucel de fotos para subir foto de cada parte del equipamiento.
-- Poner fecha.
-- Sección que solo diga el último movimiento.
 
 ARQUEROS:
 -Crear un componente que liste todos los arqueros, según linea en orden de división.
 
 - Mejorar los permisos de quien puede eliminar en firebase.
 
-
-
 Home:
 - Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.
+
+LOGIN:
+- Se dispara un mensaje Error al loguearse bien.
 
 -->
 

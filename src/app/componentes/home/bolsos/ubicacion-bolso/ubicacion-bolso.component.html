@@ -1,0 +1,22 @@
+<aside class="aside-form">
+
+    <h2 class="titulo-h2">Editar Ubicación del Equipamiento: {{ bolso.nombreBolso.toUpperCase() }}</h2>
+
+    <app-botones-navegacion [urlVolver]="['../../', ]" [urlHomeOCrear]="[ '/', clubParam ]" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Home'">
+    </app-botones-navegacion>
+
+    <div class="scroll-container">
+        <form #form [formGroup]="formUbicacion" class="form">
+            <mat-form-field>
+                <mat-label class="form-label">Ubicación</mat-label>
+                <textarea matInput formControlName="ubicacion"></textarea>
+            </mat-form-field>
+            <button mat-flat-button class="boton-crear" (click)="editarUbicacion()"
+                [disabled]="formUbicacion.invalid">
+                Editar
+            </button>
+        </form>
+    </div>
+
+</aside>

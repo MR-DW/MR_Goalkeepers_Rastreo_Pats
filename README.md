@@ -54,7 +54,12 @@ BOLSOS:
 - Poner fecha.
 - Sección que solo diga el último movimiento.
 
+ARQUEROS:
+-Crear un componente que liste todos los arqueros, según linea en orden de división.
+
 - Mejorar los permisos de quien puede eliminar en firebase.
+
+
 
 Home:
 - Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.

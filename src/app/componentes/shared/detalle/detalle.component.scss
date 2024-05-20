@@ -39,3 +39,7 @@
 .card-text{
     overflow-wrap: break-word;
 }
+
+.card-text>ul>li, .partes{
+    padding: .5rem 0;
+}

@@ -35,6 +35,10 @@
     overflow-wrap: break-word;
 }
 
+.card-text>ul>li{
+    padding: .5rem 0;
+}
+
 .boton-eliminar {
     background-color: #d6d2ea;
     color: #295ec1;

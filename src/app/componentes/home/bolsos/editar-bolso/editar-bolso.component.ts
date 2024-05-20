@@ -39,9 +39,20 @@ export class EditarBolsoComponent implements OnInit {
     this.formEditarBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
       arquero: ['', [Validators.required]],
-      partes: ['', [Validators.required]],
-      rastreo: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
+      ubicacion: ['', [Validators.required]],
+      observaciones: ['', [Validators.required]],
+      // Partes
+      casco: ['', [Validators.required]],
+      cuello: ['', [Validators.required]],
+      pechera: ['', [Validators.required]],
+      coderas: ['', [Validators.required]],
+      guantes: ['', [Validators.required]],
+      inguinal: ['', [Validators.required]],
+      bermuda: ['', [Validators.required]],
+      legguards: ['', [Validators.required]],
+      kickers: ['', [Validators.required]],
+      bolso: ['', [Validators.required]]
+
     })
   }
 
@@ -91,9 +102,19 @@ export class EditarBolsoComponent implements OnInit {
           this.formEditarBolso = this.formBuilder.group({
             nombreBolso: [this.bolso.nombreBolso, [Validators.required]],
             arquero: [this.bolso.arquero, [Validators.required]],
-            partes: [this.bolso.partes, [Validators.required]],
-            rastreo: [this.bolso.rastreo, [Validators.required]],
-            estado: [this.bolso.estado, [Validators.required]],
+            ubicacion: [this.bolso.arquero, [Validators.required]],
+            observaciones: [this.bolso.arquero, [Validators.required]],
+            // Partes
+            casco: [this.bolso.casco, [Validators.required]],
+            cuello: [this.bolso.cuello, [Validators.required]],
+            pechera: [this.bolso.pechera, [Validators.required]],
+            coderas: [this.bolso.coderas, [Validators.required]],
+            guantes: [this.bolso.guantes, [Validators.required]],
+            inguinal: [this.bolso.inguinal, [Validators.required]],
+            bermuda: [this.bolso.bermuda, [Validators.required]],
+            legguards: [this.bolso.legguards, [Validators.required]],
+            kickers: [this.bolso.kickers, [Validators.required]],
+            bolso: [this.bolso.bolso, [Validators.required]]
           })
 
           this.pathImg = this.bolso.urlImgBolso;
@@ -151,12 +172,23 @@ export class EditarBolsoComponent implements OnInit {
   editarBolso() {
 
     const dataFormulario = {
-      nombreBolso: this.formEditarBolso.get('nombreBolso')?.value,
       arquero: this.formEditarBolso.get('arquero')?.value,
-      partes: this.formEditarBolso.get('partes')?.value,
-      rastreo: this.formEditarBolso.get('rastreo')?.value,
-      estado: this.formEditarBolso.get('estado')?.value,
-      urlImgBolso: this.pathImg,
+      observaciones: this.formEditarBolso.get('observaciones')?.value,
+      nombreBolso: this.formEditarBolso.get('nombreBolso')?.value,
+      ubicacion: this.formEditarBolso.get('ubicacion')?.value,
+      // Partes
+      casco: this.formEditarBolso.get('casco')?.value,
+      cuello: this.formEditarBolso.get('cuello')?.value,
+      pechera: this.formEditarBolso.get('pechera')?.value,
+      coderas: this.formEditarBolso.get('coderas')?.value,
+      guantes: this.formEditarBolso.get('guantes')?.value,
+      inguinal: this.formEditarBolso.get('inguinal')?.value,
+      bermuda: this.formEditarBolso.get('bermuda')?.value,
+      legguards: this.formEditarBolso.get('legguards')?.value,
+      kickers: this.formEditarBolso.get('kickers')?.value,
+      bolso: this.formEditarBolso.get('bolso')?.value,
+
+      urlImgBolso: this.pathImg
     }
 
     this.bolsosService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe({

@@ -40,9 +40,19 @@ export class CrearBolsosComponent implements OnInit {
     this.formCrearBolso = this.formBuilder.group({
       nombreBolso: ['', [Validators.required]],
       arquero: ['', [Validators.required]],
-      partes: ['', [Validators.required]],
-      rastreo: ['', [Validators.required]],
-      estado: ['', [Validators.required]]
+      ubicacion: ['', [Validators.required]],
+      observaciones: ['', [Validators.required]],
+      // Partes
+      casco: ['', [Validators.required]],
+      cuello: ['', [Validators.required]],
+      pechera: ['', [Validators.required]],
+      coderas: ['', [Validators.required]],
+      guantes: ['', [Validators.required]],
+      inguinal: ['', [Validators.required]],
+      bermuda: ['', [Validators.required]],
+      legguards: ['', [Validators.required]],
+      kickers: ['', [Validators.required]],
+      bolso: ['', [Validators.required]]
     })
   }
 
@@ -110,18 +120,29 @@ export class CrearBolsosComponent implements OnInit {
 
     const dataFormulario = {
       arquero: this.formCrearBolso.get('arquero')?.value,
-      estado: this.formCrearBolso.get('estado')?.value,
+      observaciones: this.formCrearBolso.get('observaciones')?.value,
       nombreBolso: this.formCrearBolso.get('nombreBolso')?.value,
-      partes: this.formCrearBolso.get('partes')?.value,
-      rastreo: this.formCrearBolso.get('rastreo')?.value,
+      ubicacion: this.formCrearBolso.get('ubicacion')?.value,
+      // Partes
+      casco: this.formCrearBolso.get('casco')?.value,
+      cuello: this.formCrearBolso.get('cuello')?.value,
+      pechera: this.formCrearBolso.get('pechera')?.value,
+      coderas: this.formCrearBolso.get('coderas')?.value,
+      guantes: this.formCrearBolso.get('guantes')?.value,
+      inguinal: this.formCrearBolso.get('inguinal')?.value,
+      bermuda: this.formCrearBolso.get('bermuda')?.value,
+      legguards: this.formCrearBolso.get('legguards')?.value,
+      kickers: this.formCrearBolso.get('kickers')?.value,
+      bolso: this.formCrearBolso.get('bolso')?.value,
+
       urlImgBolso: this.pathImg,
     }
 
     this.listaBolsos.push(new Bolso(dataFormulario))
 
     this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe(
-      // {
-      // next:(
+      {
+      next:(
         (data: any) => {
 
           this.dialog.open(ModalConfirmacionComponent, {
@@ -133,14 +154,14 @@ export class CrearBolsosComponent implements OnInit {
           this.pathImg = undefined;
           this.fileInput.nativeElement.value = '';
   
-      //   }
-      // ),
-      // error:(
-      //   (error:any) => {
-      //     const mensaje = 'No se pudo crear su bolso, intente nuevamente.'
-      //     this.openSnackBar(mensaje);
-      //   }
-      // )
+        }
+      ),
+      error:(
+        (error:any) => {
+          const mensaje = 'No se pudo crear su bolso, intente nuevamente.'
+          this.openSnackBar(mensaje);
+        }
+      )
     })
   }
 

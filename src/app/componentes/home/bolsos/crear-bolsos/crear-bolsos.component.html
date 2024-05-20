@@ -2,8 +2,7 @@
 
     <h2 class="titulo-h2">Crea tu bolso</h2>
 
-    <app-botones-navegacion [urlVolver]="['../']" 
-        [urlHomeOCrear]="[ '/', clubParam ]" [textoVolver]="'Volver'"
+    <app-botones-navegacion [urlVolver]="['../']" [urlHomeOCrear]="[ '/', clubParam ]" [textoVolver]="'Volver'"
         [textoHomeOCrear]="'Home'" (cancelarImg)="cancelar()">
     </app-botones-navegacion>
 
@@ -13,23 +12,73 @@
                 <mat-label class="form-label">Nombre Bolso</mat-label>
                 <input matInput formControlName="nombreBolso">
             </mat-form-field>
+
             <mat-form-field>
                 <mat-label class="form-label">Arquero/a</mat-label>
                 <input matInput formControlName="arquero">
             </mat-form-field>
+
             <mat-form-field>
-                <mat-label class="form-label">Partes</mat-label>
-                <textarea matInput formControlName="partes"></textarea>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label class="form-label">Rastreo</mat-label>
-                <textarea matInput formControlName="rastreo"></textarea>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label class="form-label">Estado</mat-label>
-                <textarea matInput formControlName="estado"></textarea>
+                <mat-label class="form-label">Casco</mat-label>
+                <input matInput formControlName="casco">
             </mat-form-field>
 
+            <mat-form-field>
+                <mat-label class="form-label">Cuello</mat-label>
+                <input matInput formControlName="cuello">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Pechera</mat-label>
+                <input matInput formControlName="pechera">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Coderas</mat-label>
+                <input matInput formControlName="coderas">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Guantes</mat-label>
+                <input matInput formControlName="guantes">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Inguinal</mat-label>
+                <input matInput formControlName="inguinal">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Bermuda</mat-label>
+                <input matInput formControlName="bermuda">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Legguards</mat-label>
+                <input matInput formControlName="legguards">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Kickers</mat-label>
+                <input matInput formControlName="kickers">
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label class="form-label">Bolso</mat-label>
+                <input matInput formControlName="bolso">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Ubicación</mat-label>
+                <textarea matInput formControlName="ubicacion"></textarea>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label class="form-label">Observaciones</mat-label>
+                <textarea matInput formControlName="observaciones"></textarea>
+            </mat-form-field>
+
+            <label>Imágen Bolso</label>
             <input type="file" class="input-img-bolso" (change)="subirArchivo($event)" #fileInput>
 
             <button mat-flat-button class="boton-crear" (click)="crearBolso()"

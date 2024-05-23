@@ -17,6 +17,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
 import { LoginGuard } from './servicios/login.guard';
 import { UbicacionBolsoComponent } from './componentes/home/bolsos/ubicacion-bolso/ubicacion-bolso.component';
+import { TodoElEquipamientoComponent } from './componentes/home/bolsos/todo-el-equipamiento/todo-el-equipamiento.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/ingresar', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: ':club/bolsos/crear-bolso', component: CrearBolsosComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
   { path: ':club/bolsos/editar-bolso/:id', component: EditarBolsoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
   { path: ':club/bolsos/ubicacion-bolso/:id', component: UbicacionBolsoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
+  { path: ':club/bolsos/todo-el-equipamiento', component: TodoElEquipamientoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
 
   { path: ':club/arqueros', component: ArquerosComponent, canActivate: [ClubUsuarioGuard] },
   { path: ':club/arqueros/detalle-arquero/:id', component: DetalleArquerosComponent, canActivate: [ClubUsuarioGuard] },

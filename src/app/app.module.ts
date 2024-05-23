@@ -43,6 +43,8 @@ import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqu
 import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
 import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
 import { UbicacionBolsoComponent } from './componentes/home/bolsos/ubicacion-bolso/ubicacion-bolso.component';
+import { TodoElEquipamientoComponent } from './componentes/home/bolsos/todo-el-equipamiento/todo-el-equipamiento.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { UbicacionBolsoComponent } from './componentes/home/bolsos/ubicacion-bol
     EditarArquerosComponent,
     EditarBolsoComponent,
     UbicacionBolsoComponent,
+    TodoElEquipamientoComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,7 @@ import { UbicacionBolsoComponent } from './componentes/home/bolsos/ubicacion-bol
     MatDialogModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatSelectModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),

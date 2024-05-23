@@ -1,0 +1,29 @@
+<aside class="aside-bolsos">
+
+    <h2 class="titulo-h2">Todo el Equipamiento</h2>
+
+    <app-botones-navegacion [urlVolver]="['../../']" [urlHomeOCrear]="['/', clubParam ]" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Home'">
+    </app-botones-navegacion>
+
+    <h4>Seleccione una parte del equipamiento</h4>
+    <mat-form-field>
+        <mat-select>
+                <mat-option [value]="parte" *ngFor="let parte of equipamiento">
+                    {{parte}}
+                </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="scroll-container" *ngIf="!mensajeCompoVacio">
+        <div class="scroll-content">
+
+
+        </div>
+    </div>
+
+    <div *ngIf="mensajeCompoVacio">
+        <p class="texto-empty">No hay equipamiento.</p>
+    </div>
+
+</aside>

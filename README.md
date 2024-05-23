@@ -49,10 +49,10 @@ SNACKBAR:
 - Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
 
 BOLSOS:
+- Crear los servicios y la logica para el dropdown y seleccionar una opcion y que se renderice el listado de partes de equipamiento. Por ejemplo Cascos: 5 unidades. Y que al hacer click me muestre un listado con todos los cascos del club.
+Renderizar un carrucel de fotos o un listadito ?
 - Aplicar estilos en los botones de editar ubicacion y fecha, también en el formulario de ubicación.
 - Se crea sección para editar la ubicación del equipamiento pero se deja suspendido el tema de colocarle fecha.
-
-- Crear sección donde se puede var el total de cada parte del equipamiento. Por ejemplo Cascos: 5 unidades. Y que al hacer click me muestre un listado con todos los cascos del club.
 - Carrucel de fotos para subir foto de cada parte del equipamiento.
 
 ARQUEROS:

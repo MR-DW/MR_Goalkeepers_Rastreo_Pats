@@ -9,15 +9,32 @@
     <h4>Seleccione una parte del equipamiento</h4>
     <mat-form-field>
         <mat-select>
-                <mat-option [value]="parte" *ngFor="let parte of equipamiento">
-                    {{parte}}
-                </mat-option>
+            <mat-option [value]="parte" *ngFor="let parte of elegirEquipamiento" (click)="obtenerEquipo(parte)">
+                {{parte}}
+            </mat-option>
         </mat-select>
     </mat-form-field>
 
     <div class="scroll-container" *ngIf="!mensajeCompoVacio">
         <div class="scroll-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Descripción </th>
+                        <th> Arquero que lo uiliza </th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr>
+                        <td *ngFor="let equipamiento of listaEquipamiento"> {{ equipamiento }} </td>
+                    </tr>
+                    <tr>
+                        <td *ngFor="let arquero of listaArqueros"> {{ arquero }} </td>
+                    </tr>
+                </tbody>
+
+            </table>
 
         </div>
     </div>

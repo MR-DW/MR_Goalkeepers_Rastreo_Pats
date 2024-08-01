@@ -89,8 +89,7 @@ export class CrearBolsosComponent implements OnInit {
           this.openSnackBar(mensaje);
         }
       )
-    }
-);
+    });
   }
 
   subirArchivo($event: any) {
@@ -125,17 +124,36 @@ export class CrearBolsosComponent implements OnInit {
       ubicacion: this.formCrearBolso.get('ubicacion')?.value,
       // Partes
       casco: this.formCrearBolso.get('casco')?.value,
-      cuello: this.formCrearBolso.get('cuello')?.value,
-      pechera: this.formCrearBolso.get('pechera')?.value,
-      coderas: this.formCrearBolso.get('coderas')?.value,
-      guantes: this.formCrearBolso.get('guantes')?.value,
-      inguinal: this.formCrearBolso.get('inguinal')?.value,
-      bermuda: this.formCrearBolso.get('bermuda')?.value,
-      legguards: this.formCrearBolso.get('legguards')?.value,
-      kickers: this.formCrearBolso.get('kickers')?.value,
-      bolso: this.formCrearBolso.get('bolso')?.value,
+      urlImgCasco: this.pathImg,
 
+      cuello: this.formCrearBolso.get('cuello')?.value,
+      urlImgCuello: this.pathImg,
+
+      pechera: this.formCrearBolso.get('pechera')?.value,
+      urlImgPechera: this.pathImg,
+
+      coderas: this.formCrearBolso.get('coderas')?.value,
+      urlImgCoderas: this.pathImg,
+
+      guantes: this.formCrearBolso.get('guantes')?.value,
+      urlImgGuantes: this.pathImg,
+
+      inguinal: this.formCrearBolso.get('inguinal')?.value,
+      urlImgInguinal: this.pathImg,
+
+      bermuda: this.formCrearBolso.get('bermuda')?.value,
+      urlImgBermuda: this.pathImg,
+
+      legguards: this.formCrearBolso.get('legguards')?.value,
+      urlImgLegguards: this.pathImg,
+
+      kickers: this.formCrearBolso.get('kickers')?.value,
+      urlImgKickers: this.pathImg,
+
+      bolso: this.formCrearBolso.get('bolso')?.value,
       urlImgBolso: this.pathImg,
+
+      urlImgEquipamiento: this.pathImg,
     }
 
     this.listaBolsos.push(new Bolso(dataFormulario))

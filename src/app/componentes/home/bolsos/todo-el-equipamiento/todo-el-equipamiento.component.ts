@@ -15,22 +15,24 @@ export class TodoElEquipamientoComponent implements OnInit {
 
   mensajeCompoVacio: boolean = false;
   clubParam!: string;
-  elegirEquipamiento: string[] = [ '--', 'Casco', 'Cuello', 'Pechera', 'Coderas', 'Guantes', 'Inguinal', 'Bermuda', 'Legguards', 'Kickers' ];
+  elegirEquipamiento: string[] = [
+    '--', 'Casco', 'Cuello', 'Pechera', 'Coderas', 'Guantes', 'Inguinal', 'Bermuda', 'Legguards', 'Kickers'
+  ];
   listaBolsos: Bolso[] = [];
   listaEquipamiento: Equipamiento[] = [];
   listaArqueros: string[] = [];
   equipamientoSeleccionado!: string;
- 
+
   constructor(
     private rutaActiva: ActivatedRoute,
     private _snackBar: MatSnackBar,
-    private bolsosService:BolsosService,
+    private bolsosService: BolsosService,
 
   ) { }
 
   ngOnInit(): void {
     this.obtenerClubParam();
-    
+
   }
 
   obtenerClubParam() {
@@ -49,14 +51,14 @@ export class TodoElEquipamientoComponent implements OnInit {
     })
   }
 
-  obtenerEquipo(parte:any){
+  obtenerEquipo(parte: any) {
     this.equipamientoSeleccionado = parte.toLowerCase();
     this.listaEquipamiento = [];
     this.listaArqueros = [];
     this.obtenerEquipamiento();
   }
 
-  obtenerEquipamiento(){
+  obtenerEquipamiento() {
 
     this.bolsosService.getBolsos(this.clubParam).subscribe({
       next: (
@@ -64,7 +66,7 @@ export class TodoElEquipamientoComponent implements OnInit {
           this.mensajeCompoVacio = false;
           this.listaBolsos = data ? data : [];
 
-          this.listaBolsos.map( (x:any) => {
+          this.listaBolsos.map((x: any) => {
             this.listaEquipamiento.push(x[this.equipamientoSeleccionado])
             this.listaArqueros.push(x['arquero'])
           })
@@ -77,8 +79,7 @@ export class TodoElEquipamientoComponent implements OnInit {
           this.openSnackBar(mensaje);
         }
       )
-    }
-);
+    });
   }
 
   openSnackBar(value: string) {

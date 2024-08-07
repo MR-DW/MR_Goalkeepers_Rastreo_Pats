@@ -124,34 +124,34 @@ export class CrearBolsosComponent implements OnInit {
       ubicacion: this.formCrearBolso.get('ubicacion')?.value,
       // Partes
       casco: this.formCrearBolso.get('casco')?.value,
-      urlImgCasco: this.pathImg,
+      // urlImgCasco: this.pathImg,
 
       cuello: this.formCrearBolso.get('cuello')?.value,
-      urlImgCuello: this.pathImg,
+      // urlImgCuello: this.pathImg,
 
       pechera: this.formCrearBolso.get('pechera')?.value,
-      urlImgPechera: this.pathImg,
+      // urlImgPechera: this.pathImg,
 
       coderas: this.formCrearBolso.get('coderas')?.value,
-      urlImgCoderas: this.pathImg,
+      // urlImgCoderas: this.pathImg,
 
       guantes: this.formCrearBolso.get('guantes')?.value,
-      urlImgGuantes: this.pathImg,
+      // urlImgGuantes: this.pathImg,
 
       inguinal: this.formCrearBolso.get('inguinal')?.value,
-      urlImgInguinal: this.pathImg,
+      // urlImgInguinal: this.pathImg,
 
       bermuda: this.formCrearBolso.get('bermuda')?.value,
-      urlImgBermuda: this.pathImg,
+      // urlImgBermuda: this.pathImg,
 
       legguards: this.formCrearBolso.get('legguards')?.value,
-      urlImgLegguards: this.pathImg,
+      // urlImgLegguards: this.pathImg,
 
       kickers: this.formCrearBolso.get('kickers')?.value,
-      urlImgKickers: this.pathImg,
+      // urlImgKickers: this.pathImg,
 
       bolso: this.formCrearBolso.get('bolso')?.value,
-      urlImgBolso: this.pathImg,
+      // urlImgBolso: this.pathImg,
 
       urlImgEquipamiento: this.pathImg,
     }
@@ -164,7 +164,7 @@ export class CrearBolsosComponent implements OnInit {
         (data: any) => {
 
           this.dialog.open(ModalConfirmacionComponent, {
-            data: { mensaje: 'Bolso creado correctamente', esCrear: true }
+            data: { mensaje: 'Bolso creado correctamente', esCrear: true, clubParam: this.clubParam, esEquipamiento: true }
           });
   
           this.formCrearBolso.reset();

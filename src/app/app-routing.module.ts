@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: ':club/bolsos/crear-bolso', component: CrearBolsosComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
   { path: ':club/bolsos/editar-bolso/:id', component: EditarBolsoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
   { path: ':club/bolsos/ubicacion-bolso/:id', component: UbicacionBolsoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
-  { path: ':club/bolsos/todo-el-equipamiento', component: TodoElEquipamientoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
+  // { path: ':club/bolsos/todo-el-equipamiento', component: TodoElEquipamientoComponent, canActivate: [LoginGuard, ClubUsuarioGuard] },
 
   { path: ':club/arqueros', component: ArquerosComponent, canActivate: [ClubUsuarioGuard] },
   { path: ':club/arqueros/detalle-arquero/:id', component: DetalleArquerosComponent, canActivate: [ClubUsuarioGuard] },

@@ -90,7 +90,7 @@ export class CrearArqueroComponent implements OnInit {
       next: (
         (data: any) => {
           this.dialog.open(ModalConfirmacionComponent, {
-            data: { mensaje: 'Arquero creado correctamente', esCrear: true, clubParam: this.clubParam }
+            data: { mensaje: 'Arquero creado correctamente', esCrear: true, clubParam: this.clubParam, esArquero: true }
           });
           this.formCrearArquero.reset();
         }

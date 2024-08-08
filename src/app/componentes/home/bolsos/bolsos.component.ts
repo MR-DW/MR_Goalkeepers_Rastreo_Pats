@@ -105,7 +105,7 @@ export class BolsosComponent implements OnInit {
   eliminarImagenBolso() {
 
     this.bolsoEliminado.map((prop: any) => {
-      let pedasos = prop.urlImgBolso.split('?');
+      let pedasos = prop.urlImgEquipamiento.split('?');
       let pathParte = pedasos[0].split('%2F');
       let pathImg = pathParte ? pathParte[1] : null;
 

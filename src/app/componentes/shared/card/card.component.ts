@@ -29,6 +29,9 @@ export class CardComponent implements OnInit {
     this.listaArqueros = this.listadoArqueros;
     this.listaBolsos = this.listadoBolsos;
     this.estaLogueago = sessionStorage.getItem('token');
+    console.log("this.listaBolsos: ", this.listaBolsos[0].urlImgEquipamiento);
+    console.log("this.urlImgBolso: ", this.urlImgBolso);
+
   }
 
   eliminarBolso( id: number ){

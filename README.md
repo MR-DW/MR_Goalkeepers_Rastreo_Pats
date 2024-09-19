@@ -43,8 +43,8 @@ npm install rxfire@latest firebase@latest
 - Crear Equipamiento: Redirige a la home y debería redirigir al listado de equipamientos o a detalle de dicho equipamiento. LISTO.
 - Crear Arqueros: Igual que Crear Equipamiento. LISTO.
 
-- Lista Arqueros: al eliminar un arquero se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los arqueros que quedaron. 
-- Lista Equipamientos: al eliminar un equipamiento se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los equipamientos que quedaron. 
+- Lista Arqueros: al eliminar un arquero se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los arqueros que quedaron. LISTO. 
+- Lista Equipamientos: al eliminar un equipamiento se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los equipamientos que quedaron.  LISTO.
  -->
 
 

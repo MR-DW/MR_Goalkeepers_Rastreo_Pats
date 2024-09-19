@@ -1,0 +1,18 @@
+.aside-form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.titulo-h2{
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.scroll-container{
+    height: 70%;
+    overflow-y: auto; 
+}

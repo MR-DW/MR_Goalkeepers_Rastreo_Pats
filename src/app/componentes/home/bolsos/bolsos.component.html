@@ -1,12 +1,12 @@
 <aside class="aside-bolsos">
     <h2 class="titulo-h2">Listado De Bolsos</h2>
-    <app-botones-navegacion 
-        [urlVolver]="['/', clubParam]" 
-        [urlHomeOCrear]="[ 'crear-bolso' ]" 
-        [textoVolver]="'Volver'"
-        [textoHomeOCrear]="'Crear Bolso'"
-    >
+    <app-botones-navegacion [urlVolver]="['/', clubParam]" [urlHomeOCrear]="[ 'crear-bolso' ]" [textoVolver]="'Volver'"
+        [textoHomeOCrear]="'Crear Bolso'">
     </app-botones-navegacion>
+
+    <!-- <button mat-stroked-button class="boton-reglamento" [routerLink]="['todo-el-equipamiento']">
+        Todo el equipamiento
+    </button> -->
 
     <div class="scroll-container" *ngIf="!mensajeCompoVacio">
         <div class="scroll-content">

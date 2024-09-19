@@ -81,10 +81,12 @@ export class BolsosComponent implements OnInit {
     this.bolsosService.crearBolso(this.clubParam, this.listaBolsos).subscribe({
       next: (
         (resp: any) => {
-          this.mensajeCompoVacio = true;
           this.dialog.open(ModalConfirmacionComponent, {
             data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
           });
+          if( this.listaBolsos.length < 1 ){
+            this.mensajeCompoVacio = true;
+          }
         }
       ),
       error: (
@@ -96,16 +98,12 @@ export class BolsosComponent implements OnInit {
       )
     });
 
-    this.dialog.open(ModalConfirmacionComponent, {
-      data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
-    });
-
   }
 
   eliminarImagenBolso() {
 
     this.bolsoEliminado.map((prop: any) => {
-      let pedasos = prop.urlImgBolso.split('?');
+      let pedasos = prop.urlImgEquipamiento.split('?');
       let pathParte = pedasos[0].split('%2F');
       let pathImg = pathParte ? pathParte[1] : null;
 

@@ -11,6 +11,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%!important;
+    padding: 0 0 .5rem;
 }
 
 .mat-card-header-text{
@@ -38,4 +39,8 @@
 
 .card-text{
     overflow-wrap: break-word;
+}
+
+.card-text>ul>li, .partes{
+    padding: .5rem 0;
 }

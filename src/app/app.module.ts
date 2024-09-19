@@ -14,10 +14,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,6 +42,9 @@ import { EditarReglamentoComponent } from './componentes/home/reglamento/editar-
 import { EditarArquerosComponent } from './componentes/home/arqueros/editar-arqueros/editar-arqueros.component';
 import { EditarBolsoComponent } from './componentes/home/bolsos/editar-bolso/editar-bolso.component';
 import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
+import { UbicacionBolsoComponent } from './componentes/home/bolsos/ubicacion-bolso/ubicacion-bolso.component';
+import { TodoElEquipamientoComponent } from './componentes/home/bolsos/todo-el-equipamiento/todo-el-equipamiento.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,8 @@ import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
     EditarReglamentoComponent,
     EditarArquerosComponent,
     EditarBolsoComponent,
+    UbicacionBolsoComponent,
+    TodoElEquipamientoComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +86,7 @@ import { ClubUsuarioGuard } from './servicios/clubUsuario.guard';
     MatDialogModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatSelectModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),

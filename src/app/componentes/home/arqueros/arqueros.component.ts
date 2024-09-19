@@ -76,10 +76,12 @@ export class ArquerosComponent implements OnInit {
     this.arquerosService.crearArquero(this.clubParam, this.listaArqueros).subscribe({
       next: (
         (resp: any) => {
-          this.mensajeCompoVacio = true;
           this.dialog.open(ModalConfirmacionComponent, {
             data: { mensaje: 'Arquero eliminado correctamente', esEliminar: true }
           });
+          if( this.listaArqueros.length < 1 ){
+            this.mensajeCompoVacio = true;
+          }
         }
       ),
       error: (

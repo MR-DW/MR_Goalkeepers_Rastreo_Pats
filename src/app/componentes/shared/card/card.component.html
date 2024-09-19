@@ -3,24 +3,24 @@
     <span class="span-card" [routerLink]="['detalle-bolso/', i]">
 
         <mat-card-header class="container-title">
-            <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
+            <mat-card-title class="card-title">{{ bolso?.nombreBolso }}</mat-card-title>
         </mat-card-header>
 
-        <img mat-card-image class="card-img" [src]="bolso.urlImgBolso" [alt]="bolso.nombreBolso">
+        <img mat-card-image class="card-img" [src]="bolso?.urlImgEquipamiento" [alt]="bolso?.nombreBolso">
 
         <mat-card-content class="card-text">
             <ul>
                 <li>
                     <strong>
-                        Rastreo:
+                        Ubicación:
                     </strong>
-                    {{ bolso.rastreo }}
+                    {{ bolso?.ubicacion }}
                 </li>
                 <li>
                     <strong>
-                        Estado:
+                        Observaciones:
                     </strong>
-                    {{ bolso.estado }}
+                    {{ bolso?.observaciones }}
                 </li>
             </ul>
         </mat-card-content>

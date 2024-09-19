@@ -2,16 +2,16 @@
 <mat-card class="example-card" *ngIf="bolso">
 
     <mat-card-header class="container-title">
-        <mat-card-title class="card-title">{{ bolso.nombreBolso.toUpperCase() }}</mat-card-title>
-        
-        <button mat-fab 
-            aria-label="Editar bolso" 
-            class="boton-editar" 
-            [routerLink]="['/', clubParam, 'bolsos', 'editar-bolso', idBolso]"
-            *ngIf="estaLogueado"
-        >
+        <mat-card-title class="card-title">{{ bolso.nombreBolso }}</mat-card-title>
+        <button mat-fab aria-label="Editar bolso" class="boton-editar"
+            [routerLink]="['/', clubParam, 'bolsos', 'ubicacion-bolso', idBolso]" *ngIf="estaLogueado">
+            <mat-icon>add_location_alt</mat-icon>
+        </button>
+        <button mat-fab aria-label="Editar bolso" class="boton-editar"
+            [routerLink]="['/', clubParam, 'bolsos', 'editar-bolso', idBolso]" *ngIf="estaLogueado">
             <mat-icon>edit</mat-icon>
         </button>
+
     </mat-card-header>
     <img mat-card-image class="card-img" [src]="bolso.urlImgBolso" [alt]=" bolso.nombreBolso ">
 
@@ -27,19 +27,77 @@
                 <strong>
                     Estado del bolso:
                 </strong>
-                {{ bolso.estado }}
+                {{ bolso.observaciones }}
             </li>
             <li>
                 <strong>
                     Ubicación del bolso:
                 </strong>
-                {{ bolso.rastreo }}
+                {{ bolso.ubicacion }}
             </li>
             <li>
                 <strong>
-                    Equipamiento:
+                    Partes del Equipamiento:
                 </strong>
-                {{ bolso.partes }}
+            <li>
+                <strong>
+                    Casco:
+                </strong>
+                {{ bolso.casco }}
+            </li>
+            <li>
+                <strong>
+                    Cuello:
+                </strong>
+                {{ bolso.cuello }}
+            </li>
+            <li>
+                <strong>
+                    Pechera:
+                </strong>
+                {{ bolso.pechera }}
+            </li>
+            <li>
+                <strong>
+                    Coderas:
+                </strong>
+                {{ bolso.coderas }}
+            </li>
+            <li>
+                <strong>
+                    Guantes:
+                </strong>
+                {{ bolso.guantes }}
+            </li>
+            <li>
+                <strong>
+                    Inguinal:
+                </strong>
+                {{ bolso.inguinal }}
+            </li>
+            <li>
+                <strong>
+                    Bermuda:
+                </strong>
+                {{ bolso.bermuda }}
+            </li>
+            <li>
+                <strong>
+                    Legguards:
+                </strong>
+                {{ bolso.legguards }}
+            </li>
+            <li>
+                <strong>
+                    Kickers:
+                </strong>
+                {{ bolso.kickers }}
+            </li>
+            <li>
+                <strong>
+                    Bolso:
+                </strong>
+                {{ bolso.bolso }}
             </li>
         </ul>
     </mat-card-content>
@@ -49,12 +107,9 @@
 <mat-card class="example-card" *ngIf="arquero">
     <mat-card-header class="container-title">
         <mat-card-title class="card-title">{{ arquero.nombreArquero }}</mat-card-title>
-        
-        <button mat-fab 
-            aria-label="Editar bolso" 
-            class="boton-editar" 
-            [routerLink]="[ '/', clubParam, 'arqueros', 'editar-arquero', idArquero]"
-            *ngIf="estaLogueado">
+
+        <button mat-fab aria-label="Editar bolso" class="boton-editar"
+            [routerLink]="[ '/', clubParam, 'arqueros', 'editar-arquero', idArquero]" *ngIf="estaLogueado">
             <mat-icon>edit</mat-icon>
         </button>
 

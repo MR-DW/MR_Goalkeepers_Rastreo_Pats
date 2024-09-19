@@ -34,6 +34,7 @@ export class DetalleBolsosComponent implements OnInit {
       next: (
         (miParam: Params) => {
           this.clubParam = miParam['club'];
+
         }),
       error: (
         (error: any) => {
@@ -48,7 +49,8 @@ export class DetalleBolsosComponent implements OnInit {
     this.rutaActiva.params.subscribe({
       next: (
         (miParam: Params) => {
-          this.clubParam = miParam['id'];
+          this.idParam = miParam['id'];
+
         }),
       error: (
         (error: any) => {

@@ -10,6 +10,8 @@ export class ModalConfirmacionComponent implements OnInit {
 
   mensaje:string | undefined;
   esCrear: boolean = false;
+  esEquipamiento: boolean = false;
+  esArquero: boolean = false;
   clubParam!: string | undefined;
 
   constructor( 
@@ -19,6 +21,8 @@ export class ModalConfirmacionComponent implements OnInit {
   ngOnInit(): void {
     this.mensaje = this.data.mensaje;
     this.esCrear = this.data.esCrear;
+    this.esEquipamiento = this.data.esEquipamiento;
+    this.esArquero = this.data.esArquero;
     this.clubParam = this.data.clubParam
   }
 

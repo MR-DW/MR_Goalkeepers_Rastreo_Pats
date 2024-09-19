@@ -36,28 +36,38 @@ ng add @angular/material
 Si da error en este archivo dentro del noce_module: rxfire, instalar: 
 npm install rxfire@latest firebase@latest
 
+<!-- PARA SALIR A PRODUCCIÓN:
 
-<!-- 
--->
+- Lista de Equipamientos: Ocultar el botón y el componente "Todo el equipamiento" (cambiarle el texto a Todos los equipamientos"). LISTO.
+- Crear Equipamiento: Ocultar inputs de imagenes de partes de equipamiento. LISTO.
+- Crear Equipamiento: Redirige a la home y debería redirigir al listado de equipamientos o a detalle de dicho equipamiento. LISTO.
+- Crear Arqueros: Igual que Crear Equipamiento. LISTO.
+
+- Lista Arqueros: al eliminar un arquero se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los arqueros que quedaron. LISTO. 
+- Lista Equipamientos: al eliminar un equipamiento se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los equipamientos que quedaron.  LISTO.
+ -->
+
+
 
 <!-- Featuring:
+- Router: Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url.
 
-Router:
-- Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url.
+- SNACKBAR: Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
 
-SNACKBAR:
-- Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
+- BOLSOS:
+. Aplicar estilos al dropdown de equipamiento y a la tabla que se renderiza. Ver tema imagenes. 
+. Aplicar estilos en los botones de editar ubicacion y fecha, también en el formulario de ubicación.
+. Se crea sección para editar la ubicación del equipamiento pero se deja suspendido el tema de colocarle fecha.
+. Carrucel de fotos para subir foto de cada parte del equipamiento.
+. Cambiar en todos los lados que diga bolso por equipamiento.
 
-BOLSOS:
-- Crear los bolsos por piezas para de esa manera poder contabilizar un stock de cantidad. 
-- Carrucel de fotos para subir foto de cada parte del equipamiento.
-- Poner fecha.
-- Sección que solo diga el último movimiento.
+- ARQUEROS: Crear un componente que liste todos los arqueros, según linea en orden de división.
 
 - Mejorar los permisos de quien puede eliminar en firebase.
 
-Home:
-- Redirección de logout debe ser a /ingesar, no funciona redireccionamiento pero se deja así por ahora. Queda la home vacía, pero al presionar en los botones de navegación te llevan al login por el guard.
+- LOGIN: Se dispara un mensaje Error al loguearse bien.
+
+- Registro: Colocar advertencia que deben ser minimo 6 caracteres en contraseña.
 
 -->
 

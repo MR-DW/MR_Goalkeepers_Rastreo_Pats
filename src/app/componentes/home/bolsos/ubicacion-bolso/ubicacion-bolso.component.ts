@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Storage, deleteObject, getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,48 +9,27 @@ import { Bolso } from 'src/app/modelos/bolso.model';
 import { BolsosService } from 'src/app/servicios/bolsos.service';
 
 @Component({
-  selector: 'app-editar-bolso',
-  templateUrl: './editar-bolso.component.html',
-  styleUrls: ['./editar-bolso.component.scss']
+  selector: 'app-ubicacion-bolso',
+  templateUrl: './ubicacion-bolso.component.html',
+  styleUrls: ['./ubicacion-bolso.component.scss']
 })
-export class EditarBolsoComponent implements OnInit {
-  idParam: any;
+export class UbicacionBolsoComponent implements OnInit {
 
-  formEditarBolso!: FormGroup;
-  bolso!: Bolso;
-  file!: any;
-  uploadRef!: any;
-  pathImg: any = undefined;
-  hayNuevaImg: boolean = false;
-  @ViewChild('inputeditarimagen') inputeditarimagen!: ElementRef<HTMLInputElement>;
-  seEditaBolso!: boolean;
+  formUbicacion!: FormGroup;
   clubParam!: string;
+  idParam!: any;
+  bolso!: Bolso;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private rutaActiva: ActivatedRoute,
-    private storage: Storage,
     private router: Router,
     private bolsosService: BolsosService,
     private _snackBar: MatSnackBar,
   ) {
-    this.formEditarBolso = this.formBuilder.group({
-      nombreBolso: ['', [Validators.required]],
-      arquero: ['', [Validators.required]],
-      observaciones: ['', [Validators.required]],
-      // Partes
-      casco: ['', [Validators.required]],
-      cuello: ['', [Validators.required]],
-      pechera: ['', [Validators.required]],
-      coderas: ['', [Validators.required]],
-      guantes: ['', [Validators.required]],
-      inguinal: ['', [Validators.required]],
-      bermuda: ['', [Validators.required]],
-      legguards: ['', [Validators.required]],
-      kickers: ['', [Validators.required]],
-      bolso: ['', [Validators.required]]
-
+    this.formUbicacion = this.formBuilder.group({
+      ubicacion: ['', [Validators.required]]
     })
   }
 
@@ -98,11 +76,11 @@ export class EditarBolsoComponent implements OnInit {
 
           this.bolso = new Bolso(data);
 
-          this.formEditarBolso = this.formBuilder.group({
+          this.formUbicacion = this.formBuilder.group({
             nombreBolso: [this.bolso.nombreBolso, [Validators.required]],
             arquero: [this.bolso.arquero, [Validators.required]],
-            ubicacion: [this.bolso.ubicacion, [Validators.required]],
-            observaciones: [this.bolso.observaciones, [Validators.required]],
+            ubicacion: [this.bolso.arquero, [Validators.required]],
+            observaciones: [this.bolso.arquero, [Validators.required]],
             // Partes
             casco: [this.bolso.casco, [Validators.required]],
             cuello: [this.bolso.cuello, [Validators.required]],
@@ -115,9 +93,6 @@ export class EditarBolsoComponent implements OnInit {
             kickers: [this.bolso.kickers, [Validators.required]],
             bolso: [this.bolso.bolso, [Validators.required]]
           })
-
-          this.pathImg = this.bolso.urlImgBolso;
-
         }
       ),
       error: (
@@ -129,65 +104,27 @@ export class EditarBolsoComponent implements OnInit {
     })
   }
 
-  subirArchivo($event: any) {
-    this.file = $event.target.files[0];
-    this.uploadRef = ref(this.storage, `bolsos/${this.file.name}`);
-    this.pathImg = undefined;
-
-    uploadBytes(this.uploadRef, this.file)
-      .then(() => {
-        this.obtenerImagen();
-      })
-      .catch()
-  }
-
-  obtenerImagen() {
-    listAll(this.uploadRef)
-      .then(async resp => {
-        this.pathImg = await getDownloadURL(this.uploadRef);
-      })
-      .catch(error => { })
-  }
-
-  borrarImagenVieja() {
-
-    let pedasos = this.bolso.urlImgBolso.split('?');
-    let pathParte = pedasos[0].split('%2F');
-    let pathImgVieja = pathParte ? pathParte[1] : null;
-
-    const deleteRef = ref(this.storage, `bolsos/${pathImgVieja}`);
-
-    deleteObject(deleteRef)
-      .then(resp => { })
-      .catch(error => { })
-  }
-
-  cancelarCambioImg() {
-    deleteObject(this.uploadRef)
-      .then(resp => { })
-      .catch(error => { })
-  }
-
-  editarBolso() {
+  editarUbicacion() {
 
     const dataFormulario = {
-      arquero: this.formEditarBolso.get('arquero')?.value,
-      observaciones: this.formEditarBolso.get('observaciones')?.value,
-      nombreBolso: this.formEditarBolso.get('nombreBolso')?.value,
-      ubicacion: this.bolso.ubicacion,
+      ubicacion: this.formUbicacion.get('ubicacion')?.value,
+      date: this.formUbicacion.get('date')?.value,
+      arquero: this.bolso.arquero,
+      observaciones: this.bolso.observaciones,
+      nombreBolso: this.bolso.nombreBolso,
       // Partes
-      casco: this.formEditarBolso.get('casco')?.value,
-      cuello: this.formEditarBolso.get('cuello')?.value,
-      pechera: this.formEditarBolso.get('pechera')?.value,
-      coderas: this.formEditarBolso.get('coderas')?.value,
-      guantes: this.formEditarBolso.get('guantes')?.value,
-      inguinal: this.formEditarBolso.get('inguinal')?.value,
-      bermuda: this.formEditarBolso.get('bermuda')?.value,
-      legguards: this.formEditarBolso.get('legguards')?.value,
-      kickers: this.formEditarBolso.get('kickers')?.value,
-      bolso: this.formEditarBolso.get('bolso')?.value,
+      casco: this.bolso.casco,
+      cuello: this.bolso.cuello,
+      pechera: this.bolso.pechera,
+      coderas: this.bolso.coderas,
+      guantes: this.bolso.guantes,
+      inguinal: this.bolso.inguinal,
+      bermuda: this.bolso.bermuda,
+      legguards: this.bolso.legguards,
+      kickers: this.bolso.kickers,
+      bolso: this.bolso.bolso,
 
-      urlImgBolso: this.pathImg
+      urlImgBolso: this.bolso.urlImgBolso
     }
 
     this.bolsosService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe({
@@ -196,9 +133,6 @@ export class EditarBolsoComponent implements OnInit {
           this.dialog.open(ModalConfirmacionComponent, {
             data: { mensaje: 'Bolso editado', esCrear: false }
           });
-          if (this.inputeditarimagen.nativeElement.value != '') {
-            this.borrarImagenVieja();
-          }
           this.router.navigate(['/bolsos']);
         }
       ),

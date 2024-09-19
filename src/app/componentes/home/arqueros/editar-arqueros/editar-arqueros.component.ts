@@ -64,7 +64,7 @@ export class EditarArquerosComponent implements OnInit {
     this.rutaActiva.params.subscribe({
       next: (
         (miParam: Params) => {
-          this.clubParam = miParam['id'];
+          this.idParam = miParam['id'];
         }),
       error: (
         (error: any) => {

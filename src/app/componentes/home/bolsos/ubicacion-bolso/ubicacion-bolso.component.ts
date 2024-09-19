@@ -77,21 +77,21 @@ export class UbicacionBolsoComponent implements OnInit {
           this.bolso = new Bolso(data);
 
           this.formUbicacion = this.formBuilder.group({
-            nombreBolso: [this.bolso.nombreBolso, [Validators.required]],
-            arquero: [this.bolso.arquero, [Validators.required]],
+            // nombreBolso: [this.bolso.nombreBolso, [Validators.required]],
+            // arquero: [this.bolso.arquero, [Validators.required]],
             ubicacion: [this.bolso.arquero, [Validators.required]],
-            observaciones: [this.bolso.arquero, [Validators.required]],
+            // observaciones: [this.bolso.arquero, [Validators.required]],
             // Partes
-            casco: [this.bolso.casco, [Validators.required]],
-            cuello: [this.bolso.cuello, [Validators.required]],
-            pechera: [this.bolso.pechera, [Validators.required]],
-            coderas: [this.bolso.coderas, [Validators.required]],
-            guantes: [this.bolso.guantes, [Validators.required]],
-            inguinal: [this.bolso.inguinal, [Validators.required]],
-            bermuda: [this.bolso.bermuda, [Validators.required]],
-            legguards: [this.bolso.legguards, [Validators.required]],
-            kickers: [this.bolso.kickers, [Validators.required]],
-            bolso: [this.bolso.bolso, [Validators.required]]
+            // casco: [this.bolso.casco, [Validators.required]],
+            // cuello: [this.bolso.cuello, [Validators.required]],
+            // pechera: [this.bolso.pechera, [Validators.required]],
+            // coderas: [this.bolso.coderas, [Validators.required]],
+            // guantes: [this.bolso.guantes, [Validators.required]],
+            // inguinal: [this.bolso.inguinal, [Validators.required]],
+            // bermuda: [this.bolso.bermuda, [Validators.required]],
+            // legguards: [this.bolso.legguards, [Validators.required]],
+            // kickers: [this.bolso.kickers, [Validators.required]],
+            // bolso: [this.bolso.bolso, [Validators.required]]
           })
         }
       ),
@@ -108,7 +108,6 @@ export class UbicacionBolsoComponent implements OnInit {
 
     const dataFormulario = {
       ubicacion: this.formUbicacion.get('ubicacion')?.value,
-      date: this.formUbicacion.get('date')?.value,
       arquero: this.bolso.arquero,
       observaciones: this.bolso.observaciones,
       nombreBolso: this.bolso.nombreBolso,
@@ -124,7 +123,7 @@ export class UbicacionBolsoComponent implements OnInit {
       kickers: this.bolso.kickers,
       bolso: this.bolso.bolso,
 
-      urlImgBolso: this.bolso.urlImgBolso
+      urlImgEquipamiento: this.bolso.urlImgEquipamiento
     }
 
     this.bolsosService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe({

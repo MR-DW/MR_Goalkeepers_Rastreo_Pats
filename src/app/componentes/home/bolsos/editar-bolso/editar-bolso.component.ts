@@ -116,7 +116,7 @@ export class EditarBolsoComponent implements OnInit {
             bolso: [this.bolso.bolso, [Validators.required]]
           })
 
-          this.pathImg = this.bolso.urlImgBolso;
+          this.pathImg = this.bolso.urlImgEquipamiento;
 
         }
       ),
@@ -151,9 +151,15 @@ export class EditarBolsoComponent implements OnInit {
 
   borrarImagenVieja() {
 
-    let pedasos = this.bolso.urlImgBolso.split('?');
+    let pedasos = this.bolso.urlImgEquipamiento.split('?');
+    console.log("pedasos: ",pedasos);
+    
     let pathParte = pedasos[0].split('%2F');
+    console.log("pedasos: ",pedasos);
+
     let pathImgVieja = pathParte ? pathParte[1] : null;
+    console.log("pathImgVieja: ",pathImgVieja);
+
 
     const deleteRef = ref(this.storage, `bolsos/${pathImgVieja}`);
 
@@ -187,7 +193,7 @@ export class EditarBolsoComponent implements OnInit {
       kickers: this.formEditarBolso.get('kickers')?.value,
       bolso: this.formEditarBolso.get('bolso')?.value,
 
-      urlImgBolso: this.pathImg
+      urlImgEquipamiento: this.pathImg
     }
 
     this.bolsosService.editarBolso(this.clubParam, this.idParam, dataFormulario).subscribe({

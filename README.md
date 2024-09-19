@@ -38,6 +38,8 @@ npm install rxfire@latest firebase@latest
 
 <!-- PARA SALIR A PRODUCCIÓN:
 
+- Luego de editad la ubicación en el modulo de editar-ubicación se rompe la img del bolso. LISTO.
+
 - Lista de Equipamientos: Ocultar el botón y el componente "Todo el equipamiento" (cambiarle el texto a Todos los equipamientos"). LISTO.
 - Crear Equipamiento: Ocultar inputs de imagenes de partes de equipamiento. LISTO.
 - Crear Equipamiento: Redirige a la home y debería redirigir al listado de equipamientos o a detalle de dicho equipamiento. LISTO.

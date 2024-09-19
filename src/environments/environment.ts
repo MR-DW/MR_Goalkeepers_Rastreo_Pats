@@ -14,7 +14,7 @@ export const environment = {
   urlCrearBolsos: '/bolsos/crear-bolso',
   pathImgLocal: '../assets/img/',
   urlImg:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/',
-  urlImgBolso:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/bolsos%2F',
+  urlImgEquipamiento:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/bolsos%2F',
   urlImgBolsosFinal: '?alt=media',
 
   firebase: {

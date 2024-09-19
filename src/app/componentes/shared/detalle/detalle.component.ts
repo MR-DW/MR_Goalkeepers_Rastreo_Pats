@@ -13,7 +13,7 @@ export class DetalleComponent implements OnInit {
 
   estaLogueado!:boolean;
 
-  urlImgBolso:string = '';
+  urlImgEquipamiento:string = '';
   bolso!: Bolso;
   @Input() detalleBolso: any;
   @Input() idBolso: any;
@@ -28,8 +28,9 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerTokenLogin();
-    this.urlImgBolso = environment.urlImgBolso;
     this.bolso = this.detalleBolso;
+    console.log("this.bolso: ", this.bolso);
+
     this.arquero = this.detalleArquero;
   }
 

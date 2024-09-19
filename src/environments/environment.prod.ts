@@ -9,7 +9,7 @@ export const environment = {
   urlCrearBolsos:'/arqueros/crear-bolso',
   pathImg:'../assets/img/',
   urlImg:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/',
-  urlImgBolso:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/bolsos%2F%20',
+  urlImgEquipamiento:'https://firebasestorage.googleapis.com/v0/b/mrgoalkeepers-rastreo-pats.appspot.com/o/bolsos%2F%20',
   urlImgBolsosFinal: '?alt=media',
 
   firebase: {

@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class CardComponent implements OnInit {
   
   bolsoNombre:string='';
-  urlImgBolso:string = '';
+  urlImgEquipamiento:string = '';
   listaBolsos: Bolso[]= [];
   listaArqueros: Arqueros[] = [];
   estaLogueago: any;
@@ -25,7 +25,6 @@ export class CardComponent implements OnInit {
   constructor( ) { }
 
   ngOnInit(): void {
-    this.urlImgBolso = environment.urlImgBolso;
     this.listaArqueros = this.listadoArqueros;
     this.listaBolsos = this.listadoBolsos;
     this.estaLogueago = sessionStorage.getItem('token');

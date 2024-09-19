@@ -66,6 +66,7 @@ export class DetalleBolsosComponent implements OnInit {
       next: (
         (data: any) => {
           this.bolso = new Bolso(data);
+          console.log("this.bolso: ", this.bolso);
         }
       ),
       error: (

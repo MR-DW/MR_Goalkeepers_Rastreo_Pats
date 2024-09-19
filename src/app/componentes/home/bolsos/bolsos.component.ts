@@ -98,10 +98,6 @@ export class BolsosComponent implements OnInit {
       )
     });
 
-    this.dialog.open(ModalConfirmacionComponent, {
-      data: { mensaje: 'Bolso eliminado correctamente', esEliminar: true }
-    });
-
   }
 
   eliminarImagenBolso() {

@@ -36,6 +36,12 @@ ng add @angular/material
 Si da error en este archivo dentro del noce_module: rxfire, instalar: 
 npm install rxfire@latest firebase@latest
 
+Para usar firebase utilizar:
+ng add @angular/fire
+Y seleccionar las apps:
+Cloud Storage / ng deploy -- hosting / Authentication
+
+
 <!-- PARA SALIR A PRODUCCIÓN:
 
 - Luego de editad la ubicación en el modulo de editar-ubicación se rompe la img del bolso. LISTO.

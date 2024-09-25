@@ -42,22 +42,14 @@ Y seleccionar las apps:
 Cloud Storage / ng deploy -- hosting / Authentication
 
 
-<!-- PARA SALIR A PRODUCCIÓN:
-
-- Luego de editad la ubicación en el modulo de editar-ubicación se rompe la img del bolso. LISTO.
-
-- Lista de Equipamientos: Ocultar el botón y el componente "Todo el equipamiento" (cambiarle el texto a Todos los equipamientos"). LISTO.
-- Crear Equipamiento: Ocultar inputs de imagenes de partes de equipamiento. LISTO.
-- Crear Equipamiento: Redirige a la home y debería redirigir al listado de equipamientos o a detalle de dicho equipamiento. LISTO.
-- Crear Arqueros: Igual que Crear Equipamiento. LISTO.
-
-- Lista Arqueros: al eliminar un arquero se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los arqueros que quedaron. LISTO. 
-- Lista Equipamientos: al eliminar un equipamiento se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los equipamientos que quedaron.  LISTO.
- -->
-
-
-
 <!-- Featuring:
+
+- Registro: Colocar advertencia que deben ser minimo 6 caracteres en contraseña.
+- Registro: Verificación de registro, con envío de email o sms.
+- Login: Permitir recuperar contraseña.
+- Arqueros: al crear un arquero o editarlo, que pueda seleccionar de un dropdown el equipamiento que está utilizando en función a los equipamientos que ya están creados.
+- Arqueros: Que el arquero traiga la info de su equipamiento o tenga un link que redirija a su equipamiento.
+
 - Router: Ver de reutilizar lo más posible el clubParam enviandoló y no tomandolo tantas veces de la url.
 
 - SNACKBAR: Crear un servicio y llamarlo desde ahí para no repetirlo en todos lados.
@@ -74,8 +66,6 @@ Cloud Storage / ng deploy -- hosting / Authentication
 - Mejorar los permisos de quien puede eliminar en firebase.
 
 - LOGIN: Se dispara un mensaje Error al loguearse bien.
-
-- Registro: Colocar advertencia que deben ser minimo 6 caracteres en contraseña.
 
 -->
 

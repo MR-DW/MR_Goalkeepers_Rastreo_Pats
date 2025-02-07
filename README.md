@@ -44,16 +44,11 @@ Cloud Storage / ng deploy -- hosting / Authentication
 
 <!-- PARA SALIR A PRODUCCIÓN:
 
-- Luego de editad la ubicación en el modulo de editar-ubicación se rompe la img del bolso. LISTO.
+- En el componente de registro colocar mensajes de minimo 6 caracteres y maximo 10 caracteres o quitarle la limitacion de caracteres max.
+- En el componente de registro manejar error de EMAIL_EXISTS.
+- En el componente Home cambiar el label del boton logout por salir.
 
-- Lista de Equipamientos: Ocultar el botón y el componente "Todo el equipamiento" (cambiarle el texto a Todos los equipamientos"). LISTO.
-- Crear Equipamiento: Ocultar inputs de imagenes de partes de equipamiento. LISTO.
-- Crear Equipamiento: Redirige a la home y debería redirigir al listado de equipamientos o a detalle de dicho equipamiento. LISTO.
-- Crear Arqueros: Igual que Crear Equipamiento. LISTO.
-
-- Lista Arqueros: al eliminar un arquero se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los arqueros que quedaron. LISTO. 
-- Lista Equipamientos: al eliminar un equipamiento se elimina la lista entera, debo renderizar o volver a ingresar al componente para que cargue la lista con los equipamientos que quedaron.  LISTO.
- -->
+-->
 
 
 

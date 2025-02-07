@@ -42,6 +42,16 @@ Y seleccionar las apps:
 Cloud Storage / ng deploy -- hosting / Authentication
 
 
+<!-- PARA SALIR A PRODUCCIÓN:
+
+- En el componente de registro colocar mensajes de minimo 6 caracteres y maximo 10 caracteres o quitarle la limitacion de caracteres max.
+- En el componente de registro manejar error de EMAIL_EXISTS.
+- En el componente Home cambiar el label del boton logout por salir.
+
+-->
+
+
+
 <!-- Featuring:
 
 - Registro: Colocar advertencia que deben ser minimo 6 caracteres en contraseña.

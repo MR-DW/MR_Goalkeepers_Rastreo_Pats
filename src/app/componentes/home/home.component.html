@@ -5,11 +5,11 @@
         <h1 class="title-h1">Gestión Pats by MR_Goalkeepers</h1>
 
         <button mat-stroked-button class="boton-login" [routerLink]="'/ingresar'" *ngIf="!estaLogueado()">
-            Login
+            Ingresar
         </button>
 
         <button mat-stroked-button class="boton-login" (click)="salir()" *ngIf="estaLogueado()">
-            Logout
+            Salir
         </button>
     </div>
 

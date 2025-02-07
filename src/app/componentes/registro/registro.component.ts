@@ -31,8 +31,8 @@ export class RegistroComponent implements OnInit {
   ) {
     this.formRegistro = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
-      contrasena: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      contrasena: ['', [Validators.required, Validators.minLength(4)]],
       club: ['', [Validators.required]],
     })
   }

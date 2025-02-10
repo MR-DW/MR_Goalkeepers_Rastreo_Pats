@@ -28,22 +28,34 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 "# MR_Goalkeepers_Rastreo_Pats" 
 
 
-Instalar:
-npm install
-npm install -g firebase -tools
-ng add @angular/material
-
-Si da error en este archivo dentro del noce_module: rxfire, instalar: 
-npm install rxfire@latest firebase@latest
-
-Para usar firebase utilizar:
-ng add @angular/fire
+Instalar Firebase:
+1- npm install -g firebase-tools
+2- ng add @angular/fire
 Y seleccionar las apps:
 Cloud Storage / ng deploy -- hosting / Authentication
 
+Usar Firebase: 
+npm list firebase @angular/fire = Permite ver todas las versiones de Firebase instaladas.
+Versiones compatibles con angular 14:
+C:\MR_Goalkeepers_Rastreo_Pats>npm list @angular/fire firebase
+mr-goalkeepers-rastreo-pats@0.0.0 C:\MR_Goalkeepers_Rastreo_Pats
+├─┬ @angular/fire@7.6.1
+│ ├── firebase@9.23.0 deduped
+│ └─┬ rxfire@6.1.0
+│   └── firebase@9.23.0 deduped
+└── firebase@9.23.0
+
+firebase deploy = Permite deployar tu proyecto
+
+
+
+Si solo necesitas hacer el deploy:
+👉 Solo instala firebase-tools (npm install -g firebase -tools) y usa firebase init y firebase deploy.
+
+
 
 <!-- BUGS:
-
+    Ver tema de página de not found
 -->
 
 

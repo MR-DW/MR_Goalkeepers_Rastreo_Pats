@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
       .then(() => {
         const mensaje = 'Usted salió correctamente!'
         this.openSnackBar(mensaje);
-        this.router.navigate(['/ingresar'])
+        this.router.navigate(['/'])
       })
       .catch(() => {
         const mensaje = 'No pudo salir intente nuevamente.'

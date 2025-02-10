@@ -58,7 +58,6 @@ export class LoginService {
       this.clubDelUsuario = '';
       sessionStorage.setItem('token', this.token);
       sessionStorage.setItem('clubDelUsuario', this.clubDelUsuario);
-      window.location.reload();
     })
   }
 

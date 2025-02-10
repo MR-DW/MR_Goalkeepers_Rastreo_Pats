@@ -1,12 +1,6 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
-  "storage": {
-    "rules": "storage.rules"
-  },
   "hosting": {
-    "source": ".",
+    "public": "dist/mr-goalkeepers-rastreo-pats", 
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,5 +9,8 @@
     "frameworksBackend": {
       "region": "us-central1"
     }
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
